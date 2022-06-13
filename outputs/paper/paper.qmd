@@ -5,14 +5,38 @@ thanks: "Code and data are available at: https://github.com/sarahmansoorr/SUDS20
 date: "`r format(Sys.time(), '%d %B %Y')`"
 format: pdf
 editor: visual
-bstract: ""
+abstract: ""
+toc: true
+bibliography: references.bib
 ---
 
 ## Introduction
 
 ## Data
 
+#### Data Collection
+
+#### Variables of Interest
+
+#### Data Processing
+
+#### Population, Frame or Sample
+
 ## Visualizing the Data and the Implications
+
+#### Visual 1
+
+#### Implications 1
+
+#### Visual 2
+
+#### Implications 2
+
+#### Visuals 3
+
+#### Implications 3
+
+## Limitations
 
 ## Results
 
