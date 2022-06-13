@@ -1,27 +1,17 @@
 ---
-title: "paper.qmd"
+title: "Disparities in Climate-Induced Health Outcomes in the Greater Toronto Area."
 author: "Sarah Mansoor"
+thanks: "Code and data are available at: https://github.com/sarahmansoorr/SUDS2022"
+date: "`r format(Sys.time(), '%d %B %Y')`"
 format: pdf
 editor: visual
+bstract: ""
 ---
 
-## Quarto
+## Introduction
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Data
 
-## Running Code
+## Visualizing the Data and the Implications
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+## Next Steps
