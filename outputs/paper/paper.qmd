@@ -14,7 +14,15 @@ bibliography: references.bib
 
 ## Introduction
 
+Why do we care?
+
+What is in this paper?
+
+Results?
+
 ## Data
+
+table of variables used?
 
 #### Data Collection
 
@@ -24,7 +32,11 @@ bibliography: references.bib
 
 #### Population, Frame or Sample
 
-## Visualizing the Data and the Implications
+## Visualizing the Data and the Implications (needs to be reworded)
+
+use other graphs beside boxplot. log scales. (dotpoint, barchart, etc)
+
+avoid drastic, dramatic, etc
 
 #### Visual 1
 
@@ -43,5 +55,7 @@ bibliography: references.bib
 ## Results
 
 ## Next Steps
+
+need updated data?
 
 ## Conclusion
