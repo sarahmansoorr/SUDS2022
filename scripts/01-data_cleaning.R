@@ -27,6 +27,12 @@ temp_2002_2022 <- rbind(temp_jan_dec_2002, temp_jan_dec_2003, temp_jan_dec_2004,
                         temp_jan_dec_2017, temp_jan_dec_2018, temp_jan_dec_2019,
                         temp_jan_dec_2020, temp_jan_dec_2021, temp_jan_may_2022)
 
+temp_2012_2022 <- rbind(temp_jan_dec_2012, temp_jan_dec_2013, 
+                        temp_jan_dec_2014, temp_jan_dec_2015, temp_jan_dec_2016,
+                        temp_jan_dec_2017, temp_jan_dec_2018, temp_jan_dec_2019,
+                        temp_jan_dec_2020, temp_jan_dec_2021, temp_jan_may_2022)
+
+
 temp_2002_2022_5yr_interval <- rbind(temp_jan_dec_2002, temp_jan_dec_2007, 
                                      temp_jan_dec_2012, temp_jan_dec_2017, 
                                      temp_jan_may_2022)
