@@ -95,9 +95,8 @@ temp_2002_2022 <- temp_2002_2022 %>%
   ))
 
 ### Drop NA for max_temp
-df <- temp_2002_2022
-df <- df %>% drop_na(max_temp)
-df <- df %>% drop_na(min_temp)
-df <- df %>% drop_na(mean_temp)
-df <- df %>% drop_na(total_percip_mm)
+temp_2002_2022 <- temp_2002_2022 %>% drop_na(max_temp)
+temp_2002_2022 <- temp_2002_2022 %>% drop_na(min_temp)
+temp_2002_2022 <- temp_2002_2022 %>% drop_na(mean_temp)
+temp_2002_2022 <- temp_2002_2022 %>% drop_na(total_percip_mm)
 
