@@ -55,3 +55,21 @@ my_column_names <- c("station.name", "date", "year", "month", "day", "max.temp",
 colnames(temp_2002_2022) <- my_column_names
 temp_2002_2022 <- clean_names(temp_2002_2022)
 
+
+### Add column for Month Names
+temp_2002_2022 <- temp_2002_2022 %>%
+  mutate(month_name = case_when(
+    month == 1 ~ "Jan",
+    month == 2 ~ "Feb", 
+    month == 3 ~ "Mar", 
+    month == 4 ~ "Apr",
+    month == 5 ~ "May", 
+    month == 6 ~ "Jun",
+    month == 7 ~ "Jul",
+    month == 8 ~ "Aug", 
+    month == 9 ~ "Sep",
+    month == 10 ~ "Oct",
+    month == 11 ~ "Nov", 
+    month == 12 ~ "Dec"
+  ))
+
