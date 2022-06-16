@@ -67,11 +67,10 @@ temp_2002_2022_10yr_interval <- rbind(temp_jan_dec_2002,
 temp_2002_2022 <- temp_2002_2022 %>% select(Station.Name, Date.Time, Year, 
                                             Month, Day, Max.Temp...C., 
                                             Min.Temp...C., Mean.Temp...C., 
-                                            Heat.Deg.Days...C., Cool.Deg.Days...C., 
                                             Total.Precip..mm.)
 
 my_column_names <- c("station.name", "date", "year", "month", "day", "max.temp", "min.temp", 
-                     "mean.temp", "heat.deg.days", "cool.deg.days", "total.percip.mm")
+                     "mean.temp", "total.percip.mm")
 
 colnames(temp_2002_2022) <- my_column_names
 temp_2002_2022 <- clean_names(temp_2002_2022)
