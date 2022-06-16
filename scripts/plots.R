@@ -1,7 +1,7 @@
 #### ggplots ####
 library(ggplot2)
 
-ggplot(temp_2002_2022, aes(x=year, y=max_temp, color=month)) + geom_point()
+ggplot(temp_2002_2022, aes(x=year, y=max_temp, color=month.name)) + geom_point()
 
 ggplot(temp_2002_2022, aes(x=year, y=max_temp, color=month)) + geom_line()
 
