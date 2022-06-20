@@ -56,7 +56,7 @@ mean_temp_2002_2022 %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
 
 
-### summarising data
+# summarising data ----
 summary_max_data <- temp_2002_2022 %>%
   group_by(month_name) %>%
   summarise(mean_max_temp = mean(max_temp))
@@ -108,3 +108,6 @@ looking at rising temperatures and deaths
 looking at rising temperatures and lung diseases
 looking at rising temperatures and pollen and deaths"
 
+# pollution data ----
+
+ggplot(pollution_2011_2020, aes(Year, January, color=Pollutant)) + geom_point()
