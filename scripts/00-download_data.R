@@ -14,7 +14,7 @@
 library(tidyverse)
 library(dplyr)
 
-#### Load datasets ####
+#### Load temperature datasets ####
 temp_jan_may_2022 <- read.csv("~/Desktop/SUDS2022/inputs/data/en_climate_daily_ON_6158355_2022_P1D.csv")
 temp_jan_dec_2021 <- read.csv("~/Desktop/SUDS2022/inputs/data/en_climate_daily_ON_6158355_2021_P1D.csv")
 temp_jan_dec_2020 <- read.csv("~/Desktop/SUDS2022/inputs/data/en_climate_daily_ON_6158355_2020_P1D.csv")

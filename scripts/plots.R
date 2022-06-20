@@ -86,8 +86,25 @@ ggplot(winter, aes(x=year, y=max_temp, color=month_name)) + geom_point()
 spring <- temp_2002_2022 %>%
   filter(month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul")
 
+ggplot(spring, aes(x=year, y=max_temp, color=month_name)) + geom_point()
+
 summer <- temp_2002_2022 %>%
   filter(month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")
 
+ggplot(summer, aes(x=year, y=max_temp, color=month_name)) + geom_point()
 
+
+## using if else
+winter_2002_2022 <- ifelse(temp_2002_2022$date < "")
+
+"Econometrics
+Check differences to a different city over time
+Freedom of information
+Uoft databases
+Causation models
+Regression models
+
+looking at rising temperatures and deaths
+looking at rising temperatures and lung diseases
+looking at rising temperatures and pollen and deaths"
 

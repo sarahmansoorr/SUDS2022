@@ -99,3 +99,5 @@ temp_2002_2022 <- temp_2002_2022 %>% drop_na(min_temp)
 temp_2002_2022 <- temp_2002_2022 %>% drop_na(mean_temp)
 temp_2002_2022 <- temp_2002_2022 %>% drop_na(total_percip_mm)
 
+####### clarify in readme to use the cleaned data to download from github
+#### start a script for analysis that starts with clean data
