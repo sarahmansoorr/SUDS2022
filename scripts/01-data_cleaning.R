@@ -121,31 +121,31 @@ pollution_2020 <- pollution_2020 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
                                        June, July, August, September, October, November, December, 
                                        Average, StdDeviation) %>%
-  mutate(Year = 2020)
+  mutate(Year = "2020")
 
 pollution_2019 <- pollution_2019 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
                                        June, July, August, September, October, November, December, 
                                        Average, StdDeviation) %>%
-  mutate(Year = 2019)
+  mutate(Year = "2019")
 
 pollution_2018 <- pollution_2018 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
                                        June, July, August, September, October, November, December, 
                                        Average, StdDeviation) %>%
-  mutate(Year = 2018)
+  mutate(Year = "2018")
 
 pollution_2017 <- pollution_2017 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
                                        June, July, August, September, October, November, December, 
                                        Average, StdDeviation) %>%
-  mutate(Year = 2017)
+  mutate(Year = "2017")
 
 pollution_2016 <- pollution_2016 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
                                        June, July, August, September, October, November, December, 
                                        Average, StdDeviation) %>%
-  mutate(Year = 2016)
+  mutate(Year = "2016")
 
 pollution_2015 <- pollution_2015 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
@@ -157,25 +157,25 @@ pollution_2014 <- pollution_2014 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
                                        June, July, August, September, October, November, December, 
                                        Average, StdDeviation) %>%
-  mutate(Year = 2014)
+  mutate(Year = "2014")
 
 pollution_2013 <- pollution_2013 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
                                        June, July, August, September, October, November, December, 
                                        Average, StdDeviation) %>%
-  mutate(Year = 2013)
+  mutate(Year = "2013")
 
 pollution_2012 <- pollution_2012 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
                                        June, July, August, September, October, November, December, 
                                        Average, StdDeviation) %>%
-  mutate(Year = 2012)
+  mutate(Year = "2012")
 
 pollution_2011 <- pollution_2011 %>%
   filter(City == "Toronto") %>% select(City, Pollutant, January, February, March, April, May, 
                                        June, July, August, September, October, November, December, 
                                        Average, StdDeviation) %>%
-  mutate(Year = 2011)
+  mutate(Year = "2011")
 
 ### Combine pollution data
 
