@@ -14,11 +14,21 @@ bibliography: references.bib
 
 ## Introduction
 
+As climate change worsens, the danger it presents to human health worsens as well. The health impacts from climate change are already being demonstrated in parts of Canada. Canada is warming at almost twice the global rate and if this continues, emissions will exceed 2 degrees celcius worldwide.
+
 ## Data
 
 #### Data Collection
 
+Temperature data was collected from ...
+
+Pollution data was collected from ...
+
 #### Variables of Interest
+
+Tempreature variables of interest: Station Name, Date, Maximum temperature, Minimum temperature, Mean temperature.
+
+Pollution varibales of interest: Pollutant, Month, Year, Average, StdDeviation
 
 #### Data Processing
 

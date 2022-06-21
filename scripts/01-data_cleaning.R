@@ -65,11 +65,10 @@ temp_2002_2022_10yr_interval <- rbind(temp_jan_dec_2002,
 
 temp_2002_2022 <- temp_2002_2022 %>% select(Station.Name, Date.Time, Year, 
                                             Month, Day, Max.Temp...C., 
-                                            Min.Temp...C., Mean.Temp...C., 
-                                            Total.Precip..mm.)
+                                            Min.Temp...C., Mean.Temp...C.)
 
 my_column_names <- c("station.name", "date", "year", "month", "day", "max.temp", "min.temp", 
-                     "mean.temp", "total.percip.mm")
+                     "mean.temp")
 
 colnames(temp_2002_2022) <- my_column_names
 temp_2002_2022 <- clean_names(temp_2002_2022)
@@ -96,9 +95,6 @@ temp_2002_2022 <- temp_2002_2022 %>%
 temp_2002_2022 <- temp_2002_2022 %>% drop_na(max_temp)
 temp_2002_2022 <- temp_2002_2022 %>% drop_na(min_temp)
 temp_2002_2022 <- temp_2002_2022 %>% drop_na(mean_temp)
-temp_2002_2022 <- temp_2002_2022 %>% drop_na(total_percip_mm)
-
-
 
 
 #### Cleaning Pollution Data ----

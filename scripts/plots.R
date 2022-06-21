@@ -111,3 +111,4 @@ looking at rising temperatures and pollen and deaths"
 # pollution data ----
 
 ggplot(pollution_2011_2020, aes(Year, January, color=Pollutant)) + geom_point()
+
