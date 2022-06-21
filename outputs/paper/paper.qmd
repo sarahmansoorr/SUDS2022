@@ -7,7 +7,7 @@ thanks: "Code and data are available at: https://github.com/sarahmansoorr/SUDS20
 date: "`r format(Sys.time(), '%d %B %Y')`"
 format: pdf
 editor: visual
-abstract: ""
+abstract: "The growing impact of climate change in Canada demonstrates a clear and current threat to human health. These threats are becoming revealed in Canada as the country continues to face the consequences of warming almost at twice the global rate. The focus for this paper is on tempreture increases, lower air quality and more pollution and a decline in health for Toronto. Once the data for this research was collected, the data cleaning process begun which entailed of using packages in R like tidyverse, janitor, dplyr, …. Duplicate and irrelevant observations were removed, as well as unwanted outliers. The process was complete once the data was correct, consistent and usable. "
 toc: true
 bibliography: references.bib
 ---
@@ -24,7 +24,7 @@ bibliography: references.bib
 
 #### Population, Frame or Sample
 
-## Visualizing the Data and the Implications (needs to be reworded)
+## Visualizing the Data and the Implications
 
 #### Visual 1
 
