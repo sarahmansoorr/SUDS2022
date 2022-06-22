@@ -124,16 +124,20 @@ poll_2011_2020 %>%
 dec_mar <- temperature_2002_2022 %>%
   filter(month_name == "Dec" | month_name == "Jan" | month_name == "Feb" | month_name == "Mar")
 
-ggplot(dec_mar, aes(x=year, y=max_temp, color=month_name)) + geom_point()
+ggplot(dec_mar, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
+  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
+
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for April to July", fig.width=9, fig.height=3.2}
 
 apr_jul <- temperature_2002_2022 %>%
   filter(month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul")
 
-ggplot(apr_jul, aes(x=year, y=max_temp, color=month_name)) + geom_point()
+ggplot(apr_jul, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
+  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
 
@@ -142,21 +146,10 @@ ggplot(apr_jul, aes(x=year, y=max_temp, color=month_name)) + geom_point()
 aug_nov <- temperature_2002_2022 %>%
   filter(month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")
 
-ggplot(aug_nov, aes(x=year, y=max_temp, color=month_name)) + geom_point()
+ggplot(aug_nov, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
+  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
-
-#### Implications 1
-
-
-
-#### Visual 2
-
-#### Implications 2
-
-#### Visuals 3
-
-#### Implications 3
 
 ## Limitations
 
