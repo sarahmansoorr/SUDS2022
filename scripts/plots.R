@@ -55,6 +55,25 @@ mean_temp_2002_2022 %>%
     linesep = "", digits = 2, booktabs=TRUE) %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
 
+mean_temp_2002_2022 <- temp_2002_2022 %>%
+  select(year, month, day, max_temp, min_temp, mean_temp)
+mean_temp_2002_2022 %>%
+  slice(c(162, 393, 745, 1318, 1819, 2115, 3222, 4222, 5222, 6333)) %>%
+  kable(
+    caption = "Extracting rows from the Temperature data from 2002 - 2022",
+    col.names=c("Year", "Month", "Day", "Max Temp", "Min Temp", "Mean Temp"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
+
+temp_2002_2022 %>%
+  select(year, month, day, max_temp, min_temp, mean_temp) %>%
+  slice(c(162, 393, 745, 1318, 1819, 2115, 3222, 4222, 5222, 6333)) %>%
+  kable(
+    caption = "Extracting rows from the Temperature data from 2002 - 2022",
+    col.names=c("Year", "Month", "Day", "Max Temp", "Min Temp", "Mean Temp"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
+
 
 # summarising data ----
 summary_max_data <- temp_2002_2022 %>%
@@ -110,5 +129,18 @@ looking at rising temperatures and pollen and deaths"
 
 # pollution data ----
 
+## ggplot ----
 ggplot(pollution_2011_2020, aes(Year, January, color=Pollutant)) + geom_point()
 
+
+## tables ----
+pollution_2011_2020 %>%
+  select(Year, Pollutant, January, February, March, April, May, June, July, August, September, October, 
+         November, December) %>%
+  slice(c(2, 34, 74, 91, 117, 147, 184, 223, 252, 308)) %>%
+  kable(
+    caption = "Extracting rows from the Pollution data from 2011 - 2020",
+    col.names=c("Year", "Pollutant", "Jan", "Feb", "Mar", "Apr", "May",
+                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)

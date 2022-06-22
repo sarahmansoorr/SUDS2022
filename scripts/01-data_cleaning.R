@@ -73,6 +73,12 @@ my_column_names <- c("station.name", "date", "year", "month", "day", "max.temp",
 colnames(temp_2002_2022) <- my_column_names
 temp_2002_2022 <- clean_names(temp_2002_2022)
 
+# Save temperature data 2002-2022
+write_csv(
+  x = temp_2002_2022,
+  file = "~/Desktop/SUDS2022/inputs/data/clean_temp_data/temperature_2002_2022.csv"
+)
+
 
 ### Add column for Month Names
 temp_2002_2022 <- temp_2002_2022 %>%
@@ -191,5 +197,10 @@ df <- df %>% select(Pollutant, January, February, March, April, May,
                     December, Year)
 df <- t(df)
 
+# Save pollution data 2011-2020
+write_csv(
+  x = pollution_2011_2020,
+  file = "~/Desktop/SUDS2022/inputs/data/clean_pollution_data/pollution_2011_2020.csv"
+)
 
 #### Combine Temperature and Pollution Data ----
