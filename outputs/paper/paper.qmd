@@ -115,9 +115,9 @@ poll_2011_2020 %>%
 ```
 
 
-## Visualizing the Data and the Implications
+## Visualizing Temperature from 2002-2022
 
-#### Visualizing Temperature from 2002-2022
+#### Visualizing Temperature by Months
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for December to March", fig.width=9, fig.height=3.2}
 
@@ -146,8 +146,9 @@ ggplot(aug_nov, aes(x=year, y=max_temp, color=month_name)) + geom_point()
 
 ```
 
-
 #### Implications 1
+
+
 
 #### Visual 2
 
