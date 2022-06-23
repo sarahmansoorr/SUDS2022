@@ -133,6 +133,12 @@ looking at rising temperatures and pollen and deaths"
 ggplot(pollution_2011_2020, aes(Year, January, color=Pollutant)) + geom_point()
 
 
+
+
+ggplot(pollution, aes(Year, Mean, color=Pollutant)) + geom_point()
+
+
+
 ## tables ----
 pollution_2011_2020 %>%
   select(Year, Pollutant, January, February, March, April, May, June, July, August, September, October, 
@@ -144,3 +150,9 @@ pollution_2011_2020 %>%
                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
     linesep = "", digits = 2, booktabs=TRUE) %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
+
+
+
+
+
+
