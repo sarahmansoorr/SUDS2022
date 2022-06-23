@@ -154,5 +154,12 @@ pollution_2011_2020 %>%
 
 
 
-
+pollution %>%
+  select(Pollutant, City, Date, Mean, Year) %>%
+  slice(c(100, 1000, 1200, 1500, 1800, 2000, 2500, 2800, 3600, 5000, 6000, 7000, 10000, 11000, 15000)) %>%
+  kable(
+    caption = "Extracting rows from the Pollution data from 2010 - 2020",
+    col.names=c("Pollutant", "City", "Date", "Mean", "Year"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
 
