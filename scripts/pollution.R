@@ -810,6 +810,57 @@ pollu_2005 <- pollu_2005 %>% mutate(Year = "2005")
 # Remove hourly data columns
 pollu_2005 <- pollu_2005 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
+## 2004 Data
+
+# read data
+CO_2004 <- read_csv("inputs/data/raw_pollution_data/2004/CO_2004.csv", 
+                    skip = 7)
+NO_2004 <- read_csv("inputs/data/raw_pollution_data/2004/NO_2004.csv", 
+                    skip = 7)
+NO2_2004 <- read_csv("inputs/data/raw_pollution_data/2004/NO2_2004.csv", 
+                     skip = 7)
+O3_2004 <- read_csv("inputs/data/raw_pollution_data/2004/O3_2004.csv", 
+                    skip = 7)
+SO2_2004 <- read_csv("inputs/data/raw_pollution_data/2004/SO2_2004.csv", 
+                     skip = 7)
+colnames(CO_2004) <- my_column_names
+colnames(NO_2004) <- my_column_names
+colnames(NO2_2004) <- my_column_names
+colnames(O3_2004) <- my_column_names
+colnames(SO2_2004) <- my_column_names
+# combine data
+pollu_2004 <- rbind(CO_2004, NO_2004, NO2_2004, O3_2004, SO2_2004)
+# change column names
+colnames(pollu_2004) <- my_column_names
+# select variables
+pollu_2004 <- pollu_2004 %>% select("Pollutant", "City", "Date", "H1",
+                                    "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
+                                    "H13", "H14", "H15", "H16", "H17", "H18", "H19", "H20", "H21", "H22", "H23", 
+                                    "H24")
+# filter for Toronto
+pollu_2004 <- pollu_2004 %>% filter(City == "Toronto")
+# remove duplicate dates
+unique_rows <- !duplicated(pollu_2004[c("Pollutant", "Date")])
+pollu_2004 <- pollu_2004[unique_rows,]
+# replace -999 missing values with NA
+pollu_2004 <- pollu_2004 %>% replace_with_na(replace = list(H1 = -999, H2 = -999, H3 = -999, 
+                                                            H4 = -999, H5 = -999, H6 = -999,
+                                                            H7 = -999, H8 = -999, H9 = -999, 
+                                                            H10 = -999, H11 = -999, H12 = -999, 
+                                                            H13 = -999, H14 = -999, H15 = -999,
+                                                            H16 = -999, H17 = -999, H18 = -999, 
+                                                            H19 = -999,  H20 = -999, H21 = -999,
+                                                            H22 = -999, H23 = -999, H24 = -999))
+# replace NA with 0
+pollu_2004[is.na(pollu_2004)] <- 0
+# Add column for average 
+pollu_2004 <- pollu_2004 %>% mutate(Mean = rowMeans(pollu_2004[ ,c(4:27)], na.rm=TRUE))
+# Add column for Year
+pollu_2004 <- pollu_2004 %>% mutate(Year = "2004")
+# Remove hourly data columns
+pollu_2004 <- pollu_2004 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+
+
 ## Combine pollution data
-pollution <- rbind(pollu_2005, pollu_2006, pollu_2007, pollu_2008, pollu_2009, pollu_2010, pollu_2011, pollu_2012, pollu_2013, pollu_2014, pollu_2015, pollu_2016, 
+pollution <- rbind(pollu_2004, pollu_2005, pollu_2006, pollu_2007, pollu_2008, pollu_2009, pollu_2010, pollu_2011, pollu_2012, pollu_2013, pollu_2014, pollu_2015, pollu_2016, 
                    pollu_2017, pollu_2018, pollu_2019, pollu_2020)
