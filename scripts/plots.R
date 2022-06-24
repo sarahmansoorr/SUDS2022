@@ -137,7 +137,35 @@ ggplot(pollution_2011_2020, aes(Year, January, color=Pollutant)) + geom_point()
 
 ggplot(pollution, aes(Year, Mean, color=Pollutant)) + geom_point()
 
+pollution %>% filter(Pollutant != "NO") %>% ggplot(aes(x = Year, 
+                                                       y = Mean, 
+                                                       color = Pollutant)) + geom_point()
+pollution %>% filter(Pollutant != "NO" & Pollutant != "O3") %>% ggplot(aes(x = Year, 
+                                                       y = Mean, 
+                                                       color = Pollutant)) + geom_point()
 
+pollution %>% filter(Pollutant != "NO" & Pollutant != "O3" & Pollutant != "NO2") %>% ggplot(
+  aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
+# CO unit ppm
+pollution %>% filter(Pollutant == "CO") %>% ggplot(
+  aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
+pollution %>% filter(Pollutant == "CO") %>% ggplot(
+  aes(x = Year, y = Mean*1000, color = Pollutant)) + geom_point()
+# NO unit ppb
+pollution %>% filter(Pollutant == "NO") %>% ggplot(
+  aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
+# O3 unit ppb
+pollution %>% filter(Pollutant == "O3") %>% ggplot(
+  aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
+# NO2 unit ppb
+pollution %>% filter(Pollutant == "NO2") %>% ggplot(
+  aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
+# SO2 unit ppb
+pollution %>% filter(Pollutant == "SO2") %>% ggplot(
+  aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
+## different units for CO for the above so different axis
+pollution %>% filter(Pollutant != "CO") %>% ggplot(
+  aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
 
 ## tables ----
 pollution_2011_2020 %>%
