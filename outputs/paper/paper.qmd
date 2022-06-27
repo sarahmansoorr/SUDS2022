@@ -18,8 +18,7 @@ toc: true
 
 As climate change worsens, the danger it presents to human health worsens as well. The health impacts due to climate change are already being demonstrated in parts of Canada. Canada is warming at almost twice the global rate and if this continues, emissions will exceed 2 degrees Celsius worldwide.
 
-The Paris Agreement within the United Nations Framework Convention on Climate Change includes 175 countries that have agreed to limit the average global temperature rise to below 2 degress Celcius. Canada had signed to the Paris Agreement as well and committed to cutting emission 30% below the 2005 levels by 2030. However, Canada's emission increased in 2016 compared to 1990. As a response to this increase, the Government of Canada developed a national climate change plan called *The Pan-Canadian Framework on Clean Growth and Climate Change*. This framework notes that human activities are driving severe changes to the Earth's climate which poses substantial
-risks to human health.
+The Paris Agreement within the United Nations Framework Convention on Climate Change includes 175 countries that have agreed to limit the average global temperature rise to below 2 degress Celcius. Canada had signed to the Paris Agreement as well and committed to cutting emission 30% below the 2005 levels by 2030. However, Canada's emission increased in 2016 compared to 1990. As a response to this increase, the Government of Canada developed a national climate change plan called *The Pan-Canadian Framework on Clean Growth and Climate Change*. This framework notes that human activities are driving severe changes to the Earth's climate which poses substantial risks to human health.
 
 ## Data
 
@@ -27,7 +26,7 @@ risks to human health.
 
 Temperature data was collected from the Government of Canada's website on Weather, Climate and Hazard's [page](https://climate.weather.gc.ca/historical_data/search_historic_data_e.html) containing past weather and climate data for the station "Toronto City". This data was collected from January 2002 to May 2022. The original data contains daily data on maximum temperature, minimum temperature, mean temperature, heat degree days, cool degree days, total rain (mm), total snow (cm), total precipitation (mm), snow on ground (cm), direction of maximum gust, and speed of maximum gust (km/h). For this research, I will focus on only maximum temperature, minimum temperature, and mean temperature.
 
-Pollution data was collected from the Government of Canada's National Air Pollution Surveillance (NAPS) Program [website](https://data-donnees.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en). This website contains pollution data from 2002 to 2020. Each year contains a file with continuous data and integrated data. I will be using continuous data for each year. The continuous data contains annual summaries and hourly data as well. I will be looking at the means for each year in the annual summaries data. These summaries include the city (which is Toronto in our case), the pollutant (these include: NO, NO2, NOX, O3, CO, PM2.5, and SO2), as well as the levels of each pollutant for each month of the year.
+Pollution data was collected from the Government of Canada's National Air Pollution Surveillance (NAPS) Program [website](https://data-donnees.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en). This website contains pollution data from 2002 to 2020. Each year contains a file with continuous data and integrated data. I will be using continuous data for each year. The continuous data contains annual summaries and hourly data. I will be looking at the hourly data for CO (Carbon Monoxide), NO (Nitric Oxide), NO2 (Nitrogen Dioxide) , O3 (Ozone), and SO2 (Sulfur Dioxide). This data includes the city (which is Toronto in our case), the levels of each pollutant for each hour of every day.
 
 #### Variables of Interest
 
@@ -49,16 +48,11 @@ Pollution variables of interest:
 
 -   Year
 
--   Average
-
--   StdDeviation
+-   Mean level of pollution each day
 
 #### Data Processing
 
-
-
 #### Population, Frame or Sample
-
 
 #### The Data
 
@@ -98,7 +92,6 @@ poll_2011_2020 <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_pollution_data/
 
 ```
 
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="", fig.width=9, fig.height=3.2}
 
 poll_2011_2020 %>%
@@ -114,7 +107,6 @@ poll_2011_2020 %>%
 
 ```
 
-
 ## Visualizing Temperature from 2002-2022
 
 #### Visualizing Temperature by Months
@@ -128,8 +120,6 @@ ggplot(dec_mar, aes(x=year, y=max_temp, color=month_name)) + geom_point() +
   labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
-
-
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for April to July", fig.width=9, fig.height=3.2}
 
