@@ -810,9 +810,10 @@ pollution <- rbind(pollu_2002, pollu_2003, pollu_2004, pollu_2005, pollu_2006, p
 # Save pollution data 2002-2020
 write_csv(
   x = pollution,
-  file = "~/Desktop/SUDS2022/inputs/data/clean_temp_data/pollution_2002_2020.csv"
+  file = "~/Desktop/SUDS2022/inputs/data/clean_pollution_data/pollution_2002_2020.csv"
 )
 
 
 #### Combine Temperature and Pollution Data ----
+pollu_temp <- rbind(temp_2002_2022, pollution)
 
