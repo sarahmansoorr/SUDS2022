@@ -163,6 +163,7 @@ pollution %>% filter(Pollutant == "NO2") %>% ggplot(
 # SO2 unit ppb
 pollution %>% filter(Pollutant == "SO2") %>% ggplot(
   aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
+
 ## different units for CO for the above so different axis
 pollution %>% filter(Pollutant != "CO") %>% ggplot(
   aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
