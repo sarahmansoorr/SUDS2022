@@ -14,6 +14,7 @@ library(tidyverse)
 library(dplyr)
 library(ggplot2)
 library(janitor)
+library(naniar)
 
 #### Cleaning Temperature Data ----
 
@@ -59,9 +60,8 @@ temp_2002_2022 <- rbind(temp_jan_dec_2002, temp_jan_dec_2003, temp_jan_dec_2004,
                         temp_jan_dec_2017, temp_jan_dec_2018, temp_jan_dec_2019,
                         temp_jan_dec_2020, temp_jan_dec_2021, temp_jan_may_2022)
 
-temp_2002_2022 <- temp_2002_2022 %>% select()
-
-colnames(temp_2002_2022) <- my_column_names
+temp_2002_2022 <- temp_2002_2022 %>% select("Station Name", "Date", "Year", "Month", "Day", 
+                                            "Max Temp", "Min Temp", "Mean Temp")
 temp_2002_2022 <- clean_names(temp_2002_2022)
 
 ### Add column for Month Names
@@ -108,7 +108,6 @@ colnames(O3_2020) <- my_column_names
 colnames(SO2_2020) <- my_column_names
 # combine data
 pollu_2020 <- rbind(CO_2020, NO_2020, NO2_2020, O3_2020, SO2_2020)
-colnames(pollu_2020) <- my_column_names
 # select variables
 pollu_2020 <- pollu_2020 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -137,6 +136,7 @@ pollu_2020 <- pollu_2020 %>% mutate(Year = "2020")
 # Remove hourly data columns
 pollu_2020 <- pollu_2020 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
+
 ## 2019 Data
 
 colnames(CO_2019) <- my_column_names
@@ -146,8 +146,6 @@ colnames(O3_2019) <- my_column_names
 colnames(SO2_2019) <- my_column_names
 # combine data
 pollu_2019 <- rbind(CO_2019, NO_2019, NO2_2019, O3_2019, SO2_2019)
-# change column names
-colnames(pollu_2019) <- my_column_names
 # select variables
 pollu_2019 <- pollu_2019 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -184,8 +182,6 @@ colnames(O3_2018) <- my_column_names
 colnames(SO2_2018) <- my_column_names
 # combine data
 pollu_2018 <- rbind(CO_2018, NO_2018, NO2_2018, O3_2018, SO2_2018)
-# change column names
-colnames(pollu_2018) <- my_column_names
 # select variables
 pollu_2018 <- pollu_2018 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -223,8 +219,6 @@ colnames(O3_2017) <- my_column_names
 colnames(SO2_2017) <- my_column_names
 # combine data
 pollu_2017 <- rbind(CO_2017, NO_2017, NO2_2017, O3_2017, SO2_2017)
-# change column names
-colnames(pollu_2017) <- my_column_names
 # select variables
 pollu_2017 <- pollu_2017 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -262,8 +256,6 @@ colnames(O3_2016) <- my_column_names
 colnames(SO2_2016) <- my_column_names
 # combine data
 pollu_2016 <- rbind(CO_2016, NO_2016, NO2_2016, O3_2016, SO2_2016)
-# change column names
-colnames(pollu_2016) <- my_column_names
 # select variables
 pollu_2016 <- pollu_2016 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -301,8 +293,6 @@ colnames(O3_2015) <- my_column_names
 colnames(SO2_2015) <- my_column_names
 # combine data
 pollu_2015 <- rbind(CO_2015, NO_2015, NO2_2015, O3_2015, SO2_2015)
-# change column names
-colnames(pollu_2015) <- my_column_names
 # select variables
 pollu_2015 <- pollu_2015 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -339,8 +329,6 @@ colnames(O3_2014) <- my_column_names
 colnames(SO2_2014) <- my_column_names
 # combine data
 pollu_2014 <- rbind(CO_2014, NO_2014, NO2_2014, O3_2014, SO2_2014)
-# change column names
-colnames(pollu_2014) <- my_column_names
 # select variables
 pollu_2014 <- pollu_2014 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -377,8 +365,6 @@ colnames(O3_2013) <- my_column_names
 colnames(SO2_2013) <- my_column_names
 # combine data
 pollu_2013 <- rbind(CO_2013, NO_2013, NO2_2013, O3_2013, SO2_2013)
-# change column names
-colnames(pollu_2013) <- my_column_names
 # select variables
 pollu_2013 <- pollu_2013 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -415,8 +401,6 @@ colnames(O3_2012) <- my_column_names
 colnames(SO2_2012) <- my_column_names
 # combine data
 pollu_2012 <- rbind(CO_2012, NO_2012, NO2_2012, O3_2012, SO2_2012)
-# change column names
-colnames(pollu_2012) <- my_column_names
 # select variables
 pollu_2012 <- pollu_2012 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -454,8 +438,6 @@ colnames(O3_2011) <- my_column_names
 colnames(SO2_2011) <- my_column_names
 # combine data
 pollu_2011 <- rbind(CO_2011, NO_2011, NO2_2011, O3_2011, SO2_2011)
-# change column names
-colnames(pollu_2011) <- my_column_names
 # select variables
 pollu_2011 <- pollu_2011 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -493,8 +475,6 @@ colnames(O3_2010) <- my_column_names
 colnames(SO2_2010) <- my_column_names
 # combine data
 pollu_2010 <- rbind(CO_2010, NO_2010, NO2_2010, O3_2010, SO2_2010)
-# change column names
-colnames(pollu_2010) <- my_column_names
 # select variables
 pollu_2010 <- pollu_2010 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -531,8 +511,6 @@ colnames(O3_2009) <- my_column_names
 colnames(SO2_2009) <- my_column_names
 # combine data
 pollu_2009 <- rbind(CO_2009, NO_2009, NO2_2009, O3_2009, SO2_2009)
-# change column names
-colnames(pollu_2009) <- my_column_names
 # select variables
 pollu_2009 <- pollu_2009 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -570,8 +548,6 @@ colnames(O3_2008) <- my_column_names
 colnames(SO2_2008) <- my_column_names
 # combine data
 pollu_2008 <- rbind(CO_2008, NO_2008, NO2_2008, O3_2008, SO2_2008)
-# change column names
-colnames(pollu_2008) <- my_column_names
 # select variables
 pollu_2008 <- pollu_2008 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -609,8 +585,6 @@ colnames(O3_2007) <- my_column_names
 colnames(SO2_2007) <- my_column_names
 # combine data
 pollu_2007 <- rbind(CO_2007, NO_2007, NO2_2007, O3_2007, SO2_2007)
-# change column names
-colnames(pollu_2007) <- my_column_names
 # select variables
 pollu_2007 <- pollu_2007 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -649,8 +623,6 @@ colnames(O3_2006) <- my_column_names
 colnames(SO2_2006) <- my_column_names
 # combine data
 pollu_2006 <- rbind(CO_2006, NO_2006, NO2_2006, O3_2006, SO2_2006)
-# change column names
-colnames(pollu_2006) <- my_column_names
 # select variables
 pollu_2006 <- pollu_2006 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -688,8 +660,6 @@ colnames(O3_2005) <- my_column_names
 colnames(SO2_2005) <- my_column_names
 # combine data
 pollu_2005 <- rbind(CO_2005, NO_2005, NO2_2005, O3_2005, SO2_2005)
-# change column names
-colnames(pollu_2005) <- my_column_names
 # select variables
 pollu_2005 <- pollu_2005 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -727,8 +697,6 @@ colnames(O3_2004) <- my_column_names
 colnames(SO2_2004) <- my_column_names
 # combine data
 pollu_2004 <- rbind(CO_2004, NO_2004, NO2_2004, O3_2004, SO2_2004)
-# change column names
-colnames(pollu_2004) <- my_column_names
 # select variables
 pollu_2004 <- pollu_2004 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -767,8 +735,6 @@ colnames(O3_2003) <- my_column_names
 colnames(SO2_2003) <- my_column_names
 # combine data
 pollu_2003 <- rbind(CO_2003, NO_2003, NO2_2003, O3_2003, SO2_2003)
-# change column names
-colnames(pollu_2003) <- my_column_names
 # select variables
 pollu_2003 <- pollu_2003 %>% select("Pollutant", "City", "Date", "H1",
                                     "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
@@ -807,10 +773,8 @@ colnames(O3_2002) <- my_column_names
 colnames(SO2_2002) <- my_column_names
 # combine data
 pollu_2002 <- rbind(CO_2002, NO_2002, NO2_2002, O3_2002, SO2_2002)
-# change column names
-colnames(pollu_2002) <- my_column_names
 # select variables
-pollu_20032 <- pollu_2002 %>% select("Pollutant", "City", "Date", "H1",
+pollu_2002 <- pollu_2002 %>% select("Pollutant", "City", "Date", "H1",
                                      "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12",
                                      "H13", "H14", "H15", "H16", "H17", "H18", "H19", "H20", "H21", "H22", "H23", 
                                      "H24")
