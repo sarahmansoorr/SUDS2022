@@ -30,25 +30,27 @@ my_column_names <- c("Longitude (x)", "Latitude (y)", "Station Name", "Climate I
 
 colnames(temp_jan_may_2022) <- my_column_names
 colnames(temp_jan_dec_2021) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-colnames(temp_2002_2022) <- my_column_names
-
+colnames(temp_jan_dec_2020) <- my_column_names
+colnames(temp_jan_dec_2019) <- my_column_names
+colnames(temp_jan_dec_2018) <- my_column_names
+colnames(temp_jan_dec_2017) <- my_column_names
+colnames(temp_jan_dec_2016) <- my_column_names
+colnames(temp_jan_dec_2015) <- my_column_names
+colnames(temp_jan_dec_2014) <- my_column_names
+colnames(temp_jan_dec_2013) <- my_column_names
+colnames(temp_jan_dec_2012) <- my_column_names
+colnames(temp_jan_dec_2011) <- my_column_names
+colnames(temp_jan_dec_2010) <- my_column_names
+colnames(temp_jan_dec_2009) <- my_column_names
+colnames(temp_jan_dec_2008) <- my_column_names
+colnames(temp_jan_dec_2007) <- my_column_names
+colnames(temp_jan_dec_2006) <- my_column_names
+colnames(temp_jan_dec_2005) <- my_column_names
+colnames(temp_jan_dec_2004) <- my_column_names
+colnames(temp_jan_dec_2003) <- my_column_names
+colnames(temp_jan_dec_2002) <- my_column_names
 
 # Combine 2002 - 2022 data
-
 temp_2002_2022 <- rbind(temp_jan_dec_2002, temp_jan_dec_2003, temp_jan_dec_2004, 
                         temp_jan_dec_2005, temp_jan_dec_2006, temp_jan_dec_2007,
                         temp_jan_dec_2008, temp_jan_dec_2009, temp_jan_dec_2010,
