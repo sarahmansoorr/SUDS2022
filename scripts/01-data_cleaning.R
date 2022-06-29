@@ -18,10 +18,34 @@ library(janitor)
 #### Cleaning Temperature Data ----
 
 # Change column names 
-my_column_names <- c("station.name", "date", "year", "month", "day", "max.temp", "min.temp", 
-                     "mean.temp")
+my_column_names <- c("Longitude (x)", "Latitude (y)", "Station Name", "Climate ID", 
+                     "Date", "Year", "Month", "Day", "Data Quality", "Max Temp", 
+                     "Max Temp Flag", "Min Temp", "Min Temp Flag", "Mean Temp", 
+                     "Mean Temp Flag", "Heat Deg Days", "Heat Deg Days Flag", 
+                     "Cool Deg Days", "Cool Deg Days Flag", "Total Rain", 
+                     "Total Rain Flag", "Total Snow", "Total Snow Flag", "Total Precip", 
+                     "Total Precip Flag", "Snow on Grnd", "Snow on Grnd Flag", 
+                     "Dir of Max Gust", "Dir of Max Gust Flag", "Spd of Max Gust", 
+                     "Spd of Max Gust Flag")
 
+colnames(temp_jan_may_2022) <- my_column_names
+colnames(temp_jan_dec_2021) <- my_column_names
 colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+colnames(temp_2002_2022) <- my_column_names
+
 
 # Combine 2002 - 2022 data
 
