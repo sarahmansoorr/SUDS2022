@@ -17,30 +17,14 @@ library(janitor)
 
 #### Cleaning Temperature Data ----
 
-### Attach temperature data
-attach(temp_jan_dec_2002)
-attach(temp_jan_dec_2003)
-attach(temp_jan_dec_2004)
-attach(temp_jan_dec_2005)
-attach(temp_jan_dec_2006)
-attach(temp_jan_dec_2007)
-attach(temp_jan_dec_2008)
-attach(temp_jan_dec_2009)
-attach(temp_jan_dec_2010)
-attach(temp_jan_dec_2011)
-attach(temp_jan_dec_2012)
-attach(temp_jan_dec_2013)
-attach(temp_jan_dec_2014)
-attach(temp_jan_dec_2015)
-attach(temp_jan_dec_2016)
-attach(temp_jan_dec_2017)
-attach(temp_jan_dec_2018)
-attach(temp_jan_dec_2019)
-attach(temp_jan_dec_2020)
-attach(temp_jan_dec_2021)
-attach(temp_jan_may_2022)
+# Change column names 
+my_column_names <- c("station.name", "date", "year", "month", "day", "max.temp", "min.temp", 
+                     "mean.temp")
+
+colnames(temp_2002_2022) <- my_column_names
 
 # Combine 2002 - 2022 data
+
 temp_2002_2022 <- rbind(temp_jan_dec_2002, temp_jan_dec_2003, temp_jan_dec_2004, 
                         temp_jan_dec_2005, temp_jan_dec_2006, temp_jan_dec_2007,
                         temp_jan_dec_2008, temp_jan_dec_2009, temp_jan_dec_2010,
@@ -49,36 +33,10 @@ temp_2002_2022 <- rbind(temp_jan_dec_2002, temp_jan_dec_2003, temp_jan_dec_2004,
                         temp_jan_dec_2017, temp_jan_dec_2018, temp_jan_dec_2019,
                         temp_jan_dec_2020, temp_jan_dec_2021, temp_jan_may_2022)
 
-temp_2012_2022 <- rbind(temp_jan_dec_2012, temp_jan_dec_2013, 
-                        temp_jan_dec_2014, temp_jan_dec_2015, temp_jan_dec_2016,
-                        temp_jan_dec_2017, temp_jan_dec_2018, temp_jan_dec_2019,
-                        temp_jan_dec_2020, temp_jan_dec_2021, temp_jan_may_2022)
-
-
-temp_2002_2022_5yr_interval <- rbind(temp_jan_dec_2002, temp_jan_dec_2007, 
-                                     temp_jan_dec_2012, temp_jan_dec_2017, 
-                                     temp_jan_may_2022)
-
-temp_2002_2022_10yr_interval <- rbind(temp_jan_dec_2002,
-                                     temp_jan_dec_2012,
-                                     temp_jan_may_2022)
-
-temp_2002_2022 <- temp_2002_2022 %>% select(Station.Name, Date.Time, Year, 
-                                            Month, Day, Max.Temp...C., 
-                                            Min.Temp...C., Mean.Temp...C.)
-
-my_column_names <- c("station.name", "date", "year", "month", "day", "max.temp", "min.temp", 
-                     "mean.temp")
+temp_2002_2022 <- temp_2002_2022 %>% select()
 
 colnames(temp_2002_2022) <- my_column_names
 temp_2002_2022 <- clean_names(temp_2002_2022)
-
-# Save temperature data 2002-2022
-write_csv(
-  x = temp_2002_2022,
-  file = "~/Desktop/SUDS2022/inputs/data/clean_temp_data/temperature_2002_2022.csv"
-)
-
 
 ### Add column for Month Names
 temp_2002_2022 <- temp_2002_2022 %>%
@@ -102,22 +60,15 @@ temp_2002_2022 <- temp_2002_2022 %>% drop_na(max_temp)
 temp_2002_2022 <- temp_2002_2022 %>% drop_na(min_temp)
 temp_2002_2022 <- temp_2002_2022 %>% drop_na(mean_temp)
 
+# Save temperature data 2002-2022
+write_csv(
+  x = temp_2002_2022,
+  file = "~/Desktop/SUDS2022/inputs/data/clean_temp_data/temperature_2002_2022.csv"
+)
 
 #### Cleaning Pollution Data ----
 
 ## 2020 Data
-
-# read data
-CO_2020 <- read_csv("inputs/data/raw_pollution_data/2020/CO_2020.csv", 
-                    skip = 7)
-NO_2020 <- read_csv("inputs/data/raw_pollution_data/2020/NO_2020.csv", 
-                    skip = 7)
-NO2_2020 <- read_csv("inputs/data/raw_pollution_data/2020/NO2_2020.csv", 
-                     skip = 7)
-O3_2020 <- read_csv("inputs/data/raw_pollution_data/2020/O3_2020.csv", 
-                    skip = 7)
-SO2_2020 <- read_csv("inputs/data/raw_pollution_data/2020/SO2_2020.csv", 
-                     skip = 7)
 
 # change column names
 my_column_names <- c("Pollutant", "NAPS ID", "City", "Province", "Latitude", "Longitude", "Date", "H1",
@@ -162,17 +113,6 @@ pollu_2020 <- pollu_2020 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2019 Data
 
-# read data
-CO_2019 <- read_csv("inputs/data/raw_pollution_data/2019/CO_2019.csv", 
-                    skip = 7)
-NO_2019 <- read_csv("inputs/data/raw_pollution_data/2019/NO_2019.csv", 
-                    skip = 7)
-NO2_2019 <- read_csv("inputs/data/raw_pollution_data/2019/NO2_2019.csv", 
-                     skip = 7)
-O3_2019 <- read_csv("inputs/data/raw_pollution_data/2019/O3_2019.csv", 
-                    skip = 7)
-SO2_2019 <- read_csv("inputs/data/raw_pollution_data/2019/SO2_2019.csv", 
-                     skip = 7)
 colnames(CO_2019) <- my_column_names
 colnames(NO_2019) <- my_column_names
 colnames(NO2_2019) <- my_column_names
@@ -211,18 +151,6 @@ pollu_2019 <- pollu_2019 %>% mutate(Year = "2019")
 pollu_2019 <- pollu_2019 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2018 Data
-
-# read data
-CO_2018 <- read_csv("inputs/data/raw_pollution_data/2018/CO_2018.csv", 
-                    skip = 7)
-NO_2018 <- read_csv("inputs/data/raw_pollution_data/2018/NO_2018.csv", 
-                    skip = 7)
-NO2_2018 <- read_csv("inputs/data/raw_pollution_data/2018/NO2_2018.csv", 
-                     skip = 7)
-O3_2018 <- read_csv("inputs/data/raw_pollution_data/2018/O3_2018.csv", 
-                    skip = 7)
-SO2_2018 <- read_csv("inputs/data/raw_pollution_data/2018/SO2_2018.csv", 
-                     skip = 7)
 colnames(CO_2018) <- my_column_names
 colnames(NO_2018) <- my_column_names
 colnames(NO2_2018) <- my_column_names
@@ -262,17 +190,6 @@ pollu_2018 <- pollu_2018 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2017 Data
 
-# read data
-CO_2017 <- read_csv("inputs/data/raw_pollution_data/2017/CO_2017.csv", 
-                    skip = 7)
-NO_2017 <- read_csv("inputs/data/raw_pollution_data/2017/NO_2017.csv", 
-                    skip = 7)
-NO2_2017 <- read_csv("inputs/data/raw_pollution_data/2017/NO2_2017.csv", 
-                     skip = 7)
-O3_2017 <- read_csv("inputs/data/raw_pollution_data/2017/O3_2017.csv", 
-                    skip = 7)
-SO2_2017 <- read_csv("inputs/data/raw_pollution_data/2017/SO2_2017.csv", 
-                     skip = 7)
 colnames(CO_2017) <- my_column_names
 colnames(NO_2017) <- my_column_names
 colnames(NO2_2017) <- my_column_names
@@ -312,17 +229,6 @@ pollu_2017 <- pollu_2017 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2016 Data
 
-# read data
-CO_2016 <- read_csv("inputs/data/raw_pollution_data/2016/CO_2016.csv", 
-                    skip = 7)
-NO_2016 <- read_csv("inputs/data/raw_pollution_data/2016/NO_2016.csv", 
-                    skip = 7)
-NO2_2016 <- read_csv("inputs/data/raw_pollution_data/2016/NO2_2016.csv", 
-                     skip = 7)
-O3_2016 <- read_csv("inputs/data/raw_pollution_data/2016/O3_2016.csv", 
-                    skip = 7)
-SO2_2016 <- read_csv("inputs/data/raw_pollution_data/2016/SO2_2016.csv", 
-                     skip = 7)
 colnames(CO_2016) <- my_column_names
 colnames(NO_2016) <- my_column_names
 colnames(NO2_2016) <- my_column_names
@@ -362,17 +268,6 @@ pollu_2016 <- pollu_2016 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2015 Data
 
-# read data
-CO_2015 <- read_csv("inputs/data/raw_pollution_data/2015/CO_2015.csv", 
-                    skip = 7)
-NO_2015 <- read_csv("inputs/data/raw_pollution_data/2015/NO_2015.csv", 
-                    skip = 7)
-NO2_2015 <- read_csv("inputs/data/raw_pollution_data/2015/NO2_2015.csv", 
-                     skip = 7)
-O3_2015 <- read_csv("inputs/data/raw_pollution_data/2015/O3_2015.csv", 
-                    skip = 7)
-SO2_2015 <- read_csv("inputs/data/raw_pollution_data/2015/SO2_2015.csv", 
-                     skip = 7)
 colnames(CO_2015) <- my_column_names
 colnames(NO_2015) <- my_column_names
 colnames(NO2_2015) <- my_column_names
@@ -411,18 +306,6 @@ pollu_2015 <- pollu_2015 %>% mutate(Year = "2015")
 pollu_2015 <- pollu_2015 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2014 Data
-
-# read data
-CO_2014 <- read_csv("inputs/data/raw_pollution_data/2014/CO_2014.csv", 
-                    skip = 7)
-NO_2014 <- read_csv("inputs/data/raw_pollution_data/2014/NO_2014.csv", 
-                    skip = 7)
-NO2_2014 <- read_csv("inputs/data/raw_pollution_data/2014/NO2_2014.csv", 
-                     skip = 7)
-O3_2014 <- read_csv("inputs/data/raw_pollution_data/2014/O3_2014.csv", 
-                    skip = 7)
-SO2_2014 <- read_csv("inputs/data/raw_pollution_data/2014/SO2_2014.csv", 
-                     skip = 7)
 colnames(CO_2014) <- my_column_names
 colnames(NO_2014) <- my_column_names
 colnames(NO2_2014) <- my_column_names
@@ -461,18 +344,6 @@ pollu_2014 <- pollu_2014 %>% mutate(Year = "2014")
 pollu_2014 <- pollu_2014 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2013 Data
-
-# read data
-CO_2013 <- read_csv("inputs/data/raw_pollution_data/2013/CO_2013.csv", 
-                    skip = 7)
-NO_2013 <- read_csv("inputs/data/raw_pollution_data/2013/NO_2013.csv", 
-                    skip = 7)
-NO2_2013 <- read_csv("inputs/data/raw_pollution_data/2013/NO2_2013.csv", 
-                     skip = 7)
-O3_2013 <- read_csv("inputs/data/raw_pollution_data/2013/O3_2013.csv", 
-                    skip = 7)
-SO2_2013 <- read_csv("inputs/data/raw_pollution_data/2013/SO2_2013.csv", 
-                     skip = 7)
 colnames(CO_2013) <- my_column_names
 colnames(NO_2013) <- my_column_names
 colnames(NO2_2013) <- my_column_names
@@ -511,18 +382,6 @@ pollu_2013 <- pollu_2013 %>% mutate(Year = "2013")
 pollu_2013 <- pollu_2013 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2012 Data
-
-# read data
-CO_2012 <- read_csv("inputs/data/raw_pollution_data/2012/CO_2012.csv", 
-                    skip = 7)
-NO_2012 <- read_csv("inputs/data/raw_pollution_data/2012/NO_2012.csv", 
-                    skip = 7)
-NO2_2012 <- read_csv("inputs/data/raw_pollution_data/2012/NO2_2012.csv", 
-                     skip = 7)
-O3_2012 <- read_csv("inputs/data/raw_pollution_data/2012/O3_2012.csv", 
-                    skip = 7)
-SO2_2012 <- read_csv("inputs/data/raw_pollution_data/2012/SO2_2012.csv", 
-                     skip = 7)
 colnames(CO_2012) <- my_column_names
 colnames(NO_2012) <- my_column_names
 colnames(NO2_2012) <- my_column_names
@@ -562,17 +421,6 @@ pollu_2012 <- pollu_2012 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2011 Data
 
-# read data
-CO_2011 <- read_csv("inputs/data/raw_pollution_data/2011/CO_2011.csv", 
-                    skip = 7)
-NO_2011 <- read_csv("inputs/data/raw_pollution_data/2011/NO_2011.csv", 
-                    skip = 7)
-NO2_2011 <- read_csv("inputs/data/raw_pollution_data/2011/NO2_2011.csv", 
-                     skip = 7)
-O3_2011 <- read_csv("inputs/data/raw_pollution_data/2011/O3_2011.csv", 
-                    skip = 7)
-SO2_2011 <- read_csv("inputs/data/raw_pollution_data/2011/SO2_2011.csv", 
-                     skip = 7)
 colnames(CO_2011) <- my_column_names
 colnames(NO_2011) <- my_column_names
 colnames(NO2_2011) <- my_column_names
@@ -612,17 +460,6 @@ pollu_2011 <- pollu_2011 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2010 Data
 
-# read data
-CO_2010 <- read_csv("inputs/data/raw_pollution_data/2010/CO_2010.csv", 
-                    skip = 7)
-NO_2010 <- read_csv("inputs/data/raw_pollution_data/2010/NO_2010.csv", 
-                    skip = 7)
-NO2_2010 <- read_csv("inputs/data/raw_pollution_data/2010/NO2_2010.csv", 
-                     skip = 7)
-O3_2010 <- read_csv("inputs/data/raw_pollution_data/2010/O3_2010.csv", 
-                    skip = 7)
-SO2_2010 <- read_csv("inputs/data/raw_pollution_data/2010/SO2_2010.csv", 
-                     skip = 7)
 colnames(CO_2010) <- my_column_names
 colnames(NO_2010) <- my_column_names
 colnames(NO2_2010) <- my_column_names
@@ -661,18 +498,6 @@ pollu_2010 <- pollu_2010 %>% mutate(Year = "2010")
 pollu_2010 <- pollu_2010 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2009 Data
-
-# read data
-CO_2009 <- read_csv("inputs/data/raw_pollution_data/2009/CO_2009.csv", 
-                    skip = 7)
-NO_2009 <- read_csv("inputs/data/raw_pollution_data/2009/NO_2009.csv", 
-                    skip = 7)
-NO2_2009 <- read_csv("inputs/data/raw_pollution_data/2009/NO2_2009.csv", 
-                     skip = 7)
-O3_2009 <- read_csv("inputs/data/raw_pollution_data/2009/O3_2009.csv", 
-                    skip = 7)
-SO2_2009 <- read_csv("inputs/data/raw_pollution_data/2009/SO2_2009.csv", 
-                     skip = 7)
 colnames(CO_2009) <- my_column_names
 colnames(NO_2009) <- my_column_names
 colnames(NO2_2009) <- my_column_names
@@ -712,17 +537,6 @@ pollu_2009 <- pollu_2009 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2008 Data
 
-# read data
-CO_2008 <- read_csv("inputs/data/raw_pollution_data/2008/CO_2008.csv", 
-                    skip = 7)
-NO_2008 <- read_csv("inputs/data/raw_pollution_data/2008/NO_2008.csv", 
-                    skip = 7)
-NO2_2008 <- read_csv("inputs/data/raw_pollution_data/2008/NO2_2008.csv", 
-                     skip = 7)
-O3_2008 <- read_csv("inputs/data/raw_pollution_data/2008/O3_2008.csv", 
-                    skip = 7)
-SO2_2008 <- read_csv("inputs/data/raw_pollution_data/2008/SO2_2008.csv", 
-                     skip = 7)
 colnames(CO_2008) <- my_column_names
 colnames(NO_2008) <- my_column_names
 colnames(NO2_2008) <- my_column_names
@@ -762,17 +576,6 @@ pollu_2008 <- pollu_2008 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2007 Data
 
-# read data
-CO_2007 <- read_csv("inputs/data/raw_pollution_data/2007/CO_2007.csv", 
-                    skip = 7)
-NO_2007 <- read_csv("inputs/data/raw_pollution_data/2007/NO_2007.csv", 
-                    skip = 7)
-NO2_2007 <- read_csv("inputs/data/raw_pollution_data/2007/NO2_2007.csv", 
-                     skip = 7)
-O3_2007 <- read_csv("inputs/data/raw_pollution_data/2007/O3_2007.csv", 
-                    skip = 7)
-SO2_2007 <- read_csv("inputs/data/raw_pollution_data/2007/SO2_2007.csv", 
-                     skip = 7)
 colnames(CO_2007) <- my_column_names
 colnames(NO_2007) <- my_column_names
 colnames(NO2_2007) <- my_column_names
@@ -813,17 +616,6 @@ pollu_2007 <- pollu_2007 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2006 Data
 
-# read data
-CO_2006 <- read_csv("inputs/data/raw_pollution_data/2006/CO_2006.csv", 
-                    skip = 7)
-NO_2006 <- read_csv("inputs/data/raw_pollution_data/2006/NO_2006.csv", 
-                    skip = 7)
-NO2_2006 <- read_csv("inputs/data/raw_pollution_data/2006/NO2_2006.csv", 
-                     skip = 7)
-O3_2006 <- read_csv("inputs/data/raw_pollution_data/2006/O3_2006.csv", 
-                    skip = 7)
-SO2_2006 <- read_csv("inputs/data/raw_pollution_data/2006/SO2_2006.csv", 
-                     skip = 7)
 colnames(CO_2006) <- my_column_names
 colnames(NO_2006) <- my_column_names
 colnames(NO2_2006) <- my_column_names
@@ -863,17 +655,6 @@ pollu_2006 <- pollu_2006 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2005 Data
 
-# read data
-CO_2005 <- read_csv("inputs/data/raw_pollution_data/2005/CO_2005.csv", 
-                    skip = 7)
-NO_2005 <- read_csv("inputs/data/raw_pollution_data/2005/NO_2005.csv", 
-                    skip = 7)
-NO2_2005 <- read_csv("inputs/data/raw_pollution_data/2005/NO2_2005.csv", 
-                     skip = 7)
-O3_2005 <- read_csv("inputs/data/raw_pollution_data/2005/O3_2005.csv", 
-                    skip = 7)
-SO2_2005 <- read_csv("inputs/data/raw_pollution_data/2005/SO2_2005.csv", 
-                     skip = 7)
 colnames(CO_2005) <- my_column_names
 colnames(NO_2005) <- my_column_names
 colnames(NO2_2005) <- my_column_names
@@ -913,17 +694,6 @@ pollu_2005 <- pollu_2005 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2004 Data
 
-# read data
-CO_2004 <- read_csv("inputs/data/raw_pollution_data/2004/CO_2004.csv", 
-                    skip = 7)
-NO_2004 <- read_csv("inputs/data/raw_pollution_data/2004/NO_2004.csv", 
-                    skip = 7)
-NO2_2004 <- read_csv("inputs/data/raw_pollution_data/2004/NO2_2004.csv", 
-                     skip = 7)
-O3_2004 <- read_csv("inputs/data/raw_pollution_data/2004/O3_2004.csv", 
-                    skip = 7)
-SO2_2004 <- read_csv("inputs/data/raw_pollution_data/2004/SO2_2004.csv", 
-                     skip = 7)
 colnames(CO_2004) <- my_column_names
 colnames(NO_2004) <- my_column_names
 colnames(NO2_2004) <- my_column_names
@@ -964,17 +734,6 @@ pollu_2004 <- pollu_2004 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2003 Data
 
-# read data
-CO_2003 <- read_csv("inputs/data/raw_pollution_data/2003/CO_2003.csv", 
-                    skip = 7)
-NO_2003 <- read_csv("inputs/data/raw_pollution_data/2003/NO_2003.csv", 
-                    skip = 7)
-NO2_2003 <- read_csv("inputs/data/raw_pollution_data/2003/NO2_2003.csv", 
-                     skip = 7)
-O3_2003 <- read_csv("inputs/data/raw_pollution_data/2003/O3_2003.csv", 
-                    skip = 7)
-SO2_2003 <- read_csv("inputs/data/raw_pollution_data/2003/SO2_2003.csv", 
-                     skip = 7)
 colnames(CO_2003) <- my_column_names
 colnames(NO_2003) <- my_column_names
 colnames(NO2_2003) <- my_column_names
@@ -1015,17 +774,6 @@ pollu_2003 <- pollu_2003 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 ## 2002 Data
 
-# read data
-CO_2002 <- read_csv("inputs/data/raw_pollution_data/2002/CO_2002.csv", 
-                    skip = 7)
-NO_2002 <- read_csv("inputs/data/raw_pollution_data/2002/NO_2002.csv", 
-                    skip = 7)
-NO2_2002 <- read_csv("inputs/data/raw_pollution_data/2002/NO2_2002.csv", 
-                     skip = 7)
-O3_2002 <- read_csv("inputs/data/raw_pollution_data/2002/O3_2002.csv", 
-                    skip = 7)
-SO2_2002 <- read_csv("inputs/data/raw_pollution_data/2002/SO2_2002.csv", 
-                     skip = 7)
 colnames(CO_2002) <- my_column_names
 colnames(NO_2002) <- my_column_names
 colnames(NO2_2002) <- my_column_names
@@ -1061,13 +809,20 @@ pollu_2002 <- pollu_2002 %>% mutate(Mean = rowMeans(pollu_2002[ ,c(4:27)], na.rm
 # Add column for Year
 pollu_2002 <- pollu_2002 %>% mutate(Year = "2002")
 # Remove hourly data columns
-pollu_20032 <- pollu_2002 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2002 <- pollu_2002 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
 
 
 ## Combine pollution data
 pollution <- rbind(pollu_2002, pollu_2003, pollu_2004, pollu_2005, pollu_2006, pollu_2007, pollu_2008, pollu_2009, pollu_2010, pollu_2011, pollu_2012, pollu_2013, pollu_2014, pollu_2015, pollu_2016, 
                    pollu_2017, pollu_2018, pollu_2019, pollu_2020)
+
+# Save pollution data 2002-2020
+write_csv(
+  x = pollution,
+  file = "~/Desktop/SUDS2022/inputs/data/clean_temp_data/pollution_2002_2020.csv"
+)
+
 
 #### Combine Temperature and Pollution Data ----
 
