@@ -19,7 +19,7 @@ library(naniar)
 #### Cleaning Temperature Data ----
 
 # Change column names 
-my_column_names <- c("Longitude (x)", "Latitude (y)", "Station Name", "Climate ID", 
+my_column_names <- c("Longitude (x)", "Latitude (y)", "City", "Climate ID", 
                      "Date", "Year", "Month", "Day", "Data Quality", "Max Temp", 
                      "Max Temp Flag", "Min Temp", "Min Temp Flag", "Mean Temp", 
                      "Mean Temp Flag", "Heat Deg Days", "Heat Deg Days Flag", 
@@ -60,25 +60,31 @@ temp_2002_2022 <- rbind(temp_jan_dec_2002, temp_jan_dec_2003, temp_jan_dec_2004,
                         temp_jan_dec_2017, temp_jan_dec_2018, temp_jan_dec_2019,
                         temp_jan_dec_2020, temp_jan_dec_2021, temp_jan_may_2022)
 
-temp_2002_2022 <- temp_2002_2022 %>% select("Station Name", "Date", "Year", "Month", "Day", 
+temp_2002_2022 <- temp_2002_2022 %>% select("City", "Date", "Year", "Month", "Day", 
                                             "Max Temp", "Min Temp", "Mean Temp")
 temp_2002_2022 <- clean_names(temp_2002_2022)
 
 ### Add column for Month Names
 temp_2002_2022 <- temp_2002_2022 %>%
   mutate(month_name = case_when(
-    month == 1 ~ "Jan",
-    month == 2 ~ "Feb", 
-    month == 3 ~ "Mar", 
-    month == 4 ~ "Apr",
-    month == 5 ~ "May", 
-    month == 6 ~ "Jun",
-    month == 7 ~ "Jul",
-    month == 8 ~ "Aug", 
-    month == 9 ~ "Sep",
-    month == 10 ~ "Oct",
-    month == 11 ~ "Nov", 
-    month == 12 ~ "Dec"
+    month == "01" ~ "Jan", 
+    month == "02" ~ "Feb", 
+    month == "03" ~ "Mar", 
+    month == "04" ~ "Apr", 
+    month == "05" ~ "May", 
+    month == "06" ~ "Jun", 
+    month == "07" ~ "Jul", 
+    month == "08" ~ "Aug", 
+    month == "09" ~ "Sep", 
+    month == "10" ~ "Oct", 
+    month == "11" ~ "Nov", 
+    month == "12" ~ "Dec"
+  ))
+
+# rename TORONTO CITY to Toronto
+temp_2002_2022 <- temp_2002_2022 %>%
+  mutate(city = case_when(
+    city == "TORONTO CITY" ~ "Toronto"
   ))
 
 ### Drop NA
@@ -86,13 +92,20 @@ temp_2002_2022 <- temp_2002_2022 %>% drop_na(max_temp)
 temp_2002_2022 <- temp_2002_2022 %>% drop_na(min_temp)
 temp_2002_2022 <- temp_2002_2022 %>% drop_na(mean_temp)
 
+# convert year from double to chr
+temp_2002_2022$year <- as.character(temp_2002_2022$year)
+
+# select variables
+temp_2002_2022 <- temp_2002_2022 %>%
+  select(city, max_temp, min_temp, mean_temp, day, month, year, month_name)
+
 # Save temperature data 2002-2022
 write_csv(
   x = temp_2002_2022,
   file = "~/Desktop/SUDS2022/inputs/data/clean_temp_data/temperature_2002_2022.csv"
 )
 
-#### Cleaning Pollution Data ----
+#### Cleaning Pollution Yearly Data ----
 
 ## 2020 Data
 
@@ -801,11 +814,86 @@ pollu_2002 <- pollu_2002 %>% mutate(Year = "2002")
 # Remove hourly data columns
 pollu_2002 <- pollu_2002 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 
-
+#### Cleaning 2002-2020 Pollution Data ----
 
 ## Combine pollution data
 pollution <- rbind(pollu_2002, pollu_2003, pollu_2004, pollu_2005, pollu_2006, pollu_2007, pollu_2008, pollu_2009, pollu_2010, pollu_2011, pollu_2012, pollu_2013, pollu_2014, pollu_2015, pollu_2016, 
                    pollu_2017, pollu_2018, pollu_2019, pollu_2020)
+
+substr("20020102", 7, 8)
+
+# Add column for Month
+pollution <- pollution %>%
+  mutate(month = case_when(
+    grepl("01", substr(Date, 5, 6)) ~ "1", 
+    grepl("02", substr(Date, 5, 6)) ~ "2", 
+    grepl("03", substr(Date, 5, 6)) ~ "3", 
+    grepl("04", substr(Date, 5, 6)) ~ "4", 
+    grepl("05", substr(Date, 5, 6)) ~ "5", 
+    grepl("06", substr(Date, 5, 6)) ~ "6", 
+    grepl("07", substr(Date, 5, 6)) ~ "7", 
+    grepl("08", substr(Date, 5, 6)) ~ "8", 
+    grepl("09", substr(Date, 5, 6)) ~ "9", 
+    grepl("10", substr(Date, 5, 6)) ~ "10", 
+    grepl("11", substr(Date, 5, 6)) ~ "11", 
+    grepl("12", substr(Date, 5, 6)) ~ "12"
+  ))
+
+# Add column for Day
+pollution <- pollution %>%
+  mutate(day = case_when(
+    grepl("01", substr(Date, 7, 8)) ~ "1", 
+    grepl("02", substr(Date, 7, 8)) ~ "2", 
+    grepl("03", substr(Date, 7, 8)) ~ "3", 
+    grepl("04", substr(Date, 7, 8)) ~ "4", 
+    grepl("05", substr(Date, 7, 8)) ~ "5", 
+    grepl("06", substr(Date, 7, 8)) ~ "6", 
+    grepl("07", substr(Date, 7, 8)) ~ "7", 
+    grepl("08", substr(Date, 7, 8)) ~ "8", 
+    grepl("09", substr(Date, 7, 8)) ~ "9", 
+    grepl("10", substr(Date, 7, 8)) ~ "10", 
+    grepl("11", substr(Date, 7, 8)) ~ "11", 
+    grepl("12", substr(Date, 7, 8)) ~ "12", 
+    grepl("13", substr(Date, 7, 8)) ~ "13", 
+    grepl("14", substr(Date, 7, 8)) ~ "14", 
+    grepl("15", substr(Date, 7, 8)) ~ "15", 
+    grepl("16", substr(Date, 7, 8)) ~ "16", 
+    grepl("17", substr(Date, 7, 8)) ~ "17", 
+    grepl("18", substr(Date, 7, 8)) ~ "18", 
+    grepl("19", substr(Date, 7, 8)) ~ "19", 
+    grepl("20", substr(Date, 7, 8)) ~ "20", 
+    grepl("21", substr(Date, 7, 8)) ~ "21", 
+    grepl("22", substr(Date, 7, 8)) ~ "22", 
+    grepl("23", substr(Date, 7, 8)) ~ "23",
+    grepl("24", substr(Date, 7, 8)) ~ "24", 
+    grepl("25", substr(Date, 7, 8)) ~ "25", 
+    grepl("26", substr(Date, 7, 8)) ~ "26", 
+    grepl("27", substr(Date, 7, 8)) ~ "27", 
+    grepl("28", substr(Date, 7, 8)) ~ "28", 
+    grepl("29", substr(Date, 7, 8)) ~ "29", 
+    grepl("30", substr(Date, 7, 8)) ~ "30", 
+    grepl("31", substr(Date, 7, 8)) ~ "31"
+  ))
+
+# Add column for Month Names
+pollution <- pollution %>%
+  mutate(month_name = case_when(
+    month == 1 ~ "Jan",
+    month == 2 ~ "Feb", 
+    month == 3 ~ "Mar", 
+    month == 4 ~ "Apr",
+    month == 5 ~ "May", 
+    month == 6 ~ "Jun",
+    month == 7 ~ "Jul",
+    month == 8 ~ "Aug", 
+    month == 9 ~ "Sep",
+    month == 10 ~ "Oct",
+    month == 11 ~ "Nov", 
+    month == 12 ~ "Dec"
+  ))
+
+pollution <- pollution %>% select(City, Pollutant, Mean, day, month, Year, month_name)
+pollution <- clean_names(pollution)
 
 # Save pollution data 2002-2020
 write_csv(
@@ -815,5 +903,9 @@ write_csv(
 
 
 #### Combine Temperature and Pollution Data ----
-pollu_temp <- rbind(temp_2002_2022, pollution)
+pollu_temp <- dplyr::full_join(temp_2002_2022, pollution)
 
+write_csv(
+  x = pollution,
+  file = "~/Desktop/SUDS2022/inputs/data/clean_temperature_pollution.csv"
+)
