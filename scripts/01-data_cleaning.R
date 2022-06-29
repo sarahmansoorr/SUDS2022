@@ -905,7 +905,12 @@ write_csv(
 #### Combine Temperature and Pollution Data ----
 pollu_temp <- dplyr::full_join(temp_2002_2022, pollution)
 
+pollu_temp <- pollu_temp %>% drop_na(pollutant)
+pollu_temp <- pollu_temp %>% select(city, pollutant, mean, max_temp, min_temp, mean_temp, 
+                                    day, month, year, month_name)
+
 write_csv(
   x = pollution,
   file = "~/Desktop/SUDS2022/inputs/data/clean_temperature_pollution.csv"
 )
+
