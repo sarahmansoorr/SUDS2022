@@ -64,7 +64,7 @@ file.rename("~/Desktop/SUDS2022/inputs/data/raw_temp_data/en_climate_daily_ON_61
 file.rename("~/Desktop/SUDS2022/inputs/data/raw_temp_data/en_climate_daily_ON_6158355_2002_P1D.csv", "~/Desktop/SUDS2022/inputs/data/temp_jan_dec_2002.csv")
 
 # Use below lines if running after the first time
-temp_jan_may_2022 <- read.csv("~/Desktop/SUDS2022/inputs/data/raw_temp_data/temp_jan_dec_2022.csv")
+temp_jan_may_2022 <- read.csv("~/Desktop/SUDS2022/inputs/data/raw_temp_data/temp_jan_may_2022.csv")
 temp_jan_dec_2021 <- read.csv("~/Desktop/SUDS2022/inputs/data/raw_temp_data/temp_jan_dec_2021.csv")
 temp_jan_dec_2020 <- read.csv("~/Desktop/SUDS2022/inputs/data/raw_temp_data/temp_jan_dec_2020.csv")
 temp_jan_dec_2019 <- read.csv("~/Desktop/SUDS2022/inputs/data/raw_temp_data/temp_jan_dec_2019.csv")
