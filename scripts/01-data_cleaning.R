@@ -910,7 +910,7 @@ pollu_temp <- pollu_temp %>% select(city, pollutant, mean, max_temp, min_temp, m
                                     day, month, year, month_name)
 
 write_csv(
-  x = pollution,
+  x = pollu_temp,
   file = "~/Desktop/SUDS2022/inputs/data/clean_temperature_pollution.csv"
 )
 

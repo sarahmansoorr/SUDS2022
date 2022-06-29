@@ -1,4 +1,4 @@
-#### ggplots ####
+#### temperature ggplots ####
 library(ggplot2)
 
 ggplot(temp_2002_2022, aes(x=year, y=max_temp, color=month)) + geom_point()
@@ -20,7 +20,7 @@ ggplot(temp_2002_2022, aes(x=month, y=mean_temp, color=year)) + geom_point()
 ggplot(temp_2002_2022, aes(x=month_name, y=mean_temp, col=year)) + geom_col()
 
 
-#### tables ####
+#### temperature tables ####
 library(knitr)
 install.packages("kableExtra")
 library(kableExtra)
@@ -75,7 +75,7 @@ temp_2002_2022 %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
 
 
-# summarising data ----
+# temperature summarising data ----
 summary_max_data <- temp_2002_2022 %>%
   group_by(month_name) %>%
   summarise(mean_max_temp = mean(max_temp))
@@ -192,3 +192,12 @@ pollution %>%
     linesep = "", digits = 2, booktabs=TRUE) %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
 
+
+
+# temperature and pollution data ----
+
+## ggplot ----
+
+
+
+## tables ----

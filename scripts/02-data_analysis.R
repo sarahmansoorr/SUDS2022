@@ -46,9 +46,13 @@ aug_nov <- temperature_2002_2022 %>%
 ggplot(aug_nov, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
   labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
+""
+
+
 ## Pollution ----
 
 # Visualizing Pollution by Months
+
 
 
 
