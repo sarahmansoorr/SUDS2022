@@ -169,25 +169,11 @@ pollution %>% filter(Pollutant != "CO") %>% ggplot(
   aes(x = Year, y = Mean, color = Pollutant)) + geom_point()
 
 ## tables ----
-pollution_2011_2020 %>%
-  select(Year, Pollutant, January, February, March, April, May, June, July, August, September, October, 
-         November, December) %>%
-  slice(c(2, 34, 74, 91, 117, 147, 184, 223, 252, 308)) %>%
-  kable(
-    caption = "Extracting rows from the Pollution data from 2011 - 2020",
-    col.names=c("Year", "Pollutant", "Jan", "Feb", "Mar", "Apr", "May",
-                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
-    linesep = "", digits = 2, booktabs=TRUE) %>%
-  kable_styling(latex_options = "HOLD_position", font_size = 10)
-
-
-
-
 pollution %>%
   select(Pollutant, City, Date, Mean, Year) %>%
   slice(c(100, 1000, 1200, 1500, 1800, 2000, 2500, 2800, 3600, 5000, 6000, 7000, 10000, 11000, 15000)) %>%
   kable(
-    caption = "Extracting rows from the Pollution data from 2010 - 2020",
+    caption = "Extracting rows from the Pollution data from 2002 - 2020",
     col.names=c("Pollutant", "City", "Date", "Mean", "Year"),
     linesep = "", digits = 2, booktabs=TRUE) %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
@@ -219,3 +205,14 @@ pollu_temp %>% filter(month_name == "Dec" | month_name == "Jan" |
 
 
 ## tables ----
+
+pollu_temp %>%
+  select(city, pollutant, mean, max_temp, min_temp, mean_temp, day, month_name, year) %>%
+  slice(c(100, 2800, 3600, 5000, 6000, 7000, 10000, 11000, 15000, 18000, 20000, 
+          30000)) %>%
+  kable(
+    caption = "Extracting rows from the Temperature and Pollution data from 2002 - 2020",
+    col.names=c("City", "Pollutant", "Mean Pollution", "Max Temp", 
+                "Min Temp", "Mean Temp", "Day", "Month", "Year"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)

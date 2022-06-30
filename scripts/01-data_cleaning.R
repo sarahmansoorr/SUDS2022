@@ -78,7 +78,16 @@ temp_2002_2022 <- temp_2002_2022 %>%
     month == "09" ~ "Sep", 
     month == "10" ~ "Oct", 
     month == "11" ~ "Nov", 
-    month == "12" ~ "Dec"
+    month == "12" ~ "Dec", 
+    month == "1" ~ "Jan", 
+    month == "2" ~ "Feb", 
+    month == "3" ~ "Mar", 
+    month == "4" ~ "Apr", 
+    month == "5" ~ "May", 
+    month == "6" ~ "Jun", 
+    month == "7" ~ "Jul", 
+    month == "8" ~ "Aug", 
+    month == "9" ~ "Sep", 
   ))
 
 # rename TORONTO CITY to Toronto
@@ -820,7 +829,8 @@ pollu_2002 <- pollu_2002 %>% select("Pollutant", "City", "Date", "Mean", "Year")
 pollution <- rbind(pollu_2002, pollu_2003, pollu_2004, pollu_2005, pollu_2006, pollu_2007, pollu_2008, pollu_2009, pollu_2010, pollu_2011, pollu_2012, pollu_2013, pollu_2014, pollu_2015, pollu_2016, 
                    pollu_2017, pollu_2018, pollu_2019, pollu_2020)
 
-substr("20020102", 7, 8)
+column_names <- c("pollutant", "city", "date", "mean_pollution", "year")
+colnames(pollution) <- column_names
 
 # Add column for Month
 pollution <- pollution %>%

@@ -28,32 +28,45 @@ poll_2011_2020 <- read.csv("~/Desktop/SUDS2022/inputs/data/
 ## Temperature ----
 
 # Visualizing Temperature by Months
-dec_mar <- temperature_2002_2022 %>%
-  filter(month_name == "Dec" | month_name == "Jan" | month_name == "Feb" | month_name == "Mar")
+temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"| 
+               month_name == "Feb" | month_name == "Mar") %>% ggplot(
+              aes(x=year, y=max_temp, color=month_name)) + 
+  geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
-ggplot(dec_mar, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
-  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+temp_2002_2022 %>% filter(month_name == "Apr" | month_name == "May" | 
+                            month_name == "Jun" | month_name == "Jul") %>% ggplot(
+                              aes(x=year, y=max_temp, color=month_name)) + 
+  geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
-apr_jul <- temperature_2002_2022 %>%
-  filter(month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul")
-
-ggplot(apr_jul, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
-  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
-
-aug_nov <- temperature_2002_2022 %>%
-  filter(month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")
-
-ggplot(aug_nov, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
-  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" | 
+                            month_name == "Oct" | month_name == "Nov") %>% ggplot(
+                              aes(x=year, y=max_temp, color=month_name)) + 
+  geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ""
 
 
 ## Pollution ----
 
-# Visualizing Pollution by Months
+# Visualizing Pollution by Year 
 
+pollution %>% filter(pollutant != "CO") %>% ggplot(
+  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 
+pollution %>% filter(pollutant == "CO") %>% ggplot(
+  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
+
+# Visualizing Pollution by Month
+
+pollution %>% filter(pollutant != "CO") %>% ggplot(
+  aes(x = month_name, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppb)")
+
+pollution %>% filter(pollutant == "CO") %>% ggplot(
+  aes(x = month_name, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
 
 
 ### Models ----
