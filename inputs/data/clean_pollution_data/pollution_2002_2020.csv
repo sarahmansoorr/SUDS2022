@@ -1,4 +1,4 @@
-city,pollutant,mean,day,month,year,month_name
+city,pollutant,mean_pollution,day,month,year,month_name
 Toronto,CO,0.9875,1,1,2002,Jan
 Toronto,CO,1.0208333333333333,2,1,2002,Jan
 Toronto,CO,1.0666666666666667,3,1,2002,Jan

@@ -95,13 +95,14 @@ pollution <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_pollution_data/pollu
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="", fig.width=9, fig.height=3.2}
 
 pollution %>%
-  select(Pollutant, City, Date, Mean, Year) %>%
+  select(city, pollutant, mean_pollution, day, month, year) %>%
   slice(c(100, 1000, 1200, 1500, 1800, 2000, 2500, 2800, 3600, 5000, 6000, 7000, 10000, 11000, 15000)) %>%
   kable(
     caption = "Extracting rows from the Pollution data from 2002 - 2020",
-    col.names=c("Pollutant", "City", "Date", "Mean", "Year"),
+    col.names=c("City", "Pollutant", "Mean Pollution", "Day", "Month", "Year"),
     linesep = "", digits = 2, booktabs=TRUE) %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
+
 
 ```
 
@@ -111,11 +112,10 @@ pollution %>%
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for December to March", fig.width=9, fig.height=3.2}
 
-dec_mar <- temperature_2002_2022 %>%
-  filter(month_name == "Dec" | month_name == "Jan" | month_name == "Feb" | month_name == "Mar")
-
-ggplot(dec_mar, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
-  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"| 
+               month_name == "Feb" | month_name == "Mar") %>% ggplot(
+              aes(x=year, y=max_temp, color=month_name)) + 
+  geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
 
@@ -123,11 +123,10 @@ In the above plot...
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for April to July", fig.width=9, fig.height=3.2}
 
-apr_jul <- temperature_2002_2022 %>%
-  filter(month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul")
-
-ggplot(apr_jul, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
-  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+temp_2002_2022 %>% filter(month_name == "Apr" | month_name == "May" | 
+                            month_name == "Jun" | month_name == "Jul") %>% ggplot(
+                              aes(x=year, y=max_temp, color=month_name)) + 
+  geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
 
@@ -135,11 +134,10 @@ In the above plot...
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for August to November", fig.width=9, fig.height=3.2}
 
-aug_nov <- temperature_2002_2022 %>%
-  filter(month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")
-
-ggplot(aug_nov, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
-  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" | 
+                            month_name == "Oct" | month_name == "Nov") %>% ggplot(
+                              aes(x=year, y=max_temp, color=month_name)) + 
+  geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
 
@@ -193,6 +191,13 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 In the above plot...
 
 ## Visualizing Pollution and Temperature from 2002-2020
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# Load pollution and temperature data
+
+pollu_temp <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_temperature_pollution.csv")
+```
 
 #### Visualizing Mean Pollution by Temperature, Pollutant and Month
 
