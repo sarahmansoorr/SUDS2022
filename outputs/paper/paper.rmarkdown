@@ -12,6 +12,7 @@ toc: true
 # bibliography: references.bib
 ---
 
+
 \newpage
 
 ## Introduction
@@ -54,6 +55,7 @@ Pollution variables of interest:
 #### Population, Frame or Sample
 
 #### The Data
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -104,9 +106,11 @@ pollution %>%
 
 ```
 
+
 ## Visualizing Temperature from 2002-2022
 
 #### Visualizing Temperature by Month and Year
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for December to March", fig.width=9, fig.height=3.2}
 
@@ -118,7 +122,9 @@ ggplot(dec_mar, aes(x=year, y=max_temp, color=month_name)) + geom_point() +
 
 ```
 
+
 In the above plot...
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for April to July", fig.width=9, fig.height=3.2}
 
@@ -130,7 +136,9 @@ ggplot(apr_jul, aes(x=year, y=max_temp, color=month_name)) + geom_point() +
 
 ```
 
+
 In the above plot...
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for August to November", fig.width=9, fig.height=3.2}
 
@@ -142,11 +150,13 @@ ggplot(aug_nov, aes(x=year, y=max_temp, color=month_name)) + geom_point() +
 
 ```
 
+
 In the above plot...
 
 ## Visualizing Pollution from 2002-2020
 
 #### Visualizing Pollution by Year 
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Year", fig.width=9, fig.height=3.2}
 
@@ -155,7 +165,9 @@ pollution %>% filter(pollutant != "CO") %>% ggplot(
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
+
 In the above plot...
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Year", fig.width=9, fig.height=3.2}
 
@@ -165,9 +177,11 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 
 ```
 
+
 In the above plot...
 
 #### Visualizing Pollution by Month
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Month", fig.width=9, fig.height=3.2}
 
@@ -178,7 +192,9 @@ pollution %>% filter(pollutant != "CO") %>% ggplot(
 
 ```
 
+
 In the above plot...
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Month", fig.width=9, fig.height=3.2}
 
@@ -189,11 +205,13 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 
 ```
 
+
 In the above plot...
 
 ## Visualizing Pollution and Temperature from 2002-2020
 
 #### Visualizing Mean Pollution by Temperature, Pollutant and Month
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
@@ -205,7 +223,9 @@ pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" &
   ylab("Mean Pollution")
 ```
 
+
 In the above plot...
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
@@ -218,7 +238,9 @@ pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") &
 
 ```
 
+
 In the above plot...
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
 
@@ -231,7 +253,9 @@ pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" &
 
 ```
 
+
 In the above plot...
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
 
@@ -243,7 +267,9 @@ pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & (month_name == 
 
 ```
 
+
 In the above plot...
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
 
@@ -254,7 +280,9 @@ pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & (month_name == "A
 
 ```
 
+
 In the above plot...
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
 
@@ -265,6 +293,7 @@ pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") &
 
 ```
 
+
 In the above plot...
 
 ## Limitations
@@ -274,3 +303,4 @@ In the above plot...
 ## Next Steps
 
 ## Conclusion
+
