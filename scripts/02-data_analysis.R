@@ -68,6 +68,21 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
   aes(x = month_name, y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
 
+## Pollution and Temperature ----
+
+pollu_temp %>% filter(pollutant != "CO") %>% ggplot(aes(max_temp, 
+                                                        mean, color=pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+pollu_temp %>% filter(pollutant == "CO") %>% ggplot(aes(max_temp, 
+                                                        mean, color=pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+
+pollu_temp %>% filter(pollutant != "CO") %>% ggplot(aes(month_name, 
+                                                        max_temp, color=pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Maximum Temperature")
+pollu_temp %>% filter(pollutant == "CO") %>% ggplot(aes(month_name, 
+                                                        max_temp, color=pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Maximum Temperature")
 
 ### Models ----
 
