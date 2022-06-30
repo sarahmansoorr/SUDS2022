@@ -70,6 +70,8 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 
 ## Pollution and Temperature ----
 
+#Visualizing Mean pollution by temperature and pollutant and month
+
 pollu_temp %>% filter(pollutant != "CO") %>% ggplot(aes(max_temp, 
                                                         mean, color=pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Maximum Temperature") + ylab("Mean Pollution")
@@ -77,12 +79,48 @@ pollu_temp %>% filter(pollutant == "CO") %>% ggplot(aes(max_temp,
                                                         mean, color=pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Maximum Temperature") + ylab("Mean Pollution")
 
-pollu_temp %>% filter(pollutant != "CO") %>% ggplot(aes(month_name, 
-                                                        max_temp, color=pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Month") + ylab("Maximum Temperature")
-pollu_temp %>% filter(pollutant == "CO") %>% ggplot(aes(month_name, 
-                                                        max_temp, color=pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Month") + ylab("Maximum Temperature")
+pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & 
+  (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
+  month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, 
+  color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
+
+pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & 
+  (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
+  month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, 
+  color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
+
+pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & 
+                        (month_name == "Apr" | month_name == "May" | 
+                           month_name == "Jun" | month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, 
+                                                                color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
+
+pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & 
+                        (month_name == "Apr" | month_name == "May" | 
+                           month_name == "Jun" | month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, 
+                                                                color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
+
+
+pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & 
+                        (month_name == "Aug" | month_name == "Sep" | 
+                           month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, 
+                                                                                      color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
+
+pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & 
+                        (month_name == "Aug" | month_name == "Sep" | 
+                           month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, 
+                                                                                      color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
 
 ### Models ----
 
