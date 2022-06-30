@@ -1,0 +1,277 @@
+---
+#### Preamble ####
+title: "Disparities in Climate-Induced Health Outcomes in the Greater Toronto Area."
+author: "Sarah Mansoor"
+email: "sarah.mansoor@mail.utoronto.ca"
+thanks: "Code and data are available at: https://github.com/sarahmansoorr/SUDS2022"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+format: pdf
+editor: visual
+abstract: "The growing impact of climate change in Canada demonstrates a clear and current threat to human health. These threats are becoming revealed in Canada as the country continues to face the consequences of warming almost at twice the global rate. The focus for this paper is on tempreture increases, lower air quality and more pollution and a decline in health for Toronto. Once the data for this research was collected, the data cleaning process begun which entailed of using packages in R like tidyverse, janitor, dplyr, …. Duplicate and irrelevant observations were removed, as well as unwanted outliers. The process was complete once the data was correct, consistent and usable. "
+toc: true
+# bibliography: references.bib
+---
+
+\newpage
+
+## Introduction
+
+As climate change worsens, the danger it presents to human health worsens as well. The health impacts due to climate change are already being demonstrated in parts of Canada. Canada is warming at almost twice the global rate and if this continues, emissions will exceed 2 degrees Celsius worldwide.
+
+The Paris Agreement within the United Nations Framework Convention on Climate Change includes 175 countries that have agreed to limit the average global temperature rise to below 2 degress Celcius. Canada had signed to the Paris Agreement as well and committed to cutting emission 30% below the 2005 levels by 2030. However, Canada's emission increased in 2016 compared to 1990. As a response to this increase, the Government of Canada developed a national climate change plan called *The Pan-Canadian Framework on Clean Growth and Climate Change*. This framework notes that human activities are driving severe changes to the Earth's climate which poses substantial risks to human health.
+
+## Data
+
+#### Data Collection
+
+Temperature data was collected from the Government of Canada's website on Weather, Climate and Hazard's [page](https://climate.weather.gc.ca/historical_data/search_historic_data_e.html) containing past weather and climate data for the station "Toronto City". This data was collected from January 2002 to May 2022. The original data contains daily data on maximum temperature, minimum temperature, mean temperature, heat degree days, cool degree days, total rain (mm), total snow (cm), total precipitation (mm), snow on ground (cm), direction of maximum gust, and speed of maximum gust (km/h). For this research, I will focus on only maximum temperature, minimum temperature, and mean temperature.
+
+Pollution data was collected from the Government of Canada's National Air Pollution Surveillance (NAPS) Program [website](https://data-donnees.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en). This website contains pollution data from 2002 to 2020. Each year contains a file with continuous data and integrated data. I will be using continuous data for each year. The continuous data contains annual summaries and hourly data. I will be looking at the hourly data for CO (Carbon Monoxide), NO (Nitric Oxide), NO2 (Nitrogen Dioxide) , O3 (Ozone), and SO2 (Sulfur Dioxide). This data includes the city (which is Toronto in our case), the levels of each pollutant for each hour of every day. I reduced the data to the mean of pollution levels by pollutant of each day.
+
+#### Variables of Interest
+
+Temperature variables of interest:
+
+-   Day
+
+-   Maximum temperature
+
+-   Minimum temperature
+
+-   Mean temperature.
+
+Pollution variables of interest:
+
+-   Pollutant
+
+-   Month
+
+-   Year
+
+-   Mean level of pollution each day
+
+#### Data Processing
+
+#### Population, Frame or Sample
+
+#### The Data
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# Load libraries
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+
+# Load temperature data
+
+temp_2002_2022 <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_temp_data/temperature_2002_2022.csv")
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="", fig.width=9, fig.height=3.2}
+
+temp_2002_2022 %>%
+  select(year, month, day, max_temp, min_temp, mean_temp) %>%
+  slice(c(162, 393, 745, 1318, 1819, 2115, 3222, 4222, 5222, 6333)) %>%
+  kable(
+    caption = "Extracting rows from the Temperature data from 2002 - 2022",
+    col.names=c("Year", "Month", "Day", "Max Temp", "Min Temp", "Mean Temp"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# Load pollution data
+
+pollution <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_pollution_data/pollution_2002_2020.csv")
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="", fig.width=9, fig.height=3.2}
+
+pollution %>%
+  select(Pollutant, City, Date, Mean, Year) %>%
+  slice(c(100, 1000, 1200, 1500, 1800, 2000, 2500, 2800, 3600, 5000, 6000, 7000, 10000, 11000, 15000)) %>%
+  kable(
+    caption = "Extracting rows from the Pollution data from 2002 - 2020",
+    col.names=c("Pollutant", "City", "Date", "Mean", "Year"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
+
+```
+
+## Visualizing Temperature from 2002-2022
+
+#### Visualizing Temperature by Month and Year
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for December to March", fig.width=9, fig.height=3.2}
+
+dec_mar <- temperature_2002_2022 %>%
+  filter(month_name == "Dec" | month_name == "Jan" | month_name == "Feb" | month_name == "Mar")
+
+ggplot(dec_mar, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
+  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+
+```
+
+In the above plot...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for April to July", fig.width=9, fig.height=3.2}
+
+apr_jul <- temperature_2002_2022 %>%
+  filter(month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul")
+
+ggplot(apr_jul, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
+  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+
+```
+
+In the above plot...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for August to November", fig.width=9, fig.height=3.2}
+
+aug_nov <- temperature_2002_2022 %>%
+  filter(month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")
+
+ggplot(aug_nov, aes(x=year, y=max_temp, color=month_name)) + geom_point() + 
+  labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+
+```
+
+In the above plot...
+
+## Visualizing Pollution from 2002-2020
+
+#### Visualizing Pollution by Year
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Year", fig.width=9, fig.height=3.2}
+
+pollution %>% filter(pollutant != "CO") %>% ggplot(
+  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
+```
+
+In the above plot...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Year", fig.width=9, fig.height=3.2}
+
+pollution %>% filter(pollutant == "CO") %>% ggplot(
+  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
+
+```
+
+In the above plot...
+
+#### Visualizing Pollution by Month
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Month", fig.width=9, fig.height=3.2}
+
+pollution %>% filter(pollutant != "CO") %>% ggplot(
+  aes(x = month_name, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppb)")
+
+
+```
+
+In the above plot...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Month", fig.width=9, fig.height=3.2}
+
+pollution %>% filter(pollutant == "CO") %>% ggplot(
+  aes(x = month_name, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
+
+
+```
+
+In the above plot...
+
+## Visualizing Pollution and Temperature from 2002-2020
+
+#### Visualizing Mean Pollution by Temperature, Pollutant and Month
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
+
+pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & 
+  (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
+  month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, 
+  color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
+```
+
+In the above plot...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
+
+pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & 
+  (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
+  month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, 
+  color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
+
+```
+
+In the above plot...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
+
+pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & 
+  (month_name == "Apr" | month_name == "May" | month_name == "Jun" | 
+  month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, 
+  color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
+
+```
+
+In the above plot...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
+
+pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & (month_name == "Apr" |
+   month_name == "May" | month_name == "Jun" | month_name == "Jul")) %>% ggplot(aes(max_temp,
+   mean_pollution, color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+  labs(color="Month") + xlab("Maximum Temperature") + 
+  ylab("Mean Pollution")
+
+```
+
+In the above plot...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
+
+pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & (month_name == "Aug" | 
+    month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp,
+    mean_pollution, color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
+    labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+
+```
+
+In the above plot...
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
+
+pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & 
+  (month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>%
+  ggplot(aes(max_temp, mean_pollution, color=month_name)) + geom_point() + facet_grid(. ~
+  pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+
+```
+
+In the above plot...
+
+## Limitations
+
+## Results
+
+## Next Steps
+
+## Conclusion
