@@ -72,13 +72,6 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 
 #Visualizing Mean pollution by temperature and pollutant and month
 
-pollu_temp %>% filter(pollutant != "CO") %>% ggplot(aes(max_temp, 
-                                                        mean, color=pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Maximum Temperature") + ylab("Mean Pollution")
-pollu_temp %>% filter(pollutant == "CO") %>% ggplot(aes(max_temp, 
-                                                        mean, color=pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Maximum Temperature") + ylab("Mean Pollution")
-
 pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & 
   (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
   month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, 
