@@ -20,6 +20,8 @@ As climate change worsens, the danger it presents to human health worsens as wel
 
 The Paris Agreement within the United Nations Framework Convention on Climate Change includes 175 countries that have agreed to limit the average global temperature rise to below 2 degress Celcius. Canada had signed to the Paris Agreement as well and committed to cutting emission 30% below the 2005 levels by 2030. However, Canada's emission increased in 2016 compared to 1990. As a response to this increase, the Government of Canada developed a national climate change plan called *The Pan-Canadian Framework on Clean Growth and Climate Change*. This framework notes that human activities are driving severe changes to the Earth's climate which poses substantial risks to human health.
 
+Urgent action is needed and the science shows that it will make a tangible difference. The health impacts from climate change can be prevented by improving efforts both in societies and health systems in Canada. Changes in measures can prevent health impacts and build health systems and facilities that are more resilient to climate change.
+
 ## Data
 
 #### Data Collection
@@ -84,6 +86,8 @@ temp_2002_2022 %>%
 
 ```
 
+Table 1 shows the rows of the Temperature data from 2002 to 2022. Variable "Year" indicates the year, variable "Month" indicates the month, and variable "Day" indicates the day. Variable "Max Temp" represents the maximum temperature on the day with the following month and year. Variable "Min Temp" represents the minimum temperature on the day with the following month and year. Variable "Mean Temp" represents the mean temperature on the day with the following month and year.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 # Load pollution data
@@ -106,6 +110,8 @@ pollution %>%
 
 ```
 
+Table 2 shows the rows of the Pollution data from 2002 to 2020. Variable "City" indicates the city from which the data was collected. Variable "Pollutant" indicates the pollutant and includes 5 types: CO, NO, NO2, O3, and SO2. Variable "Mean Pollution" represents the mean pollution levels of the following pollutant on the following day of the month and year. Variable "Day" indicates the day, variable "Month" indicates the month, and variable "Year" indicates the year. Variable "Max Temp" represents the maximum temperature on the day with the following month and year.
+
 ## Visualizing Temperature from 2002-2022
 
 #### Visualizing Temperature by Month and Year
@@ -119,7 +125,7 @@ temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"|
 
 ```
 
-In the above plot...
+Figure 1 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from December to March.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for April to July", fig.width=9, fig.height=3.2}
 
@@ -130,7 +136,7 @@ temp_2002_2022 %>% filter(month_name == "Apr" | month_name == "May" |
 
 ```
 
-In the above plot...
+Figure 2 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from April to July.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for August to November", fig.width=9, fig.height=3.2}
 
@@ -141,7 +147,7 @@ temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" |
 
 ```
 
-In the above plot...
+Figure 3 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from August to November.
 
 ## Visualizing Pollution from 2002-2020
 
@@ -154,7 +160,7 @@ pollution %>% filter(pollutant != "CO") %>% ggplot(
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
-In the above plot...
+Figure 4 shows an ... pattern for the mean pollution from year 2002 to 2020 for NO, NO2, O3, and SO2 by year.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Year", fig.width=9, fig.height=3.2}
 
@@ -164,7 +170,7 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 
 ```
 
-In the above plot...
+Figure 5 shows an ... pattern for the mean pollution from year 2002 to 2020 for CO by year.
 
 #### Visualizing Pollution by Month
 
@@ -177,7 +183,7 @@ pollution %>% filter(pollutant != "CO") %>% ggplot(
 
 ```
 
-In the above plot...
+Figure 6 shows an ... pattern for the mean pollution from year 2002 to 2020 for NO, NO2, O3, and SO2 by month.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Month", fig.width=9, fig.height=3.2}
 
@@ -188,7 +194,7 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 
 ```
 
-In the above plot...
+Figure 7 shows an ... pattern for the mean pollution from year 2002 to 2020 for CO by month.
 
 ## Visualizing Pollution and Temperature from 2002-2020
 
