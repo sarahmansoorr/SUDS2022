@@ -125,7 +125,7 @@ temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"|
 
 ```
 
-Figure 1 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from December to March.
+Figure 1 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from December to March. Temperatures in March continue to be increasingly higher than any of the other months in this plot. It is noticeable that the temperatures for all months are the highest in 2012. According to NASA, the average temperatures in 2012 was warmer than the mid-20th century baseline and is considered to be an outlying of seasonal extremes that are warmer. Even the lowest maximum temperature in January is higher than other years in 2012. The plot shows that the average maximum temperature from December to March has been between -19.2 degrees Celsius in February of 2015 and 24.3 degrees Celsius in March of 2012.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for April to July", fig.width=9, fig.height=3.2}
 
