@@ -152,11 +152,11 @@ pollu_2020 <- pollu_2020 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2020[is.na(pollu_2020)] <- 0
 # Add column for average 
-pollu_2020 <- pollu_2020 %>% mutate(Mean = rowMeans(pollu_2020[ ,c(4:27)], na.rm=TRUE))
+pollu_2020 <- pollu_2020 %>% mutate(Mean_pollution = rowMeans(pollu_2020[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2020 <- pollu_2020 %>% mutate(Year = "2020")
 # Remove hourly data columns
-pollu_2020 <- pollu_2020 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2020 <- pollu_2020 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 
 ## 2019 Data
@@ -190,11 +190,11 @@ pollu_2019 <- pollu_2019 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2019[is.na(pollu_2019)] <- 0
 # Add column for average 
-pollu_2019 <- pollu_2019 %>% mutate(Mean = rowMeans(pollu_2019[ ,c(4:27)], na.rm=TRUE))
+pollu_2019 <- pollu_2019 %>% mutate(Mean_pollution = rowMeans(pollu_2019[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2019 <- pollu_2019 %>% mutate(Year = "2019")
 # Remove hourly data columns
-pollu_2019 <- pollu_2019 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2019 <- pollu_2019 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2018 Data
 colnames(CO_2018) <- my_column_names
@@ -226,11 +226,11 @@ pollu_2018 <- pollu_2018 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2018[is.na(pollu_2018)] <- 0
 # Add column for average 
-pollu_2018 <- pollu_2018 %>% mutate(Mean = rowMeans(pollu_2018[ ,c(4:27)], na.rm=TRUE))
+pollu_2018 <- pollu_2018 %>% mutate(Mean_pollution = rowMeans(pollu_2018[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2018 <- pollu_2018 %>% mutate(Year = "2018")
 # Remove hourly data columns
-pollu_2018 <- pollu_2018 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2018 <- pollu_2018 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2017 Data
 
@@ -263,11 +263,11 @@ pollu_2017 <- pollu_2017 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2017[is.na(pollu_2017)] <- 0
 # Add column for average 
-pollu_2017 <- pollu_2017 %>% mutate(Mean = rowMeans(pollu_2017[ ,c(4:27)], na.rm=TRUE))
+pollu_2017 <- pollu_2017 %>% mutate(Mean_pollution = rowMeans(pollu_2017[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2017 <- pollu_2017 %>% mutate(Year = "2017")
 # Remove hourly data columns
-pollu_2017 <- pollu_2017 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2017 <- pollu_2017 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2016 Data
 
@@ -300,11 +300,11 @@ pollu_2016 <- pollu_2016 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2016[is.na(pollu_2016)] <- 0
 # Add column for average 
-pollu_2016 <- pollu_2016 %>% mutate(Mean = rowMeans(pollu_2016[ ,c(4:27)], na.rm=TRUE))
+pollu_2016 <- pollu_2016 %>% mutate(Mean_pollution = rowMeans(pollu_2016[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2016 <- pollu_2016 %>% mutate(Year = "2016")
 # Remove hourly data columns
-pollu_2016 <- pollu_2016 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2016 <- pollu_2016 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2015 Data
 
@@ -337,11 +337,11 @@ pollu_2015 <- pollu_2015 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2015[is.na(pollu_2015)] <- 0
 # Add column for average 
-pollu_2015 <- pollu_2015 %>% mutate(Mean = rowMeans(pollu_2015[ ,c(4:27)], na.rm=TRUE))
+pollu_2015 <- pollu_2015 %>% mutate(Mean_pollution = rowMeans(pollu_2015[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2015 <- pollu_2015 %>% mutate(Year = "2015")
 # Remove hourly data columns
-pollu_2015 <- pollu_2015 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2015 <- pollu_2015 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2014 Data
 colnames(CO_2014) <- my_column_names
@@ -373,11 +373,11 @@ pollu_2014 <- pollu_2014 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2014[is.na(pollu_2014)] <- 0
 # Add column for average 
-pollu_2014 <- pollu_2014 %>% mutate(Mean = rowMeans(pollu_2014[ ,c(4:27)], na.rm=TRUE))
+pollu_2014 <- pollu_2014 %>% mutate(Mean_pollution = rowMeans(pollu_2014[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2014 <- pollu_2014 %>% mutate(Year = "2014")
 # Remove hourly data columns
-pollu_2014 <- pollu_2014 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2014 <- pollu_2014 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2013 Data
 colnames(CO_2013) <- my_column_names
@@ -409,11 +409,11 @@ pollu_2013 <- pollu_2013 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2013[is.na(pollu_2013)] <- 0
 # Add column for average 
-pollu_2013 <- pollu_2013 %>% mutate(Mean = rowMeans(pollu_2013[ ,c(4:27)], na.rm=TRUE))
+pollu_2013 <- pollu_2013 %>% mutate(Mean_pollution = rowMeans(pollu_2013[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2013 <- pollu_2013 %>% mutate(Year = "2013")
 # Remove hourly data columns
-pollu_2013 <- pollu_2013 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2013 <- pollu_2013 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2012 Data
 colnames(CO_2012) <- my_column_names
@@ -445,11 +445,11 @@ pollu_2012 <- pollu_2012 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2012[is.na(pollu_2012)] <- 0
 # Add column for average 
-pollu_2012 <- pollu_2012 %>% mutate(Mean = rowMeans(pollu_2012[ ,c(4:27)], na.rm=TRUE))
+pollu_2012 <- pollu_2012 %>% mutate(Mean_pollution = rowMeans(pollu_2012[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2012 <- pollu_2012 %>% mutate(Year = "2012")
 # Remove hourly data columns
-pollu_2012 <- pollu_2012 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2012 <- pollu_2012 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2011 Data
 
@@ -482,11 +482,11 @@ pollu_2011 <- pollu_2011 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2011[is.na(pollu_2011)] <- 0
 # Add column for average 
-pollu_2011 <- pollu_2011 %>% mutate(Mean = rowMeans(pollu_2011[ ,c(4:27)], na.rm=TRUE))
+pollu_2011 <- pollu_2011 %>% mutate(Mean_pollution = rowMeans(pollu_2011[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2011 <- pollu_2011 %>% mutate(Year = "2011")
 # Remove hourly data columns
-pollu_2011 <- pollu_2011 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2011 <- pollu_2011 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2010 Data
 
@@ -519,11 +519,11 @@ pollu_2010 <- pollu_2010 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2010[is.na(pollu_2010)] <- 0
 # Add column for average 
-pollu_2010 <- pollu_2010 %>% mutate(Mean = rowMeans(pollu_2010[ ,c(4:27)], na.rm=TRUE))
+pollu_2010 <- pollu_2010 %>% mutate(Mean_pollution = rowMeans(pollu_2010[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2010 <- pollu_2010 %>% mutate(Year = "2010")
 # Remove hourly data columns
-pollu_2010 <- pollu_2010 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2010 <- pollu_2010 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2009 Data
 colnames(CO_2009) <- my_column_names
@@ -555,11 +555,11 @@ pollu_2009 <- pollu_2009 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2009[is.na(pollu_2009)] <- 0
 # Add column for average 
-pollu_2009 <- pollu_2009 %>% mutate(Mean = rowMeans(pollu_2009[ ,c(4:27)], na.rm=TRUE))
+pollu_2009 <- pollu_2009 %>% mutate(Mean_pollution = rowMeans(pollu_2009[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2009 <- pollu_2009 %>% mutate(Year = "2009")
 # Remove hourly data columns
-pollu_2009 <- pollu_2009 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2009 <- pollu_2009 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2008 Data
 
@@ -592,11 +592,11 @@ pollu_2008 <- pollu_2008 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2008[is.na(pollu_2008)] <- 0
 # Add column for average 
-pollu_2008 <- pollu_2008 %>% mutate(Mean = rowMeans(pollu_2008[ ,c(4:27)], na.rm=TRUE))
+pollu_2008 <- pollu_2008 %>% mutate(Mean_pollution = rowMeans(pollu_2008[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2008 <- pollu_2008 %>% mutate(Year = "2008")
 # Remove hourly data columns
-pollu_2008 <- pollu_2008 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2008 <- pollu_2008 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2007 Data
 
@@ -629,11 +629,11 @@ pollu_2007 <- pollu_2007 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2007[is.na(pollu_2007)] <- 0
 # Add column for average 
-pollu_2007 <- pollu_2007 %>% mutate(Mean = rowMeans(pollu_2007[ ,c(4:27)], na.rm=TRUE))
+pollu_2007 <- pollu_2007 %>% mutate(Mean_pollution = rowMeans(pollu_2007[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2007 <- pollu_2007 %>% mutate(Year = "2007")
 # Remove hourly data columns
-pollu_2007 <- pollu_2007 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2007 <- pollu_2007 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 
 ## 2006 Data
@@ -667,11 +667,11 @@ pollu_2006 <- pollu_2006 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2006[is.na(pollu_2006)] <- 0
 # Add column for average 
-pollu_2006 <- pollu_2006 %>% mutate(Mean = rowMeans(pollu_2006[ ,c(4:27)], na.rm=TRUE))
+pollu_2006 <- pollu_2006 %>% mutate(Mean_pollution = rowMeans(pollu_2006[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2006 <- pollu_2006 %>% mutate(Year = "2006")
 # Remove hourly data columns
-pollu_2006 <- pollu_2006 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2006 <- pollu_2006 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2005 Data
 
@@ -704,11 +704,11 @@ pollu_2005 <- pollu_2005 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2005[is.na(pollu_2005)] <- 0
 # Add column for average 
-pollu_2005 <- pollu_2005 %>% mutate(Mean = rowMeans(pollu_2005[ ,c(4:27)], na.rm=TRUE))
+pollu_2005 <- pollu_2005 %>% mutate(Mean_pollution = rowMeans(pollu_2005[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2005 <- pollu_2005 %>% mutate(Year = "2005")
 # Remove hourly data columns
-pollu_2005 <- pollu_2005 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2005 <- pollu_2005 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 ## 2004 Data
 
@@ -741,11 +741,11 @@ pollu_2004 <- pollu_2004 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2004[is.na(pollu_2004)] <- 0
 # Add column for average 
-pollu_2004 <- pollu_2004 %>% mutate(Mean = rowMeans(pollu_2004[ ,c(4:27)], na.rm=TRUE))
+pollu_2004 <- pollu_2004 %>% mutate(Mean_pollution = rowMeans(pollu_2004[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2004 <- pollu_2004 %>% mutate(Year = "2004")
 # Remove hourly data columns
-pollu_2004 <- pollu_2004 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2004 <- pollu_2004 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 
 ## 2003 Data
@@ -779,11 +779,11 @@ pollu_2003 <- pollu_2003 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2003[is.na(pollu_2003)] <- 0
 # Add column for average 
-pollu_2003 <- pollu_2003 %>% mutate(Mean = rowMeans(pollu_2003[ ,c(4:27)], na.rm=TRUE))
+pollu_2003 <- pollu_2003 %>% mutate(Mean_pollution = rowMeans(pollu_2003[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2003 <- pollu_2003 %>% mutate(Year = "2003")
 # Remove hourly data columns
-pollu_2003 <- pollu_2003 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2003 <- pollu_2003 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 
 ## 2002 Data
@@ -817,11 +817,11 @@ pollu_2002 <- pollu_2002 %>% replace_with_na(replace = list(H1 = -999, H2 = -999
 # replace NA with 0
 pollu_2002[is.na(pollu_2002)] <- 0
 # Add column for average 
-pollu_2002 <- pollu_2002 %>% mutate(Mean = rowMeans(pollu_2002[ ,c(4:27)], na.rm=TRUE))
+pollu_2002 <- pollu_2002 %>% mutate(Mean_pollution = rowMeans(pollu_2002[ ,c(4:27)], na.rm=TRUE))
 # Add column for Year
 pollu_2002 <- pollu_2002 %>% mutate(Year = "2002")
 # Remove hourly data columns
-pollu_2002 <- pollu_2002 %>% select("Pollutant", "City", "Date", "Mean", "Year")
+pollu_2002 <- pollu_2002 %>% select("Pollutant", "City", "Date", "Mean_pollution", "Year")
 
 #### Cleaning 2002-2020 Pollution Data ----
 
@@ -835,54 +835,54 @@ colnames(pollution) <- column_names
 # Add column for Month
 pollution <- pollution %>%
   mutate(month = case_when(
-    grepl("01", substr(Date, 5, 6)) ~ "1", 
-    grepl("02", substr(Date, 5, 6)) ~ "2", 
-    grepl("03", substr(Date, 5, 6)) ~ "3", 
-    grepl("04", substr(Date, 5, 6)) ~ "4", 
-    grepl("05", substr(Date, 5, 6)) ~ "5", 
-    grepl("06", substr(Date, 5, 6)) ~ "6", 
-    grepl("07", substr(Date, 5, 6)) ~ "7", 
-    grepl("08", substr(Date, 5, 6)) ~ "8", 
-    grepl("09", substr(Date, 5, 6)) ~ "9", 
-    grepl("10", substr(Date, 5, 6)) ~ "10", 
-    grepl("11", substr(Date, 5, 6)) ~ "11", 
-    grepl("12", substr(Date, 5, 6)) ~ "12"
+    grepl("01", substr(date, 5, 6)) ~ "1", 
+    grepl("02", substr(date, 5, 6)) ~ "2", 
+    grepl("03", substr(date, 5, 6)) ~ "3", 
+    grepl("04", substr(date, 5, 6)) ~ "4", 
+    grepl("05", substr(date, 5, 6)) ~ "5", 
+    grepl("06", substr(date, 5, 6)) ~ "6", 
+    grepl("07", substr(date, 5, 6)) ~ "7", 
+    grepl("08", substr(date, 5, 6)) ~ "8", 
+    grepl("09", substr(date, 5, 6)) ~ "9", 
+    grepl("10", substr(date, 5, 6)) ~ "10", 
+    grepl("11", substr(date, 5, 6)) ~ "11", 
+    grepl("12", substr(date, 5, 6)) ~ "12"
   ))
 
 # Add column for Day
 pollution <- pollution %>%
   mutate(day = case_when(
-    grepl("01", substr(Date, 7, 8)) ~ "1", 
-    grepl("02", substr(Date, 7, 8)) ~ "2", 
-    grepl("03", substr(Date, 7, 8)) ~ "3", 
-    grepl("04", substr(Date, 7, 8)) ~ "4", 
-    grepl("05", substr(Date, 7, 8)) ~ "5", 
-    grepl("06", substr(Date, 7, 8)) ~ "6", 
-    grepl("07", substr(Date, 7, 8)) ~ "7", 
-    grepl("08", substr(Date, 7, 8)) ~ "8", 
-    grepl("09", substr(Date, 7, 8)) ~ "9", 
-    grepl("10", substr(Date, 7, 8)) ~ "10", 
-    grepl("11", substr(Date, 7, 8)) ~ "11", 
-    grepl("12", substr(Date, 7, 8)) ~ "12", 
-    grepl("13", substr(Date, 7, 8)) ~ "13", 
-    grepl("14", substr(Date, 7, 8)) ~ "14", 
-    grepl("15", substr(Date, 7, 8)) ~ "15", 
-    grepl("16", substr(Date, 7, 8)) ~ "16", 
-    grepl("17", substr(Date, 7, 8)) ~ "17", 
-    grepl("18", substr(Date, 7, 8)) ~ "18", 
-    grepl("19", substr(Date, 7, 8)) ~ "19", 
-    grepl("20", substr(Date, 7, 8)) ~ "20", 
-    grepl("21", substr(Date, 7, 8)) ~ "21", 
-    grepl("22", substr(Date, 7, 8)) ~ "22", 
-    grepl("23", substr(Date, 7, 8)) ~ "23",
-    grepl("24", substr(Date, 7, 8)) ~ "24", 
-    grepl("25", substr(Date, 7, 8)) ~ "25", 
-    grepl("26", substr(Date, 7, 8)) ~ "26", 
-    grepl("27", substr(Date, 7, 8)) ~ "27", 
-    grepl("28", substr(Date, 7, 8)) ~ "28", 
-    grepl("29", substr(Date, 7, 8)) ~ "29", 
-    grepl("30", substr(Date, 7, 8)) ~ "30", 
-    grepl("31", substr(Date, 7, 8)) ~ "31"
+    grepl("01", substr(date, 7, 8)) ~ "1", 
+    grepl("02", substr(date, 7, 8)) ~ "2", 
+    grepl("03", substr(date, 7, 8)) ~ "3", 
+    grepl("04", substr(date, 7, 8)) ~ "4", 
+    grepl("05", substr(date, 7, 8)) ~ "5", 
+    grepl("06", substr(date, 7, 8)) ~ "6", 
+    grepl("07", substr(date, 7, 8)) ~ "7", 
+    grepl("08", substr(date, 7, 8)) ~ "8", 
+    grepl("09", substr(date, 7, 8)) ~ "9", 
+    grepl("10", substr(date, 7, 8)) ~ "10", 
+    grepl("11", substr(date, 7, 8)) ~ "11", 
+    grepl("12", substr(date, 7, 8)) ~ "12", 
+    grepl("13", substr(date, 7, 8)) ~ "13", 
+    grepl("14", substr(date, 7, 8)) ~ "14", 
+    grepl("15", substr(date, 7, 8)) ~ "15", 
+    grepl("16", substr(date, 7, 8)) ~ "16", 
+    grepl("17", substr(date, 7, 8)) ~ "17", 
+    grepl("18", substr(date, 7, 8)) ~ "18", 
+    grepl("19", substr(date, 7, 8)) ~ "19", 
+    grepl("20", substr(date, 7, 8)) ~ "20", 
+    grepl("21", substr(date, 7, 8)) ~ "21", 
+    grepl("22", substr(date, 7, 8)) ~ "22", 
+    grepl("23", substr(date, 7, 8)) ~ "23",
+    grepl("24", substr(date, 7, 8)) ~ "24", 
+    grepl("25", substr(date, 7, 8)) ~ "25", 
+    grepl("26", substr(date, 7, 8)) ~ "26", 
+    grepl("27", substr(date, 7, 8)) ~ "27", 
+    grepl("28", substr(date, 7, 8)) ~ "28", 
+    grepl("29", substr(date, 7, 8)) ~ "29", 
+    grepl("30", substr(date, 7, 8)) ~ "30", 
+    grepl("31", substr(date, 7, 8)) ~ "31"
   ))
 
 # Add column for Month Names
@@ -902,7 +902,7 @@ pollution <- pollution %>%
     month == 12 ~ "Dec"
   ))
 
-pollution <- pollution %>% select(City, Pollutant, mean_pollution, day, month, Year, month_name)
+pollution <- pollution %>% select(city, pollutant, mean_pollution, day, month, year, month_name)
 pollution <- clean_names(pollution)
 
 # Save pollution data 2002-2020
