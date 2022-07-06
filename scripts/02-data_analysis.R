@@ -43,6 +43,12 @@ temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" |
                               aes(x=year, y=max_temp, color=month_name)) + 
   geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
+# Lowest and highest points
+r <- temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| 
+                            month_name == "Feb" | month_name == "Mar") & year == 2015) %>% select(max_temp)
+range(r)
+"-19.2  14.4"
+
 ""
 
 
