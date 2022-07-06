@@ -116,6 +116,8 @@ Table 2 shows the rows of the Pollution data from 2002 to 2020. Variable "City" 
 
 #### Visualizing Temperature by Month and Year
 
+I'm interested in finding the trends of the maximum temperatures from 2002 to 2022 by the Month and Year.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for December to March", fig.width=9, fig.height=3.2}
 
 temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"| 
