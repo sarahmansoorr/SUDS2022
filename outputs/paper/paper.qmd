@@ -149,7 +149,7 @@ temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" |
 
 ```
 
-Figure 3 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from August to November.
+Figure 3 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from August to November. Temperatures in both August and September are the highest throughout the years compared to November and October. Temperatures in November are consistently the lowest throughout the years compared to the other months. There are a few high temperatures in October throughout the years as well and this is typically seen when the August and September have some of the highest temperatures compared to other years. The plot shows that the average maximum temperature from April to May has been between -5.1 degrees Celsius in November of 2018 and 36.8 degrees Celsius in August of 2006.
 
 ## Visualizing Pollution from 2002-2020
 
