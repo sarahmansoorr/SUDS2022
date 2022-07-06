@@ -7,27 +7,13 @@ thanks: "Code and data are available at: https://github.com/sarahmansoorr/SUDS20
 date: "`r format(Sys.time(), '%d %B %Y')`"
 format: pptx
 editor: visual
-toc: true
 # bibliography: references.bib
 ---
 
-## Quarto
+## Research Topic
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+## Data Science Methods
 
-## Bullets
-
-When you click the **Render** button a document will be generated that includes:
-
--   Content authored with markdown
--   Output from executable code
-
-## Code
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
+## Results
 
 ![](images/paste-01E2A963.png)
