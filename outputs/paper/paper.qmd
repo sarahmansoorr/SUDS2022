@@ -116,7 +116,7 @@ Table 2 shows the rows of the Pollution data from 2002 to 2020. Variable "City" 
 
 #### Visualizing Temperature by Month and Year
 
-I'm interested in finding the trends of the maximum temperatures from 2002 to 2022 by the Month and Year.
+I'm interested in finding the trends of the maximum temperatures from 2002 to 2022 by the month and year.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for December to March", fig.width=9, fig.height=3.2}
 
@@ -155,6 +155,8 @@ Figure 3 shows an increasing pattern for the maximum temperature from year 2002 
 
 #### Visualizing Pollution by Year
 
+I'm interested in finding the trends of the mean pollution levels from 2002 to 2020 by year. The units of NO, NO2, O3, and SO2 are the same (ppb) whereas the units for CO are different (ppm). For this reason, these plots have been made with regards to those units.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Year", fig.width=9, fig.height=3.2}
 
 pollution %>% filter(pollutant != "CO") %>% ggplot(
@@ -162,7 +164,7 @@ pollution %>% filter(pollutant != "CO") %>% ggplot(
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
-Figure 4 shows an ... pattern for the mean pollution from year 2002 to 2020 for NO, NO2, O3, and SO2 by year.
+Figure 4 shows an decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. We can notice that O3 and SO2 levels remain mostly the same throughout the years.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Year", fig.width=9, fig.height=3.2}
 
@@ -172,7 +174,7 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 
 ```
 
-Figure 5 shows an ... pattern for the mean pollution from year 2002 to 2020 for CO by year.
+Figure 5 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year.
 
 #### Visualizing Pollution by Month
 
