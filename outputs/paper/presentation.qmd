@@ -1,7 +1,14 @@
 ---
-title: "Untitled"
+#### Preamble ####
+title: "Disparities in Climate-Induced Health Outcomes in the Greater Toronto Area."
+author: "Sarah Mansoor"
+email: "sarah.mansoor@mail.utoronto.ca"
+thanks: "Code and data are available at: https://github.com/sarahmansoorr/SUDS2022"
+date: "`r format(Sys.time(), '%d %B %Y')`"
 format: pptx
 editor: visual
+toc: true
+# bibliography: references.bib
 ---
 
 ## Quarto
