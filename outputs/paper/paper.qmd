@@ -136,7 +136,7 @@ temp_2002_2022 %>% filter(month_name == "Apr" | month_name == "May" |
 
 ```
 
-Figure 2 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from April to July.
+Figure 2 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from April to July. Temperatures in July are consistently higher throughout the years than any of the other months in the plot and temperatures in April are consistently lower throughout the years than any of the other months. There are some years where June has the highest temperature. The plot shows that the average maximum temperature from April to May has been between -2.4 degrees Celsius in April of 2003 and 38.2 degrees Celsius in July of 2011.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for August to November", fig.width=9, fig.height=3.2}
 

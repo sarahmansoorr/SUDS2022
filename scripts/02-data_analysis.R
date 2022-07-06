@@ -54,6 +54,16 @@ r <- temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"|
 range(r)
 "-10.4  24.3"
 
+r <- temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | 
+                                  month_name == "Jun" | month_name == "Jul") & year == 2003) %>% select(max_temp)
+range(r)
+"-2.4 33.6"
+
+r <- temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | 
+                                  month_name == "Jun" | month_name == "Jul") & year == 2011) %>% select(max_temp)
+range(r)
+"3.3 38.2"
+
 ""
 
 
