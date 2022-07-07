@@ -905,6 +905,9 @@ pollution <- pollution %>%
 pollution <- pollution %>% select(city, pollutant, mean_pollution, day, month, year, month_name)
 pollution <- clean_names(pollution)
 
+# drop NA
+pollution <- pollution %>% drop_na(month_name)
+
 # Save pollution data 2002-2020
 write_csv(
   x = pollution,
