@@ -100,10 +100,10 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
 
 pollution1 <- pollution %>%
-  mutate(month_name = factor(month_name, levels = c("January", "February","March", 
-                                                    "April", "May", "June", "July", 
-                                                    "August","September", "October", 
-                                                    "November",  "December")))
+  mutate(month_name = factor(month_name, levels = c("Jan", "Feb","Mar", 
+                                                    "Apr", "May", "Jun", "Jul", 
+                                                    "Aug","Sep", "Oct", 
+                                                    "Nov",  "Dec")))
 
 
 # Lowest and highest points
