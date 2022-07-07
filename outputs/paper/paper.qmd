@@ -212,8 +212,10 @@ Figure 6 shows an ... pattern for the mean pollution from year 2002 to 2020 for 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Month", fig.width=9, fig.height=3.2}
 
+level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
+
 pollution %>% filter(pollutant == "CO") %>% ggplot(
-  aes(x = month_name, y = mean_pollution, color = pollutant)) + geom_point() + 
+  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
 
 
