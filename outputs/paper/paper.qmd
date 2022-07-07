@@ -170,49 +170,115 @@ Figure 3 shows an increasing pattern for the maximum temperature from year 2002 
 
 ## Visualizing Pollution from 2002-2020
 
-#### Visualizing Pollution by Year
+### Visualizing Pollution by Year
 
 I'm interested in finding the trends of the mean pollution levels from 2002 to 2020 by year. The units of NO, NO2, O3, and SO2 are the same (ppb) whereas the units for CO are different (ppm). For this reason, these plots have been made with regards to those units.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Year", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 and CO by Year", fig.width=9, fig.height=3.2}
 
 pollution %>% ggplot(
   aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Year", fig.width=9, fig.height=3.2}
+Figure 4 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. We can notice that O3 and SO2 levels remain mostly the same throughout the years. The highest levels of pollution are as follows: 150.3 ppb for NO in 2002, 65 ppb for NO2 in 2005, 65.95833 ppb for O3 in 2003, and 22.79167 ppb for SO2 in 2002. There is also a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. The highest level of pollution for CO is 1.7625 ppm in 2002. We can notice that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November.
 
-pollution %>% filter(pollutant != "CO") %>% ggplot(
+#### Visualizing NO (Nitric Oxide) by Year
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO by Year", fig.width=9, fig.height=3.2}
+
+pollution %>% filter(pollutant == "NO") %>% ggplot(
   aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
-Figure 4 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. We can notice that O3 and SO2 levels remain mostly the same throughout the years. The highest levels of pollution are as follows: 150.3 ppb for NO in 2002, 65 ppb for NO2 in 2005, 65.95833 ppb for O3 in 2003, and 22.79167 ppb for SO2 in 2002.
+#### Visualizing NO2 (Nitrogen Dioxide) by Year
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 by Year", fig.width=9, fig.height=3.2}
+
+pollution %>% filter(pollutant == "NO2") %>% ggplot(
+  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
+
+```
+
+#### Visualizing O3 (Ozone) by Year
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for O3 by Year", fig.width=9, fig.height=3.2}
+
+pollution %>% filter(pollutant == "O3") %>% ggplot(
+  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
+```
+
+#### Visualizing CO (Carbon Monoxide) by Year
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Year", fig.width=9, fig.height=3.2}
 
 pollution %>% filter(pollutant == "CO") %>% ggplot(
   aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
-
 ```
 
-Figure 5 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. The highest level of pollution for CO is 1.7625 ppm in 2002. We can notice that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November.
+#### Visualizing SO2 (Sulfur Dioxide) by Year
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for SO2 by Year", fig.width=9, fig.height=3.2}
+
+pollution %>% filter(pollutant == "SO2") %>% ggplot(
+  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
+```
 
 #### Visualizing Pollution by Month
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Month", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 and CO by Month", fig.width=9, fig.height=3.2}
 
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
-pollution %>% filter(pollutant != "CO") %>% ggplot(
+pollution %>% ggplot(
   aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppb)")
 
 ```
 
-Figure 6 shows an ... pattern for the mean pollution from year 2002 to 2020 for NO, NO2, O3, and SO2 by month.
+#### Visualizing NO (Nitric Oxide) by Month
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO by Month", fig.width=9, fig.height=3.2}
+
+level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
+
+pollution %>% filter(pollutant == "NO") %>% ggplot(
+  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
+
+
+```
+
+#### Visualizing NO2 (Nitrogen Dioxide) by Month
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 by Month", fig.width=9, fig.height=3.2}
+
+level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
+
+pollution %>% filter(pollutant == "NO2") %>% ggplot(
+  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
+
+```
+
+#### Visualizing O3 (Ozone) by Month
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for O3 by Month", fig.width=9, fig.height=3.2}
+
+level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
+
+pollution %>% filter(pollutant == "O3") %>% ggplot(
+  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
+
+```
+
+#### Visualizing CO (Carbon Monoxide) by Month
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Month", fig.width=9, fig.height=3.2}
 
@@ -222,10 +288,19 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
   aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
 
-
 ```
 
-Figure 7 shows an ... pattern for the mean pollution from year 2002 to 2020 for CO by month.
+#### Visualizing SO2 (Sulfur Dioxide) by Month
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO by Month", fig.width=9, fig.height=3.2}
+
+level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
+
+pollution %>% filter(pollutant == "SO2") %>% ggplot(
+  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
+
+```
 
 ## Visualizing Pollution and Temperature from 2002-2020
 
@@ -242,17 +317,7 @@ pollu_temp <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_temperature_polluti
 
 level_order <- c("Dec", "Jan", "Feb","Mar")
 
-pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
-```
-
-In the above plot...
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
-
-level_order <- c("Dec", "Jan", "Feb","Mar")
-
-pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
-
+pollu_temp %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
 ```
 
 In the above plot...
@@ -261,17 +326,7 @@ In the above plot...
 
 level_order <- c("Apr", "May", "Jun", "Jul")
 
-pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & (month_name == "Apr" | month_name == "May" | month_name == "Jun" |  month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
-
-```
-
-In the above plot...
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
-
-level_order <- c("Apr", "May", "Jun", "Jul")
-
-pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & (month_name == "Apr" |month_name == "May" | month_name == "Jun" | month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
+pollu_temp %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" |  month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
 
 ```
 
@@ -281,17 +336,7 @@ In the above plot...
 
 level_order <- c("Aug","Sep", "Oct","Nov")
 
-pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & (month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
-
-```
-
-In the above plot...
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
-
-level_order <- c("Aug","Sep", "Oct","Nov")
-
-pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & (month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+pollu_temp %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
 
 ```
 
