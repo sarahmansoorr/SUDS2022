@@ -10,7 +10,7 @@ editor: visual
 # bibliography: references.bib
 ---
 
-## Research Topic
+## Research Topic {background-image="background_1.png"}
 
 ## Data Science Methods
 
