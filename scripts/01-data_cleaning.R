@@ -908,12 +908,6 @@ pollution <- clean_names(pollution)
 # drop NA
 pollution <- pollution %>% drop_na(month_name)
 
-pollution$month_name <- factor(pollution$month_name, levels=c("Jan", "Feb","Mar", 
-                                                              "Apr", "May", "Jun", "Jul", 
-                                                              "Aug","Sep", "Oct", 
-                                                              "Nov",  "Dec"))
-
-
 # Save pollution data 2002-2020
 write_csv(
   x = pollution,
