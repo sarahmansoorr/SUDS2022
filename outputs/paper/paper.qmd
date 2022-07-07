@@ -140,10 +140,9 @@ I'm interested in finding the trends of the maximum temperatures from 2002 to 20
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for December to March", fig.width=9, fig.height=3.2}
 
-temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"| 
-               month_name == "Feb" | month_name == "Mar") %>% ggplot(
-              aes(x=year, y=max_temp, color=month_name)) + 
-  geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+level_order <- c("Dec", "Jan", "Feb","Mar")
+
+temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
 
@@ -151,10 +150,9 @@ Figure 1 shows an increasing pattern for the maximum temperature from year 2002 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for April to July", fig.width=9, fig.height=3.2}
 
-temp_2002_2022 %>% filter(month_name == "Apr" | month_name == "May" | 
-                            month_name == "Jun" | month_name == "Jul") %>% ggplot(
-                              aes(x=year, y=max_temp, color=month_name)) + 
-  geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+level_order <- c("Apr", "May", "Jun", "Jul")
+
+temp_2002_2022 %>% filter(month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
 
@@ -162,10 +160,9 @@ Figure 2 shows an increasing pattern for the maximum temperature from year 2002 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for August to November", fig.width=9, fig.height=3.2}
 
-temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" | 
-                            month_name == "Oct" | month_name == "Nov") %>% ggplot(
-                              aes(x=year, y=max_temp, color=month_name)) + 
-  geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
+level_order <- c("Aug","Sep", "Oct","Nov")
+
+temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature")
 
 ```
 
