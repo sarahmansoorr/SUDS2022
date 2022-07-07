@@ -64,6 +64,12 @@ Pollution variables of interest:
 
 #### Data Processing
 
+*Temperature data*
+
+The data for temperature was processed using R studio and R. I started off by renaming the column names for each temperature data set from 2002 to 2022. Once this was done I combined the 2002 to 2022 temperature data together. The data set initially contained 31 variables. From these I selected the city, date, year, month, day, maximum temperature, minimum temperature, and mean temperature using the dplyr package. I then cleaned the names of the data set using the janitor package. I added a column for the names of the month by mutating the data set and changed the city rows to represent only Toronto data. From here, I dropped any NA values from the maximum, minimum, and mean temperature columns. Lastly, I saved the cleaned data into the repository as a csv file.
+
+*Pollution Data*
+
 #### Population, Frame or Sample
 
 #### The Data
