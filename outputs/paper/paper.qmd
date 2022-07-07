@@ -176,6 +176,13 @@ I'm interested in finding the trends of the mean pollution levels from 2002 to 2
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Year", fig.width=9, fig.height=3.2}
 
+pollution %>% ggplot(
+  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 by Year", fig.width=9, fig.height=3.2}
+
 pollution %>% filter(pollutant != "CO") %>% ggplot(
   aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
