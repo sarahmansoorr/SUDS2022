@@ -909,7 +909,7 @@ pollution <- clean_names(pollution)
 pollution <- pollution %>% drop_na(month_name)
 
 # Change the units to be the same
-pollution1 <- pollution %>% mutate(mean_pollution = case_when(
+pollution <- pollution %>% mutate(mean_pollution = case_when(
   pollutant == "CO" ~ mean_pollution*1000, 
   pollutant != "CO" ~ mean_pollution
 ))
