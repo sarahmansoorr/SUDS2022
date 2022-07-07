@@ -34,23 +34,33 @@ Pollution data was collected from the Government of Canada's National Air Pollut
 
 Temperature variables of interest:
 
+-   City
+
+-   Maximum Temperature
+
+-   Minimum Temperature
+
+-   Mean Temperature
+
 -   Day
-
--   Maximum temperature
-
--   Minimum temperature
-
--   Mean temperature.
-
-Pollution variables of interest:
-
--   Pollutant
 
 -   Month
 
 -   Year
 
--   Mean level of pollution each day
+Pollution variables of interest:
+
+-   City
+
+-   Pollutant
+
+-   Mean pollution for pollutant each day
+
+-   Day
+
+-   Month
+
+-   Year
 
 #### Data Processing
 
