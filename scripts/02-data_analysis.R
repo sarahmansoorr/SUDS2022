@@ -99,6 +99,23 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
   aes(x = month_name, y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
 
+# Lowest and highest points
+r <- pollution %>% filter((pollutant == "NO")) %>% select(mean_pollution)
+range(r)
+#  0.0000 150.2917
+
+r <- pollution %>% filter((pollutant == "NO2")) %>% select(mean_pollution)
+range(r)
+#  0 65
+
+r <- pollution %>% filter((pollutant == "O3")) %>% select(mean_pollution)
+range(r)
+# 0.00000 65.95833
+
+r <- pollution %>% filter((pollutant == "SO2")) %>% select(mean_pollution)
+range(r)
+# -0.02500 22.79167
+
 ## Pollution and Temperature ----
 
 #Visualizing Mean pollution by temperature and pollutant and month
