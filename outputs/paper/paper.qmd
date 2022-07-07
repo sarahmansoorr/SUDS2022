@@ -233,24 +233,18 @@ pollu_temp <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_temperature_polluti
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & 
-  (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
-  month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, 
-  color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
-  labs(color="Month") + xlab("Maximum Temperature") + 
-  ylab("Mean Pollution")
+level_order <- c("Dec", "Jan", "Feb","Mar")
+
+pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
 ```
 
 In the above plot...
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & 
-  (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
-  month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, 
-  color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
-  labs(color="Month") + xlab("Maximum Temperature") + 
-  ylab("Mean Pollution")
+level_order <- c("Dec", "Jan", "Feb","Mar")
+
+pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
 
 ```
 
@@ -258,12 +252,9 @@ In the above plot...
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & 
-  (month_name == "Apr" | month_name == "May" | month_name == "Jun" | 
-  month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, 
-  color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
-  labs(color="Month") + xlab("Maximum Temperature") + 
-  ylab("Mean Pollution")
+level_order <- c("Apr", "May", "Jun", "Jul")
+
+pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & (month_name == "Apr" | month_name == "May" | month_name == "Jun" |  month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
 
 ```
 
@@ -271,11 +262,9 @@ In the above plot...
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & (month_name == "Apr" |
-   month_name == "May" | month_name == "Jun" | month_name == "Jul")) %>% ggplot(aes(max_temp,
-   mean_pollution, color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
-  labs(color="Month") + xlab("Maximum Temperature") + 
-  ylab("Mean Pollution")
+level_order <- c("Apr", "May", "Jun", "Jul")
+
+pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & (month_name == "Apr" |month_name == "May" | month_name == "Jun" | month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
 
 ```
 
@@ -283,10 +272,9 @@ In the above plot...
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & (month_name == "Aug" | 
-    month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp,
-    mean_pollution, color=month_name)) + geom_point() + facet_grid(. ~ pollutant) + 
-    labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+level_order <- c("Aug","Sep", "Oct","Nov")
+
+pollu_temp %>% filter(pollutant != "CO" & pollutant != "SO2" & (month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
 
 ```
 
@@ -294,10 +282,9 @@ In the above plot...
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO and SO2 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & 
-  (month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>%
-  ggplot(aes(max_temp, mean_pollution, color=month_name)) + geom_point() + facet_grid(. ~
-  pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+level_order <- c("Aug","Sep", "Oct","Nov")
+
+pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") & (month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
 
 ```
 
