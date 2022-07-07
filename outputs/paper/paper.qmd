@@ -184,7 +184,7 @@ pollution %>% filter(pollutant != "CO") %>% ggplot(
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
-Figure 4 shows an decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. We can notice that O3 and SO2 levels remain mostly the same throughout the years.
+Figure 4 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. We can notice that O3 and SO2 levels remain mostly the same throughout the years. The highest levels of pollution are as follows: 150.3 ppb for NO in 2002, 65 ppb for NO2 in 2005, 65.95833 ppb for O3 in 2003, and 22.79167 ppb for SO2 in 2002.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Year", fig.width=9, fig.height=3.2}
 
@@ -194,7 +194,7 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 
 ```
 
-Figure 5 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year.
+Figure 5 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. The highest level of pollution for CO is 1.7625 ppm in 2002. We can notice that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November.
 
 #### Visualizing Pollution by Month
 
