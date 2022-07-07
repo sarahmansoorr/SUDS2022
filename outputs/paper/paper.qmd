@@ -305,8 +305,6 @@ In the above plot...
 
 ## Limitations
 
-## Results
+## Results and Discussion
 
 ## Next Steps
-
-## Conclusion
