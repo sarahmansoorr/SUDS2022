@@ -305,6 +305,12 @@ In the above plot...
 
 ## Limitations
 
+In this limitations section, I will focus on the data used and look into why it is not easy to take the implications mentioned above directly.
+
+### Missing Pollution Data from 2021-2022
+
 ## Results and Discussion
 
 ## Next Steps
+
+Following on from the previous section, we can make good suggestions on ways to improve the data so that the findings will be less ambiguous and more ethical to use with confidence. First off, we can start by collecting pollution data from 2021 to 2022. It is possible that this data is available but not published yet on the website. In doing this, the data scientist who gets a hold of the data will have the liberty to conduct their analysis with the full data sets for temperature and pollution for 20 years. This will not only ease the job of the data scientist but will also improve the reproducibility of their workflow and finding.
