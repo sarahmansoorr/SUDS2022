@@ -70,9 +70,11 @@ The data for temperature was processed using R studio and R. I started off by re
 
 *Pollution Data*
 
-The pollution data was also processed using R studio and R. I first loaded the different data sets for each pollutant for each year. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). I started off by also renaming the column names for the data sets from 2002 to 2020. Once this was done I combined the pollutant data sets for each year into one data frame for the year. The data initially contained 27 columns. The data sets initially contained pollution levels for each hour of every day in the respective year. I replaced these 24 columns (for each hour of the day) with one column that contained the mean pollution level for that day and pollutant.
+The pollution data was also processed using R studio and R. I first loaded the different data sets for each pollutant for each year. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). I started off by also renaming the column names for the data sets from 2002 to 2020. Once this was done I combined the pollutant data sets for each year into one data frame for the year. The data initially contained 27 columns. The data sets initially contained pollution levels for each hour of every day in the respective year. I replaced these 24 columns (for each hour of the day) with one column that contained the mean pollution level for that day and pollutant. I filtered for Toronto from the list of cities in the data set using the dplyr package and removed the duplicate rows where the pollutant and date repeated. The missing values in this data set were labeled as "-999", so I replaced these values with NA and then with 0 for consistency. This process was repeated for all years from 2002 to 2020. Once this was completed, the data was combined for all the years into one data frame and the following columns were selected: city, pollutant, mean pollution, day, month, year. This cleaned data was then saved into the repository as a csv file.
 
-#### Population, Frame or Sample
+#### Sample
+
+The sample includes data from Toronto of daily temperature maximum, minimum and means from 2002 to 2022 and daily pollution levels for NO, NO2, CO, O3, SO2 from 2002 to 2020.
 
 #### The Data
 
