@@ -194,9 +194,11 @@ pollution %>% ggplot(
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO by Year", fig.width=9, fig.height=3.2}
 
+level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
+
 pollution %>% filter(pollutant == "NO") %>% ggplot(
-  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
+  aes(x = year, y = mean_pollution, factor(month_name, level = level_order))) + geom_point() + 
+  labs(color="Month") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO by Month", fig.width=9, fig.height=3.2}
@@ -208,42 +210,23 @@ pollution %>% filter(pollutant == "NO") %>% ggplot(
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
 ```
 
-#### Visualizing NO2 (Nitrogen Dioxide)
+#### Visualizing NO2 (Nitrogen Dioxide) and O3 (Ozone)
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 by Year", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 and O3 by Year", fig.width=9, fig.height=3.2}
 
-pollution %>% filter(pollutant == "NO2") %>% ggplot(
+pollution %>% filter(pollutant == "NO2" | pollutant == "O3") %>% ggplot(
   aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 by Month", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 and O3 by Month", fig.width=9, fig.height=3.2}
 
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
-pollution %>% filter(pollutant == "NO2") %>% ggplot(
+pollution %>% filter(pollutant == "NO2" | pollutant == "O3") %>% ggplot(
   aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
-```
-
-#### Visualizing O3 (Ozone)
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for O3 by Year", fig.width=9, fig.height=3.2}
-
-pollution %>% filter(pollutant == "O3") %>% ggplot(
-  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for O3 by Month", fig.width=9, fig.height=3.2}
-
-level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
-
-pollution %>% filter(pollutant == "O3") %>% ggplot(
-  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
-
 ```
 
 #### Visualizing CO (Carbon Monoxide) 

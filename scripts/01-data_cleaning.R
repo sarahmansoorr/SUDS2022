@@ -906,7 +906,7 @@ pollution <- pollution %>% select(city, pollutant, mean_pollution, day, month, y
 pollution <- clean_names(pollution)
 
 # drop NA
-pollution <- pollution %>% drop_na(month_name)
+# pollution <- pollution %>% drop_na(month_name)
 
 # Change the units to be the same
 pollution <- pollution %>% mutate(mean_pollution = case_when(
