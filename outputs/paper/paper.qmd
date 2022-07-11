@@ -70,7 +70,7 @@ The data for temperature was processed using R studio and R. I started off by re
 
 *Pollution Data*
 
-The pollution data was also processed using R studio and R. I first loaded the different data sets for each pollutant for each year. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). I started off by also renaming the column names for the data sets from 2002 to 2020. Once this was done I combined the pollutant data sets for each year into one data frame for the year. The data initially contained 27 columns. The data sets initially contained pollution levels for each hour of every day in the respective year. I replaced these 24 columns (for each hour of the day) with one column that contained the mean pollution level for that day and pollutant. I filtered for Toronto from the list of cities in the data set using the dplyr package and removed the duplicate rows where the pollutant and date repeated. The missing values in this data set were labeled as "-999", so I replaced these values with NA and then with 0 for consistency. This process was repeated for all years from 2002 to 2020. Once this was completed, the data was combined for all the years into one data frame and the following columns were selected: city, pollutant, mean pollution, day, month, year. This cleaned data was then saved into the repository as a csv file.
+The pollution data was also processed using R studio and R. I first loaded the different data sets for each pollutant for each year. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). I started off by also renaming the column names for the data sets from 2002 to 2020. Once this was done I combined the pollutant data sets for each year into one data frame for the year. The data initially contained 27 columns. The data sets initially contained pollution levels for each hour of every day in the respective year. I replaced these 24 columns (for each hour of the day) with one column that contained the mean pollution level for that day and pollutant. I filtered for Toronto from the list of cities in the data set using the dplyr package and removed the duplicate rows where the pollutant and date repeated. The missing values in this data set were labeled as "-999", so I replaced these values with NA and then with 0 for consistency. This process was repeated for all years from 2002 to 2020. Once this was completed, the data was combined for all the years into one data frame and the following columns were selected: city, pollutant, mean pollution, day, month, year. This cleaned data was then saved into the repository as a csv file. The units for CO were ppm while the rest were ppb. To keep the data consistent, I converted those values to ppb as well by multiplying by 1,000.
 
 #### Sample
 
@@ -170,7 +170,7 @@ Figure 3 shows an increasing pattern for the maximum temperature from year 2002 
 
 ## Visualizing Pollution from 2002-202
 
-I'm interested in finding the trends of the mean pollution levels from 2002 to 2020 by year. The units of NO, NO2, O3, and SO2 are the same (ppb) whereas the units for CO are different (ppm). For this reason, these plots have been made with regards to those units.
+I'm interested in finding the trends of the mean pollution levels from 2002 to 2020 by year.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 and CO by Year", fig.width=9, fig.height=3.2}
 
@@ -179,7 +179,7 @@ pollution %>% ggplot(
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
-Figure 4 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. We can notice that O3 and SO2 levels remain mostly the same throughout the years. The highest levels of pollution are as follows: 150.3 ppb for NO in 2002, 65 ppb for NO2 in 2005, 65.95833 ppb for O3 in 2003, and 22.79167 ppb for SO2 in 2002. There is also a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. The highest level of pollution for CO is 1.7625 ppm in 2002. We can notice that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November.
+Figure 4 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. We can notice that O3 and SO2 levels remain mostly the same throughout the years. The highest levels of pollution are as follows: 150.3 ppb for NO in 2002, 65 ppb for NO2 in 2005, 65.95833 ppb for O3 in 2003, and 22.79167 ppb for SO2 in 2002. There is also a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. The highest level of pollution for CO is 1762.5 ppb in 2002. We can notice that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 and CO by Month", fig.width=9, fig.height=3.2}
 
@@ -190,6 +190,8 @@ pollution %>% ggplot(
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppb)")
 ```
 
+Figure 5 suggests that the highest levels of CO are during winter and the colder months. This might be due to the fact that heaters are used the most in this time and do emit carbon monoxide. This plot does not tell us much else about the other pollutants due so from here we will take a look at each pollutant and how it has behaved from 2002 to 2020 by year and month.
+
 #### Visualizing NO (Nitric Oxide)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO by Year", fig.width=9, fig.height=3.2}
@@ -197,8 +199,8 @@ pollution %>% ggplot(
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
 pollution %>% filter(pollutant == "NO") %>% ggplot(
-  aes(x = year, y = mean_pollution, factor(month_name, level = level_order))) + geom_point() + 
-  labs(color="Month") + xlab("Year") + ylab("Mean Pollution (ppb)")
+  aes(x = year, y = mean_pollution, factor(month_name, level = level_order))) +
+  geom_point() + labs(color="Month") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO by Month", fig.width=9, fig.height=3.2}
@@ -206,36 +208,59 @@ pollution %>% filter(pollutant == "NO") %>% ggplot(
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
 pollution %>% filter(pollutant == "NO") %>% ggplot(
-  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
+  aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point() +
+  xlab("Month") + ylab("Mean Pollution (ppb)")
 ```
+
+Figure 6 shows a decreasing trend from 2002 to 2020 of the level of nitric oxide in the air. The highest level of pollution was in 2002 where the level was 150.2917 ppb. Figure 7 shows that in the colder months the levels of NO in the air are much higher than in the warmer months. The highest level in 2020 was around 49 ppb, a drastic drop from 2002. The highest level that was mentioned previously was seen in the month of December. However, it looks like on average the level of pollution for winter months is around 80 ppb. There are only some points that show high levels for the winter months.
 
 #### Visualizing NO2 (Nitrogen Dioxide) and O3 (Ozone)
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 and O3 by Year", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 by Year", fig.width=9, fig.height=3.2}
 
-pollution %>% filter(pollutant == "NO2" | pollutant == "O3") %>% ggplot(
-  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
-
+pollution %>% filter(pollutant == "NO2" ) %>% ggplot(
+  aes(x = year, y = mean_pollution)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 and O3 by Month", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 by Month", fig.width=9, fig.height=3.2}
 
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
-pollution %>% filter(pollutant == "NO2" | pollutant == "O3") %>% ggplot(
-  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
+pollution %>% filter(pollutant == "NO2") %>% ggplot(
+  aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point() +
+  ylab("Mean Pollution (ppb)")
 ```
+
+Figure 8 shows the mean pollution for NO2 has been consistently decreasing from 2002 to 2020. The highest value was seen in 2005 where the level was 65 ppb.The highest level in 2020 was around 31 ppb. There are some years between 2002 and 2020 where the level increases again in 2011 and 2014. The mean levels of pollution by month in figure 9 appear to have higher levels in the winter months than in the summer months, but not by a lot. The average levels are around 40 ppb for most months.
+
+#### Visualizing O3 (Ozone)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for O3 by Year", fig.width=9, fig.height=3.2}
+
+pollution %>% filter(pollutant == "O3") %>% ggplot(
+  aes(x = year, y = mean_pollution)) + geom_point() + 
+  xlab("Year") + ylab("Mean Pollution (ppb)")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for O3 by Month", fig.width=9, fig.height=3.2}
+
+level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
+
+pollution %>% filter(pollutant == "O3") %>% ggplot(
+  aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point() +
+  xlab("Month") + ylab("Mean Pollution (ppb)")
+```
+
+In figure 10, we can see that the mean pollution levels for ozone do not change much from 2002 to 2020. There is a slight decrease from the earlier years to the more recent years but not much. The highest level of CO was in 2003 with 65.95 ppb. In 2006, 2008, and 2012 the levels were also higher than 60 ppb. The average high levels are around 50 pb and that does not change from 2002 to 2020. This suggests that the level of ozone in our air has not been getting better and continues to affect our air and health. In figure 11, the hotter months for O3 have higher levels of pollution than the winter months. This suggests that ozone has a relationship with the high levels of temperature and that may be why the levels of pollution have not decreased since 2002, as our average global temperatures also keep rising. The highest value of 65.95 ppb was seen in June.
 
 #### Visualizing CO (Carbon Monoxide)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Year", fig.width=9, fig.height=3.2}
 
 pollution %>% filter(pollutant == "CO") %>% ggplot(
-  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
+  aes(x = year, y = mean_pollution)) + geom_point() + 
+  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Month", fig.width=9, fig.height=3.2}
@@ -243,17 +268,19 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
 pollution %>% filter(pollutant == "CO") %>% ggplot(
-  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
+  aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point() +
+  xlab("Month") + ylab("Mean Pollution (ppb)")
 ```
+
+In figure 12 and 13 we see a similar pattern as NO and NO2 where the level of pollution is decreasing throughout the years from 2002 to 2020 and the highest levels are in the winter months. The highest level of pollution for CO was seen in 2002 with 1762.5 ppb. This level is much higher than any of the other pollutants. This suggests that carbon monoxide levels are much more widespread than any of the other pollutants we have analyzed and due to this can have a affect on our health. Even with the decreasing levels, the affects will still be dangerous. The highest level in 2020 was around 550 ppb which is almost 5 times higher than the levels of NO, NO2, and O3 in 2020.
 
 #### Visualizing SO2 (Sulfur Dioxide)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for SO2 by Year", fig.width=9, fig.height=3.2}
 
 pollution %>% filter(pollutant == "SO2") %>% ggplot(
-  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppm)")
+  aes(x = year, y = mean_pollution)) + geom_point() + 
+  xlab("Year") + ylab("Mean Pollution (ppb)")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO by Month", fig.width=9, fig.height=3.2}
@@ -261,9 +288,11 @@ pollution %>% filter(pollutant == "SO2") %>% ggplot(
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
 pollution %>% filter(pollutant == "SO2") %>% ggplot(
-  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
-  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
+  aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point() +
+  xlab("Month") + ylab("Mean Pollution (ppb)")
 ```
+
+In figure 14, there is a decreasing pattern for the level of SO2 in the air from 2002 to 2020. The highest level in 2002 was 22.79 ppb and the highest level in 2020 seems to be less than 3 ppb. This is a drastic drop and suggests that the level of SO2 in the air is not affected by the increasing temperatures. In figure 15 we also see this. The levels of SO2 in the air remain consistent throughout the months and there is no difference between the winter and summer months.
 
 ## Visualizing Pollution and Temperature from 2002-2020
 
@@ -283,7 +312,7 @@ level_order <- c("Dec", "Jan", "Feb","Mar")
 pollu_temp %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
 ```
 
-In the above plot...
+In figure 16,
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
 
@@ -293,8 +322,6 @@ pollu_temp %>% filter((month_name == "Apr" | month_name == "May" | month_name ==
 
 ```
 
-In the above plot...
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
 
 level_order <- c("Aug","Sep", "Oct","Nov")
@@ -302,8 +329,6 @@ level_order <- c("Aug","Sep", "Oct","Nov")
 pollu_temp %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
 
 ```
-
-In the above plot...
 
 ## Limitations
 
