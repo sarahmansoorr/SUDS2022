@@ -190,7 +190,7 @@ pollution %>% ggplot(
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppb)")
 ```
 
-#### Visualizing NO (Nitric Oxide) 
+#### Visualizing NO (Nitric Oxide)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO by Year", fig.width=9, fig.height=3.2}
 
@@ -229,7 +229,7 @@ pollution %>% filter(pollutant == "NO2" | pollutant == "O3") %>% ggplot(
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
 ```
 
-#### Visualizing CO (Carbon Monoxide) 
+#### Visualizing CO (Carbon Monoxide)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Year", fig.width=9, fig.height=3.2}
 
@@ -247,7 +247,7 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppm)")
 ```
 
-#### Visualizing SO2 (Sulfur Dioxide) 
+#### Visualizing SO2 (Sulfur Dioxide)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for SO2 by Year", fig.width=9, fig.height=3.2}
 
