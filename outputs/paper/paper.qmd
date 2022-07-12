@@ -214,7 +214,7 @@ pollution %>% filter(pollutant == "NO") %>% ggplot(
 
 Figure 6 shows a decreasing trend from 2002 to 2020 of the level of nitric oxide in the air. The highest level of pollution was in 2002 where the level was 150.2917 ppb. Figure 7 shows that in the colder months the levels of NO in the air are much higher than in the warmer months. The highest level in 2020 was around 49 ppb, a drastic drop from 2002. The highest level that was mentioned previously was seen in the month of December. However, it looks like on average the level of pollution for winter months is around 80 ppb. There are only some points that show high levels for the winter months.
 
-#### Visualizing NO2 (Nitrogen Dioxide) and O3 (Ozone)
+#### Visualizing NO2 (Nitrogen Dioxide)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO2 by Year", fig.width=9, fig.height=3.2}
 
@@ -305,28 +305,51 @@ pollu_temp <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_temperature_polluti
 
 #### Visualizing Mean Pollution by Temperature, Pollutant and Month
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 and SO2 by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
 level_order <- c("Dec", "Jan", "Feb","Mar")
 
-pollu_temp %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
+pollu_temp %>% filter((pollutant != "CO") & (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
 ```
 
 In figure 16,
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Month, Maximum Temperature, and Pollutant for December to March", fig.width=9, fig.height=3.2}
+
+level_order <- c("Dec", "Jan", "Feb","Mar")
+
+pollu_temp %>% filter((pollutant == "CO") & (month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") +  ylab("Mean Pollution")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 and SO2 by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
 
 level_order <- c("Apr", "May", "Jun", "Jul")
 
-pollu_temp %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" |  month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+pollu_temp %>% filter((pollutant != "CO") & (month_name == "Apr" | month_name == "May" | month_name == "Jun" |  month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
 
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Month, Maximum Temperature, and Pollutant for April to July", fig.width=9, fig.height=3.2}
+
+level_order <- c("Apr", "May", "Jun", "Jul")
+
+pollu_temp %>% filter((pollutant == "CO") & (month_name == "Apr" | month_name == "May" | month_name == "Jun" |  month_name == "Jul")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 and SO2 by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
 
 level_order <- c("Aug","Sep", "Oct","Nov")
 
-pollu_temp %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+pollu_temp %>% filter((pollutant != "CO") & (month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Month, Maximum Temperature, and Pollutant for August to November", fig.width=9, fig.height=3.2}
+
+level_order <- c("Aug","Sep", "Oct","Nov")
+
+pollu_temp %>% filter((pollutant == "CO") & (month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov")) %>% ggplot(aes(max_temp, mean_pollution, color=factor(month_name, level=level_order))) + geom_point() + facet_grid(. ~ pollutant) + labs(color="Month") + xlab("Maximum Temperature") + ylab("Mean Pollution")
 
 ```
 
@@ -338,19 +361,29 @@ In this limitations section, I will focus on the data used and look into why it 
 
 ## Results and Discussion
 
-### Temperature
+*Temperature*
 
-### Pollution
+*Pollution*
 
-### Health
+Air pollution continues to affect Canadians. Smog in the air, which is a mixture of smoke and fog, contains O3, SO2, and NO. Air pollutants like these are influenced by many factors including air temperature. Canada's population and economy continues to grow thus increasing the demand for production and delivery. This means more energy will be used to meet these demands and most of this energy will come from fossil fuels which will impact the quality of the air.
 
-### Temperature and Pollution
+From the analysis of NO, NO2, CO and SO2 we saw that there was a decline in the mean pollution levels of those pollutants. This is due to implementation of regulations and technological improvements for transportation vehicles and industrial processes. Canadians using more environmentally sustainable practices like public transport and carpooling have contributed to the decrease of lower pollution levels.
 
-### Temperature and Health
+*Health*
 
-### Pollution and Health
+*Temperature and Pollution*
 
-### Temperature, Pollution and Health
+*Temperature and Health*
+
+*Pollution and Health*
+
+Exposure to air pollution is known as a major cause to illnesses and death.
+
+Exposure to NO (Nitric Oxide) can irritate the lungs, reduce lung function and increase vulnerability to allergens for those with asthma.
+
+O3 (Ozone) is the main component of smog and has been associated with eye, nose, and throat irritations. Ozone also causes shortness of breath, aggravation of respiratory conditions and allergies, chronic obstructive pulmonary disease and asthma. Increased risk of cardiovascular disease is a result of exposure to O3 as well and all of these symptoms affect the young and the elderly that live near cities and/or with acute illnesses.
+
+*Temperature, Pollution and Health*
 
 ## Next Steps
 
