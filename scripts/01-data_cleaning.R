@@ -908,6 +908,7 @@ pollution <- clean_names(pollution)
 # drop NA
 # pollution <- pollution %>% drop_na(month_name)
 
+
 # Change the units to be the same
 pollution <- pollution %>% mutate(mean_pollution = case_when(
   pollutant == "CO" ~ mean_pollution*1000, 
@@ -925,6 +926,7 @@ write_csv(
 pollu_temp <- dplyr::full_join(temp_2002_2022, pollution)
 
 pollu_temp <- pollu_temp %>% drop_na(pollutant)
+pollu_temp <- pollu_temp %>% drop_na(month_name)
 pollu_temp <- pollu_temp %>% select(city, pollutant, mean_pollution, max_temp, min_temp, mean_temp, 
                                     day, month, year, month_name)
 
