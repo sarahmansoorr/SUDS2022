@@ -216,19 +216,3 @@ pollu_temp %>%
                 "Min Temp", "Mean Temp", "Day", "Month", "Year"),
     linesep = "", digits = 2, booktabs=TRUE) %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
-
-
-
-
-
-pollutants <- c("NO", "NO2", "O3", "SO2", "CO")
-means_pollutants <- c(13.60, 14.97, 22.99, 1.23, 254.43) 
-
-df <- data.frame(pollutants, means_pollutants)
-
-df %>%
-  select(pollutants, means_pollutants) %>%
-  kable(
-    col.names=c("Pollutant", "Mean Pollution Level"),
-    linesep = "", digits = 2, booktabs=TRUE) %>%
-  kable_styling(latex_options = "HOLD_position", font_size = 10)
