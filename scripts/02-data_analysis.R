@@ -346,6 +346,15 @@ pollu_temp %>% filter((pollutant == "CO" | pollutant == "SO2") &
 
 ### Models ----
 
+model1 <- lm(max_temp ~ mean_pollution , pollu_temp)
+
+summary(model1)
+anova(model1)
+
+model2 <- lm(mean_pollution ~ max_temp , pollu_temp)
+
+summary(model2)
+anova(model2)
 
 
 ### Anova Tests ----

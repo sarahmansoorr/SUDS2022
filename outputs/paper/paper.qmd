@@ -9,16 +9,16 @@ format: pdf
 editor: visual
 abstract: "The growing impact of climate change in Canada demonstrates a clear and current threat to human health. These threats are becoming revealed in Canada as the country continues to face the consequences of warming almost at twice the global rate. The focus for this paper is on tempreture increases, lower air quality and more pollution and a decline in health for Toronto. Once the data for this research was collected, the data cleaning process begun which entailed of using packages in R like tidyverse, janitor, dplyr, …. Duplicate and irrelevant observations were removed, as well as unwanted outliers. The process was complete once the data was correct, consistent and usable. "
 toc: true
-# bibliography: references.bib
+bibliography: references.bib
 ---
 
 \newpage
 
 ## Introduction
 
-As climate change worsens, the danger it presents to human health worsens as well. The health impacts due to climate change are already being demonstrated in parts of Canada. Canada is warming at almost twice the global rate and if this continues, emissions will exceed 2 degrees Celsius worldwide.
+As climate change worsens, the danger it presents to human health worsens as well [@citenasaclimatewarn]. The health impacts due to climate change are already being demonstrated in parts of Canada. Canada is warming at almost twice the global rate and if this continues, emissions will exceed 2 degrees Celsius worldwide [@citehealthcanada].
 
-The Paris Agreement within the United Nations Framework Convention on Climate Change includes 175 countries that have agreed to limit the average global temperature rise to below 2 degress Celcius. Canada had signed to the Paris Agreement as well and committed to cutting emission 30% below the 2005 levels by 2030. However, Canada's emission increased in 2016 compared to 1990. As a response to this increase, the Government of Canada developed a national climate change plan called *The Pan-Canadian Framework on Clean Growth and Climate Change*. This framework notes that human activities are driving severe changes to the Earth's climate which poses substantial risks to human health.
+The Paris Agreement within the United Nations Framework Convention on Climate Change includes 175 countries that have agreed to limit the average global temperature rise to below 2 degress Celcius [@citehealthcanada]. Canada had signed to the Paris Agreement as well and committed to cutting emission 30% below the 2005 levels by 2030 [@citehealthcanada]. However, Canada's emission increased in 2016 compared to 1990. As a response to this increase, the Government of Canada developed a national climate change plan called *The Pan-Canadian Framework on Clean Growth and Climate Change* [@citehealthcanada]. This framework notes that human activities are driving severe changes to the Earth's climate which poses substantial risks to human health.
 
 Urgent action is needed and the science shows that it will make a tangible difference. The health impacts from climate change can be prevented by improving efforts both in societies and health systems in Canada. Changes in measures can prevent health impacts and build health systems and facilities that are more resilient to climate change.
 
@@ -66,11 +66,11 @@ Pollution variables of interest:
 
 *Temperature data*
 
-The data for temperature was processed using R studio and R. I started off by renaming the column names for each temperature data set from 2002 to 2022. Once this was done I combined the 2002 to 2022 temperature data together. The data set initially contained 31 variables. From these I selected the city, date, year, month, day, maximum temperature, minimum temperature, and mean temperature using the dplyr package. I then cleaned the names of the data set using the janitor package. I added a column for the names of the month by mutating the data set and changed the city rows to represent only Toronto data. From here, I dropped any NA values from the maximum, minimum, and mean temperature columns. Lastly, I saved the cleaned data into the repository as a csv file.
+The data for temperature was processed using R studio and R [@citeR]. I started off by renaming the column names for each temperature data set from 2002 to 2022. Once this was done I combined the 2002 to 2022 temperature data together. The data set initially contained 31 variables. From these I selected the city, date, year, month, day, maximum temperature, minimum temperature, and mean temperature using the dplyr package [@citedplyr]. I then cleaned the names of the data set using the janitor package [@citejanitor]. I added a column for the names of the month by mutating the data set and changed the city rows to represent only Toronto data. From here, I dropped any NA values from the maximum, minimum, and mean temperature columns. Lastly, I saved the cleaned data into the repository as a csv file.
 
 *Pollution Data*
 
-The pollution data was also processed using R studio and R. I first loaded the different data sets for each pollutant for each year. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). I started off by also renaming the column names for the data sets from 2002 to 2020. Once this was done I combined the pollutant data sets for each year into one data frame for the year. The data initially contained 27 columns. The data sets initially contained pollution levels for each hour of every day in the respective year. I replaced these 24 columns (for each hour of the day) with one column that contained the mean pollution level for that day and pollutant. I filtered for Toronto from the list of cities in the data set using the dplyr package and removed the duplicate rows where the pollutant and date repeated. The missing values in this data set were labeled as "-999", so I replaced these values with NA and then with 0 for consistency. This process was repeated for all years from 2002 to 2020. Once this was completed, the data was combined for all the years into one data frame and the following columns were selected: city, pollutant, mean pollution, day, month, year. This cleaned data was then saved into the repository as a csv file. The units for CO were ppm while the rest were ppb. To keep the data consistent, I converted those values to ppb as well by multiplying by 1,000.
+The pollution data was also processed using R studio and R. I first loaded the different data sets for each pollutant for each year. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). I started off by also renaming the column names for the data sets from 2002 to 2020. Once this was done I combined the pollutant data sets for each year into one data frame for the year. The data initially contained 27 columns. The data sets initially contained pollution levels for each hour of every day in the respective year. I replaced these 24 columns (for each hour of the day) with one column that contained the mean pollution level for that day and pollutant. I filtered for Toronto from the list of cities in the data set using the dplyr package [@citedplyr] and removed the duplicate rows where the pollutant and date repeated. The missing values in this data set were labeled as "-999", so I replaced these values with NA and then with 0 for consistency. This process was repeated for all years from 2002 to 2020. Once this was completed, the data was combined for all the years into one data frame and the following columns were selected: city, pollutant, mean pollution, day, month, year. This cleaned data was then saved into the repository as a csv file. The units for CO were ppm while the rest were ppb. To keep the data consistent, I converted those values to ppb as well by multiplying by 1,000.
 
 #### Sample
 
@@ -141,7 +141,7 @@ I'm interested in finding the trends of the maximum temperatures from 2002 to 20
 
 level_order <- c("Dec", "Jan", "Feb","Mar")
 
-temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw()
+temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw()
 
 ```
 
@@ -151,7 +151,7 @@ Figure 1 shows an increasing pattern for the maximum temperature from year 2002 
 
 level_order <- c("Apr", "May", "Jun", "Jul")
 
-temp_2002_2022 %>% filter(month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw()
+temp_2002_2022 %>% filter(month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw()
 
 ```
 
@@ -161,7 +161,7 @@ Figure 2 shows an increasing pattern for the maximum temperature from year 2002 
 
 level_order <- c("Aug","Sep", "Oct","Nov")
 
-temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point() + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw()
+temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw()
 
 ```
 
@@ -174,7 +174,7 @@ I'm interested in finding the trends of the mean pollution levels from 2002 to 2
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 and CO by Year", fig.width=9, fig.height=3.2}
 
 pollution %>% ggplot(
-  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point() + 
+  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point(alpha = 0.4) + 
   labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
 
@@ -185,7 +185,7 @@ Figure 4 shows a decreasing pattern for the mean pollution from year 2002 to 202
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
 pollution %>% ggplot(
-  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point() + 
+  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point(alpha = 0.4) + 
   labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
 
@@ -306,19 +306,19 @@ pollu_temp <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_temperature_polluti
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 and SO2 by Maximum Temperature and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant != "CO" & pollutant != "SO2")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD") + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
+pollu_temp %>% filter((pollutant != "CO" & pollutant != "SO2")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
 ```
 
 In figure 16,
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Maximum Temperature and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant == "CO")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD") + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
+pollu_temp %>% filter((pollutant == "CO")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 and SO2 by Maximum Temperature and Pollutant for April to July", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant == "SO2")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD") + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
+pollu_temp %>% filter((pollutant == "SO2")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
 
 ```
 
@@ -338,9 +338,9 @@ Air pollution continues to affect Canadians. Smog in the air, which is a mixture
 
 From the analysis of NO, NO2, CO and SO2 we saw that there was a decline in the mean pollution levels of those pollutants. This is due to implementation of regulations and technological improvements for transportation vehicles and industrial processes. Canadians using more environmentally sustainable practices like public transport and carpooling have contributed to the decrease of lower pollution levels.
 
-NO2 is usually formed through the burning of fossil fuels, transportation services, energy production and industrial processes. Nitrogen dioxide at higher concentration levels has a strong and harsh odor and can be seen over large cities as a brownish haze. NO2 can combine with H2O and form nitric acid and nitrous acid. This falls to earth through precipitation like rain, snow, and fog, and contributed to acidification and eutrophication of ecosystems.
+NO2 is usually formed through the burning of fossil fuels, transportation services, energy production and industrial processes [@citeairquality]. Nitrogen dioxide at higher concentration levels has a strong and harsh odor and can be seen over large cities as a brownish haze [@citeairquality]. NO2 can combine with H2O and form nitric acid and nitrous acid. This falls to earth through precipitation like rain, snow, and fog, and contributed to acidification and eutrophication of ecosystems [@citeairquality].
 
-SO2 emissions come from natural sources like volcanoes and forest fires but these emissions are small compared to those from industrial sources. Environment Canada accounted for 1 million tonnes of man-made SO2 emissions compared to 100 tonnes of natural SO2 emissions in 2022. SO2 is seen in acid rain and due to this early recognition policies were put in place that have reduced SO2 pollution in recent decades as seen in figure 14.
+SO2 emissions come from natural sources like volcanoes and forest fires but these emissions are small compared to those from industrial sources [@citeairquality]. Environment Canada accounted for 1 million tonnes of man-made SO2 emissions compared to 100 tonnes of natural SO2 emissions in 2022. SO2 is seen in acid rain and due to this early recognition policies were put in place that have reduced SO2 pollution in recent decades as seen in figure 14.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=9, fig.height=3.2}
 
@@ -563,7 +563,7 @@ Carbon monoxide can significantly impact human health by entering the blood stre
 
 SO2 (Sulfur Dioxide) can harm human respiratory systems by triggering respiratory illness and worsening existing respiratory and cardiovascular diseases. Sulfur dioxide is seen in smog and can react with other substances like nitric oxide to harm human health. When SO2 transforms into sulfate particles and combines with other particles in the atmosphere it can contribute to the formation of particulate matter (PM2.5) which harms human health as well as the environment. Sensitive populations such as children, the elderly, those with asthma are more susceptible to the affects of SO2.
 
-NO2 (Nitrogen Dioxide) has consequences on human health including emergency hospitalizations for respiratory conditions for adults that live in lower income communities in Toronto. Children are more vulnerable to these effects of respiratory damage. Children that have been exposed to NO2 have an increased risk of asthma, wheezing, infections in the ear, nose and throat, influenza, serious colds, and reduced lung function.
+NO2 (Nitrogen Dioxide) has consequences on human health including emergency hospitalizations for respiratory conditions for adults that live in lower income communities in Toronto \[\@citestatscanNO2\]. Children are more vulnerable to these effects of respiratory damage \[\@citestatscanNO2\]. Children that have been exposed to NO2 have an increased risk of asthma, wheezing, infections in the ear, nose and throat, influenza, serious colds, and reduced lung function \[\@citestatscanNO2\].
 
 *Temperature, Pollution and Health*
 
