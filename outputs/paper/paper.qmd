@@ -22,6 +22,10 @@ The Paris Agreement within the United Nations Framework Convention on Climate Ch
 
 Urgent action is needed and the science shows that it will make a tangible difference. The health impacts from climate change can be prevented by improving efforts both in societies and health systems in Canada. Changes in measures can prevent health impacts and build health systems and facilities that are more resilient to climate change.
 
+I collected data from the Government of Canada's website for both temperature and pollution. Once the data was collected for the available years between 2002 and 2022, it was cleaned using multiple packages in R which I will describe in the next section. Then the analysis begun and I found the following: temperatures have continued to increase since 2002, winters are less cold and summers are hotter, pollution levels for NO, NO2, CO, and SO2 have gone down since 2002 due to laws and regulations put in place and these pollutants typically have higher pollution levels in winter months, O3 pollution levels have remained mostly the same since 2002 and these levels are higher in summer months, temperature does seem to have a normal relationship with NO, CO, and SO2 levels and a positive relationship with NO2 and O3 levels. The presence of these pollutants have affects on health including lung irritation, increase in allergens for those with asthma, shortness of breath, respiratory illnesses, heart disease, cardiovascular diseases, infections, and reduced lung function.
+
+This paper outlines the data, how it was collected, variables of interest and how the data was processed and cleaned. Next I will look at the trends in temperature from 2002 to 2022 followed by the trends in pollution levels for each pollutant from 2002 to 2020. From here, the relationship between pollution levels and temperature will be analyzed followed by limitations and results and lastly next steps to take.
+
 ## Data
 
 #### Data Collection
@@ -322,6 +326,18 @@ pollu_temp %>% filter((pollutant == "SO2")) %>% ggplot(aes(max_temp, mean_pollut
 
 ```
 
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=9, fig.height=3.2}
+
+model2 <- lm(mean_pollution ~ max_temp , pollu_temp)
+summary(model2)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=9, fig.height=3.2}
+
+model3 <- lm(mean_pollution ~ max_temp + min_temp + mean_temp , pollu_temp)
+summary(model3)
+```
+
 ## Limitations
 
 In this limitations section, I will focus on the data used and look into why it is not easy to take the implications mentioned above directly.
@@ -331,6 +347,8 @@ In this limitations section, I will focus on the data used and look into why it 
 ## Results and Discussion
 
 *Temperature*
+
+Toronto will continue to experience warmer climate in the long-term due to climate change [@citefutureclimate]. Toronto will have more extreme hot days where the temperature will be above 30 degrees celcius and less extreme cold days where the temperature will be below -20 degrees celcius [@citefutureclimate]. By 2100, Toronto is expected to have warmed by 5 degrees celcius [@citefutureclimate]. These warmer temperatures have significant impacts on the health and well-being of Toronto residents. If carbon emissions continue and no changes are put in place now, the maximum average annual temperatures are expected to be: 12-14 degrees celcius by 2040, 14-16 degrees celcius by 2070, and 16-18 degrees celcius by 2100 [@citefutureclimate]. With more extreme heat days, Toronto will experience a greater demand for cooling which will increase the use of air conditioning causing a strain on electrical supply. These increases can be seen in figures 1, 2 and 3. In these we saw an increase in average temperatures for the Fall, Winter and Summer months.
 
 *Pollution*
 

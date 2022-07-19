@@ -357,7 +357,7 @@ plot(model2$residuals, pch = 10, col = "red")
 
 model3 <- lm(mean_pollution ~ max_temp + min_temp + mean_temp , pollu_temp)
 summary(model3)
-anova(model3)
+anova(model3) 
 plot(model3$residuals, pch = 10, col = "red")
 
 plot(pollu_temp$max_temp, pollu_temp$mean_pollution)
