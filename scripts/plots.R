@@ -216,3 +216,5 @@ pollu_temp %>%
                 "Min Temp", "Mean Temp", "Day", "Month", "Year"),
     linesep = "", digits = 2, booktabs=TRUE) %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
+
+

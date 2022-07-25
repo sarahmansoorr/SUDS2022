@@ -7,7 +7,7 @@ thanks: "Code and data are available at: https://github.com/sarahmansoorr/SUDS20
 date: "`r format(Sys.time(), '%d %B %Y')`"
 format: pdf
 editor: visual
-abstract: "The growing impact of climate change in Canada demonstrates a clear and current threat to human health. These threats are becoming revealed in Canada as the country continues to face the consequences of warming almost at twice the global rate. The focus for this paper is on tempreture increases, lower air quality and more pollution and a decline in health for Toronto. Once the data for this research was collected, the data cleaning process begun which entailed of using packages in R like tidyverse, janitor, dplyr, …. Duplicate and irrelevant observations were removed, as well as unwanted outliers. The process was complete once the data was correct, consistent and usable. "
+abstract: "The growing impact of climate change in Canada demonstrates a clear and current threat to human health. These threats are prevalent in Canada as the country continues to face the consequences of warming almost at twice the global rate (Canada Warming Twice as Fast as the Rest of the World, BBC). The focus for this paper is on analyzing temperature increases, pollution levels and the health of effects of these in Toronto. Once the data for this research was collected, the data was analyzed using exploratory analysis, data visualization, and regression analysis. After analysis, trends and patterns show that temperatures have continued to increase since 2002, winters are less cold and summers are hotter, pollution levels for NO, NO2, CO, and SO2 have gone down since 2002 due to laws and regulations put in place and these pollutants typically have higher pollution levels in winter months, O3 pollution levels have remained mostly the same since 2002 and these levels are higher in summer months, temperature does seem to have a normal relationship with NO, CO, and SO2 levels and a positive relationship with NO2 and O3 levels. The presence of these pollutants has effects on health including lung irritation, increase in allergens for those with asthma, shortness of breath, respiratory illnesses, heart disease, cardiovascular diseases, infections, and reduced lung function."
 toc: true
 bibliography: references.bib
 ---
@@ -22,65 +22,19 @@ The Paris Agreement within the United Nations Framework Convention on Climate Ch
 
 Urgent action is needed and the science shows that it will make a tangible difference. The health impacts from climate change can be prevented by improving efforts both in societies and health systems in Canada. Changes in measures can prevent health impacts and build health systems and facilities that are more resilient to climate change.
 
-I collected data from the Government of Canada's website for both temperature and pollution. Once the data was collected for the available years between 2002 and 2022, it was cleaned using multiple packages in R which I will describe in the next section. Then the analysis begun and I found the following: temperatures have continued to increase since 2002, winters are less cold and summers are hotter, pollution levels for NO, NO2, CO, and SO2 have gone down since 2002 due to laws and regulations put in place and these pollutants typically have higher pollution levels in winter months, O3 pollution levels have remained mostly the same since 2002 and these levels are higher in summer months, temperature does seem to have a normal relationship with NO, CO, and SO2 levels and a positive relationship with NO2 and O3 levels. The presence of these pollutants have affects on health including lung irritation, increase in allergens for those with asthma, shortness of breath, respiratory illnesses, heart disease, cardiovascular diseases, infections, and reduced lung function.
+Data was collected from the Government of Canada's website for both temperature and pollution. Once the data was collected for the available years between 2002 and 2022, it was cleaned using multiple packages in R which I will describe in the next section. Then the analysis begun and the following was found: temperatures have continued to increase since 2002, winters are less cold and summers are hotter, pollution levels for NO, NO2, CO, and SO2 have gone down since 2002 due to laws and regulations put in place and these pollutants typically have higher pollution levels in winter months, O3 pollution levels have remained mostly the same since 2002 and these levels are higher in summer months, temperature does seem to have a normal relationship with NO, CO, and SO2 levels and a positive relationship with NO2 and O3 levels. The presence of these pollutants have affects on health including lung irritation, increase in allergens for those with asthma, shortness of breath, respiratory illnesses, heart disease, cardiovascular diseases, infections, and reduced lung function.
 
-This paper outlines the data, how it was collected, variables of interest and how the data was processed and cleaned. Next I will look at the trends in temperature from 2002 to 2022 followed by the trends in pollution levels for each pollutant from 2002 to 2020. From here, the relationship between pollution levels and temperature will be analyzed followed by limitations and results and lastly next steps to take.
+This paper outlines the data, how it was collected, variables of interest and how the data was processed and cleaned. Following this, the trends in temperature from 2002 to 2022 followed by the trends in pollution levels for each pollutant from 2002 to 2020. From here, the relationship between pollution levels and temperature will be analyzed followed by limitations and results and lastly next steps to take.
 
 ## Data
 
 #### Data Collection
 
-Temperature data was collected from the Government of Canada's website on Weather, Climate and Hazard's [page](https://climate.weather.gc.ca/historical_data/search_historic_data_e.html) containing past weather and climate data for the station "Toronto City". This data was collected from January 2002 to May 2022. The original data contains daily data on maximum temperature, minimum temperature, mean temperature, heat degree days, cool degree days, total rain (mm), total snow (cm), total precipitation (mm), snow on ground (cm), direction of maximum gust, and speed of maximum gust (km/h). For this research, I will focus on only maximum temperature, minimum temperature, and mean temperature.
+Temperature data was collected from the Government of Canada's website on Weather, Climate and Hazard's [page](https://climate.weather.gc.ca/historical_data/search_historic_data_e.html) containing past weather and climate data for the station "Toronto City". This data was collected from January 2002 to May 2022. The original data contains daily data on maximum temperature, minimum temperature, and mean temperature among others. This paper focuses on only maximum temperature, minimum temperature, and mean temperature.
 
-Pollution data was collected from the Government of Canada's National Air Pollution Surveillance (NAPS) Program [website](https://data-donnees.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en). This website contains pollution data from 2002 to 2020. Each year contains a file with continuous data and integrated data. I will be using continuous data for each year. The continuous data contains annual summaries and hourly data. I will be looking at the hourly data for CO (Carbon Monoxide), NO (Nitric Oxide), NO2 (Nitrogen Dioxide) , O3 (Ozone), and SO2 (Sulfur Dioxide). This data includes the city (which is Toronto in our case), the levels of each pollutant for each hour of every day. I reduced the data to the mean of pollution levels by pollutant of each day.
+Pollution data was collected from the Government of Canada's National Air Pollution Surveillance (NAPS) Program [website](https://data-donnees.ec.gc.ca/data/air/monitor/national-air-pollution-surveillance-naps-program/Data-Donnees/?lang=en). This website contains pollution data from 2002 to 2020. Each year contains a file with continuous data and integrated data. Continuous data for each year will be used. The continuous data contains annual summaries and hourly data. The analysis will use the hourly data for CO (Carbon Monoxide), NO (Nitric Oxide), NO2 (Nitrogen Dioxide) , O3 (Ozone), and SO2 (Sulfur Dioxide). This data includes the city (which is Toronto in our case), the levels of each pollutant for each hour of every day. The data was reduced to the mean of pollution levels by pollutant of each day.
 
 #### Variables of Interest
-
-Temperature variables of interest:
-
--   City
-
--   Maximum Temperature
-
--   Minimum Temperature
-
--   Mean Temperature
-
--   Day
-
--   Month
-
--   Year
-
-Pollution variables of interest:
-
--   City
-
--   Pollutant
-
--   Mean pollution for pollutant each day
-
--   Day
-
--   Month
-
--   Year
-
-#### Data Processing
-
-*Temperature data*
-
-The data for temperature was processed using R studio and R [@citeR]. I started off by renaming the column names for each temperature data set from 2002 to 2022. Once this was done I combined the 2002 to 2022 temperature data together. The data set initially contained 31 variables. From these I selected the city, date, year, month, day, maximum temperature, minimum temperature, and mean temperature using the dplyr package [@citedplyr]. I then cleaned the names of the data set using the janitor package [@citejanitor]. I added a column for the names of the month by mutating the data set and changed the city rows to represent only Toronto data. From here, I dropped any NA values from the maximum, minimum, and mean temperature columns. Lastly, I saved the cleaned data into the repository as a csv file.
-
-*Pollution Data*
-
-The pollution data was also processed using R studio and R. I first loaded the different data sets for each pollutant for each year. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). I started off by also renaming the column names for the data sets from 2002 to 2020. Once this was done I combined the pollutant data sets for each year into one data frame for the year. The data initially contained 27 columns. The data sets initially contained pollution levels for each hour of every day in the respective year. I replaced these 24 columns (for each hour of the day) with one column that contained the mean pollution level for that day and pollutant. I filtered for Toronto from the list of cities in the data set using the dplyr package [@citedplyr] and removed the duplicate rows where the pollutant and date repeated. The missing values in this data set were labeled as "-999", so I replaced these values with NA and then with 0 for consistency. This process was repeated for all years from 2002 to 2020. Once this was completed, the data was combined for all the years into one data frame and the following columns were selected: city, pollutant, mean pollution, day, month, year. This cleaned data was then saved into the repository as a csv file. The units for CO were ppm while the rest were ppb. To keep the data consistent, I converted those values to ppb as well by multiplying by 1,000.
-
-#### Sample
-
-The sample includes data from Toronto of daily temperature maximum, minimum and means from 2002 to 2022 and daily pollution levels for NO, NO2, CO, O3, SO2 from 2002 to 2020.
-
-#### The Data
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -90,6 +44,57 @@ library(knitr)
 library(kableExtra)
 library(ggplot2)
 library(dplyr)
+```
+
+Temperature variables of interest:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="", fig.width=9, fig.height=3.2}
+
+temp_var <- c("City", "Maximum Temperature", "Minimum Temperature", "Mean Temperature", "Day", "Month", "Year")
+
+df <- data.frame(temp_var)
+
+df %>% select(temp_var) %>%
+  kable(
+    col.names=c("Variables"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
+
+```
+
+Pollution variables of interest:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="", fig.width=9, fig.height=3.2}
+
+pollu_var <- c("City", "Pollutant", "Mean Pollution Level", "Day", "Month", "Year")
+
+df <- data.frame(pollu_var)
+
+df %>% select(pollu_var) %>%
+  kable(
+    col.names=c("Variables"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
+
+```
+
+#### Data Processing
+
+*Temperature data*
+
+The data for temperature was processed using R studio and R [@citeR]. The data cleaning started with renaming the column names for each temperature data set from 2002 to 2022. Once this was done, the 2002 to 2022 temperature data was combined together. The data set initially contained 31 variables. From these the city, date, year, month, day, maximum temperature, minimum temperature, and mean temperature were selected using the dplyr package [@citedplyr]. Then the names of the data set were cleaned using the janitor package [@citejanitor]. A column was added for the names of the month by mutating the data set and changed the city rows to represent only Toronto data. From here, any NA values from the maximum, minimum, and mean temperature columns were dropped. Lastly, the cleaned data was saved into the repository as a csv file.
+
+*Pollution Data*
+
+The pollution data was also processed using R studio and R. The different data sets for each pollutant for each year were first loaded. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). The column names for the data sets from 2002 to 2020 were renamed. Once this was done, the pollutant data sets for each year were combined into one data frame for the year. The data initially contained 27 columns. The data sets initially contained pollution levels for each hour of every day in the respective year. These 24 columns (for each hour of the day) were replaced with one column that contained the mean pollution level for that day and pollutant. Toronto was filtered from the list of cities in the data set using the dplyr package [@citedplyr] and the duplicate rows were removed where the pollutant and date repeated. This process was repeated for all years from 2002 to 2020. Once this was completed, the data was combined for all the years into one data frame and the following columns were selected: city, pollutant, mean pollution, day, month, year. This cleaned data was then saved into the repository as a csv file. The units for CO were ppm while the rest were ppb. To keep the data consistent, those values were converted to ppb as well by multiplying by 1,000.
+
+#### Sample
+
+The sample includes data from Toronto of daily temperature maximum, minimum and means from 2002 to 2022 and daily pollution levels for NO, NO2, CO, O3, SO2 from 2002 to 2020.
+
+#### The Data
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 # Load temperature data
 
@@ -141,46 +146,72 @@ Table 2 shows the rows of the Pollution data from 2002 to 2020. Variable "City" 
 
 I'm interested in finding the trends of the maximum temperatures from 2002 to 2022 by the month and year.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for December to March", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2012 for December to March", fig.width=9, fig.height=3.2}
 
 level_order <- c("Dec", "Jan", "Feb","Mar")
 
-temp_2002_2022 %>% filter(month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw()
+temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
+                            month_name == "Mar") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, 
+                            color=factor(month_name, level = level_order))) + 
+  geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + 
+  theme_bw() + facet_grid(. ~ month_name)
+
+
 
 ```
 
 Figure 1 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from December to March. Temperatures in March continue to be increasingly higher than any of the other months in this plot. It is noticeable that the temperatures for all months are the highest in 2012. According to NASA, the average temperatures in 2012 was warmer than the mid-20th century baseline and is considered to be an outlying of seasonal extremes that are warmer. Even the lowest maximum temperature in January is higher than other years in 2012. The plot shows that the average maximum temperature from December to March has been between -19.2 degrees Celsius in February of 2015 and 24.3 degrees Celsius in March of 2012.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for April to July", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2013 to 2022 for December to March", fig.width=9, fig.height=3.2}
+
+temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
+                             month_name == "Mar") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, 
+                                                                                                  color=factor(month_name, level = level_order))) + 
+  geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + 
+  theme_bw() + facet_grid(. ~ month_name)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2012 for April to July", fig.width=9, fig.height=3.2}
 
 level_order <- c("Apr", "May", "Jun", "Jul")
 
-temp_2002_2022 %>% filter(month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw()
+temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
 
 ```
 
 Figure 2 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from April to July. Temperatures in July are consistently higher throughout the years than any of the other months in the plot and temperatures in April are consistently lower throughout the years than any of the other months. There are some years where June has the highest temperature. The plot shows that the average maximum temperature from April to May has been between -2.4 degrees Celsius in April of 2003 and 38.2 degrees Celsius in July of 2011.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2022 for August to November", fig.width=9, fig.height=3.2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2013 to 2022 for April to July", fig.width=9, fig.height=3.2}
+
+level_order <- c("Apr", "May", "Jun", "Jul")
+
+temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2012 for August to November", fig.width=9, fig.height=3.2}
 
 level_order <- c("Aug","Sep", "Oct","Nov")
 
-temp_2002_2022 %>% filter(month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw()
+temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
 
 ```
 
 Figure 3 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from August to November. Temperatures in both August and September are the highest throughout the years compared to November and October. Temperatures in November are consistently the lowest throughout the years compared to the other months. There are a few high temperatures in October throughout the years as well and this is typically seen when the August and September have some of the highest temperatures compared to other years. The plot shows that the average maximum temperature from April to May has been between -5.1 degrees Celsius in November of 2018 and 36.8 degrees Celsius in August of 2006.
 
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2013 to 2022 for August to November", fig.width=9, fig.height=3.2}
+
+level_order <- c("Aug","Sep", "Oct","Nov")
+
+temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
+
+
+```
+
 ## Visualizing Pollution from 2002-202
 
 I'm interested in finding the trends of the mean pollution levels from 2002 to 2020 by year.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 and CO by Year", fig.width=9, fig.height=3.2}
-
-pollution %>% ggplot(
-  aes(x = year, y = mean_pollution, color = pollutant)) + geom_point(alpha = 0.4) + 
-  labs(color="Pollutant") + xlab("Year") + ylab("Mean Pollution (ppb)") + theme_bw()
-```
 
 Figure 4 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. We can notice that O3 and SO2 levels remain mostly the same throughout the years. The highest levels of pollution are as follows: 150.3 ppb for NO in 2002, 65 ppb for NO2 in 2005, 65.95833 ppb for O3 in 2003, and 22.79167 ppb for SO2 in 2002. There is also a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. The highest level of pollution for CO is 1762.5 ppb in 2002. We can notice that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November.
 
@@ -329,13 +360,41 @@ pollu_temp %>% filter((pollutant == "SO2")) %>% ggplot(aes(max_temp, mean_pollut
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=9, fig.height=3.2}
 
 model2 <- lm(mean_pollution ~ max_temp , pollu_temp)
-summary(model2)
+# summary(model2)
+
+formula_1 <- c("formula = mean_pollution ~ max_temp", " ")
+coefficients_1 <- c("Intercept", "Max Temp")
+estimate <- c(82.0493, -0.2965)
+error <- c(1.6927, 0.0984)
+t_value <- c(48.473, -3.014)
+p_value <- c("< 2e-16", "0.00259")
+
+df <- data.frame(formula_1, coefficients_1, estimate, error, t_value, p_value)
+df %>% select(formula_1, coefficients_1, estimate, error, t_value, p_value) %>%
+  kable(
+    col.names=c("Formula", "Coefficients", "Estimate", "Error", "t-value", "p-value"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=9, fig.height=3.2}
 
 model3 <- lm(mean_pollution ~ max_temp + min_temp + mean_temp , pollu_temp)
-summary(model3)
+# summary(model3)
+
+formula_1 <- c("formula = mean_pollution ~ max_temp + ", "min_temp + mean_temp", " ", " ")
+coefficients_1 <- c("Intercept", "Max Temp", "Min Temp", "Mean Temp")
+estimate <- c(78.654, -45.867, -46.606, 91.978)
+error <- c(2.903, 18.927, 19.010, 37.870)
+t_value <- c(27.090, -2.423, -2.452, 2.429)
+p_value <- c("< 2e-16", "0.0154", "0.0142", "0.0152")
+
+df <- data.frame(formula_1, coefficients_1, estimate, error, t_value, p_value)
+df %>% select(formula_1, coefficients_1, estimate, error, t_value, p_value) %>%
+  kable(
+    col.names=c("Formula", "Coefficients", "Estimate", "Error", "t-value", "p-value"),
+    linesep = "", digits = 2, booktabs=TRUE) %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 10)
 ```
 
 ## Limitations
