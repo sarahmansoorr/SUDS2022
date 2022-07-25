@@ -341,19 +341,19 @@ pollu_temp <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_temperature_polluti
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 and SO2 by Maximum Temperature and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant != "CO" & pollutant != "SO2")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
+pollu_temp %>% filter((pollutant != "CO" & pollutant != "SO2") & (year > 2012 & year <= 2020)) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
 ```
 
 In figure 16,
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Maximum Temperature and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant == "CO")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
+pollu_temp %>% filter((pollutant == "CO")  & (year > 2012 & year <= 2020)) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 and SO2 by Maximum Temperature and Pollutant for April to July", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant == "SO2")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
+pollu_temp %>% filter((pollutant == "SO2")  & (year > 2012 & year <= 2020)) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
 
 ```
 
