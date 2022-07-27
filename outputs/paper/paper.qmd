@@ -7,7 +7,7 @@ thanks: "Code and data are available at: https://github.com/sarahmansoorr/SUDS20
 date: "`r format(Sys.time(), '%d %B %Y')`"
 format: pdf
 editor: visual
-abstract: "The growing impact of climate change in Canada demonstrates a clear and current threat to human health. These threats are prevalent in Canada as the country continues to face the consequences of warming almost at twice the global rate (Canada Warming Twice as Fast as the Rest of the World, BBC). The focus for this paper is on analyzing temperature increases, pollution levels and the health of effects of these in Toronto. Once the data for this research was collected, the data was analyzed using exploratory analysis, data visualization, and regression analysis. After analysis, trends and patterns show that temperatures have continued to increase since 2002, winters are less cold and summers are hotter, pollution levels for NO, NO2, CO, and SO2 have gone down since 2002 due to laws and regulations put in place and these pollutants typically have higher pollution levels in winter months, O3 pollution levels have remained mostly the same since 2002 and these levels are higher in summer months, temperature does seem to have a normal relationship with NO, CO, and SO2 levels and a positive relationship with NO2 and O3 levels. The presence of these pollutants has effects on health including lung irritation, increase in allergens for those with asthma, shortness of breath, respiratory illnesses, heart disease, cardiovascular diseases, infections, and reduced lung function."
+abstract: "The growing impact of climate change in Canada demonstrates a clear and current threat to human health. These threats are prevalent in Canada as the country continues to face the consequences of warming almost at twice the global rate (Canada Warming Twice as Fast as the Rest of the World, BBC). The focus for this paper is on analyzing trends in temperature increases, pollution levels and the health effects of these in Toronto for the past 20 years. Impactful change can be made with this research in hopes of reversing some effects of climate change. Once the data for this research was collected, the data was analyzed using exploratory analysis, data visualization, and regression analysis. After analysis using these methods, trends and patterns show that temperatures have continued to increase since 2002, winters are less cold and summers are hotter, pollution levels for NO (Nitric Oxide), NO2 (Nitrogen Dioxide), CO (Carbon Monoxide), and SO2 (Sulfur Dioxide) have gone down since 2002 due to laws and regulations put in place and these pollutants typically have higher pollution levels in winter months which may correlate with the use of more electricity and heating during colder months. O3 (Ozone) pollution levels have remained mostly the same since 2002 and these levels are higher in summer months which may be due to the hotter temperatures in warmer months. Temperature seems to have a normal relationship with NO, CO, and SO2 levels and a positive relationship with NO2 and O3 levels. The presence of these pollutants has effects on health for the Toronto population including lung irritation, increase in allergens for those with asthma, shortness of breath, respiratory illnesses, heart disease, cardiovascular diseases, infections, and reduced lung function."
 toc: true
 bibliography: references.bib
 ---
@@ -16,15 +16,15 @@ bibliography: references.bib
 
 ## Introduction
 
-As climate change worsens, the danger it presents to human health worsens as well [@citenasaclimatewarn]. The health impacts due to climate change are already being demonstrated in parts of Canada. Canada is warming at almost twice the global rate and if this continues, emissions will exceed 2 degrees Celsius worldwide [@citehealthcanada].
+As climate change worsens, the danger it presents to human health becomes more and more dangerous [@citenasaclimatewarn]. The health impacts due to climate change are already being demonstrated in parts of Canada. Canada is warming at almost twice the global rate and if this continues, emissions will exceed 2 degrees Celsius worldwide [@citehealthcanada].
 
-The Paris Agreement within the United Nations Framework Convention on Climate Change includes 175 countries that have agreed to limit the average global temperature rise to below 2 degress Celcius [@citehealthcanada]. Canada had signed to the Paris Agreement as well and committed to cutting emission 30% below the 2005 levels by 2030 [@citehealthcanada]. However, Canada's emission increased in 2016 compared to 1990. As a response to this increase, the Government of Canada developed a national climate change plan called *The Pan-Canadian Framework on Clean Growth and Climate Change* [@citehealthcanada]. This framework notes that human activities are driving severe changes to the Earth's climate which poses substantial risks to human health.
+The Paris Agreement within the United Nations Framework Convention on Climate Change includes 175 countries that have agreed to limit the average global temperature rise to below 2 degress Celcius [@citehealthcanada]. Canada had signed to the Paris Agreement as well and committed to cutting emissions 30% below the 2005 levels by 2030 [@citehealthcanada]. However, Canada's emissions increased in 2016 compared to 1990. In response to this increase, the Government of Canada developed a national climate change plan called *The Pan-Canadian Framework on Clean Growth and Climate Change* [@citehealthcanada]. This framework notes that human activities are driving severe changes to the Earth's climate which poses substantial risks to human health.
 
-Urgent action is needed and the science shows that it will make a tangible difference. The health impacts from climate change can be prevented by improving efforts both in societies and health systems in Canada. Changes in measures can prevent health impacts and build health systems and facilities that are more resilient to climate change.
+Urgent action is needed and the science shows that it will make a tangible difference [@]. The health impacts from climate change can be mitigated by improving efforts both in societies and health systems in Canada [@]. Changes in measures can prevent health impacts and build health systems and facilities that are more resilient to climate change [@].
 
-Data was collected from the Government of Canada's website for both temperature and pollution. Once the data was collected for the available years between 2002 and 2022, it was cleaned using multiple packages in R which I will describe in the next section. Then the analysis begun and the following was found: temperatures have continued to increase since 2002, winters are less cold and summers are hotter, pollution levels for NO, NO2, CO, and SO2 have gone down since 2002 due to laws and regulations put in place and these pollutants typically have higher pollution levels in winter months, O3 pollution levels have remained mostly the same since 2002 and these levels are higher in summer months, temperature does seem to have a normal relationship with NO, CO, and SO2 levels and a positive relationship with NO2 and O3 levels. The presence of these pollutants have affects on health including lung irritation, increase in allergens for those with asthma, shortness of breath, respiratory illnesses, heart disease, cardiovascular diseases, infections, and reduced lung function.
+Data was collected from the Government of Canada's website for both temperature and pollution. Once the data was collected for the available years between 2002 and 2022, it was cleaned using multiple packages in R which will be described in the next section.
 
-This paper outlines the data, how it was collected, variables of interest and how the data was processed and cleaned. Following this, the trends in temperature from 2002 to 2022 followed by the trends in pollution levels for each pollutant from 2002 to 2020. From here, the relationship between pollution levels and temperature will be analyzed followed by limitations and results and lastly next steps to take.
+This paper outlines the data, how it was collected, variables of interest and how the data was processed and cleaned. Following this, the trends in temperature from 2002 to 2022 will be analyzed followed by the trends in pollution levels for each pollutant from 2002 to 2020. From here, the relationship between pollution levels and temperature will be analyzed followed by limitations and results and lastly next steps to take.
 
 ## Data
 
@@ -82,15 +82,13 @@ df %>% select(pollu_var) %>%
 
 *Temperature data*
 
-The data for temperature was processed using R studio and R [@citeR]. The data cleaning started with renaming the column names for each temperature data set from 2002 to 2022. Once this was done, the 2002 to 2022 temperature data was combined together. The data set initially contained 31 variables. From these the city, date, year, month, day, maximum temperature, minimum temperature, and mean temperature were selected using the dplyr package [@citedplyr]. Then the names of the data set were cleaned using the janitor package [@citejanitor]. A column was added for the names of the month by mutating the data set and changed the city rows to represent only Toronto data. From here, any NA values from the maximum, minimum, and mean temperature columns were dropped. Lastly, the cleaned data was saved into the repository as a csv file.
+The data for temperature was processed using R studio and R [@citeR]. The 2002 to 2022 temperature data was combined together. The data set initially contained 31 variables. From these the city, date, year, month, day, maximum temperature, minimum temperature, and mean temperature were selected using the dplyr package [@citedplyr]. Then any NA values from the maximum, minimum, and mean temperature columns were dropped.
 
 *Pollution Data*
 
-The pollution data was also processed using R studio and R. The different data sets for each pollutant for each year were first loaded. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). The column names for the data sets from 2002 to 2020 were renamed. Once this was done, the pollutant data sets for each year were combined into one data frame for the year. The data initially contained 27 columns. The data sets initially contained pollution levels for each hour of every day in the respective year. These 24 columns (for each hour of the day) were replaced with one column that contained the mean pollution level for that day and pollutant. Toronto was filtered from the list of cities in the data set using the dplyr package [@citedplyr] and the duplicate rows were removed where the pollutant and date repeated. This process was repeated for all years from 2002 to 2020. Once this was completed, the data was combined for all the years into one data frame and the following columns were selected: city, pollutant, mean pollution, day, month, year. This cleaned data was then saved into the repository as a csv file. The units for CO were ppm while the rest were ppb. To keep the data consistent, those values were converted to ppb as well by multiplying by 1,000.
+The pollution data was also processed using R studio and R. The different data sets for each pollutant for each year were first loaded. Each year had 5 data sets for each pollutant (NO, NO2, CO, O3, SO2). The pollutant data sets for each year were combined into one data frame for the year. The data initially contained 27 columns including pollution levels for each hour of every day in the respective year. These 24 columns (for each hour of the day) were replaced with one column that contained the mean pollution level for that day and pollutant. Toronto was filtered from the list of cities in the data set using the dplyr package [@citedplyr] and the duplicate rows were removed where the pollutant and date repeated. This process was repeated for all years from 2002 to 2020. Once this was completed, the data was combined for all the years into one data frame and the following columns were selected: city, pollutant, mean pollution, day, month, year. The units for CO were ppm (part per million) while the rest were ppb (part per billion). These units are used to describe the concentration of gases in atmospheric chemistry [@citeppmppb]. To keep the data consistent, those values were converted to ppb as well by multiplying by 1,000.
 
-#### Sample
-
-The sample includes data from Toronto of daily temperature maximum, minimum and means from 2002 to 2022 and daily pollution levels for NO, NO2, CO, O3, SO2 from 2002 to 2020.
+#### The Sample
 
 #### The Data
 
@@ -115,7 +113,7 @@ temp_2002_2022 %>%
 
 ```
 
-Table 1 shows the rows of the Temperature data from 2002 to 2022. Variable "Year" indicates the year, variable "Month" indicates the month, and variable "Day" indicates the day. Variable "Max Temp" represents the maximum temperature on the day with the following month and year. Variable "Min Temp" represents the minimum temperature on the day with the following month and year. Variable "Mean Temp" represents the mean temperature on the day with the following month and year.
+Table 1 shows some of the rows of the Temperature data from 2002 to 2022.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -138,13 +136,13 @@ pollution %>%
 
 ```
 
-Table 2 shows the rows of the Pollution data from 2002 to 2020. Variable "City" indicates the city from which the data was collected. Variable "Pollutant" indicates the pollutant and includes 5 types: CO, NO, NO2, O3, and SO2. Variable "Mean Pollution" represents the mean pollution levels of the following pollutant on the following day of the month and year. Variable "Day" indicates the day, variable "Month" indicates the month, and variable "Year" indicates the year. Variable "Max Temp" represents the maximum temperature on the day with the following month and year.
+Table 2 shows some of the rows of the Pollution data from 2002 to 2020. Variable "Mean Pollution" represents the mean pollution levels of the following pollutant on the following day of the month and year.
 
 ## Visualizing Temperature from 2002-2022
 
 #### Visualizing Temperature by Month and Year
 
-I'm interested in finding the trends of the maximum temperatures from 2002 to 2022 by the month and year.
+This section is interested in finding the trends of the maximum temperatures from 2002 to 2022 by the month and year.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2012 for December to March", fig.width=9, fig.height=3.2}
 
@@ -156,11 +154,9 @@ temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name
   geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + 
   theme_bw() + facet_grid(. ~ month_name)
 
-
-
 ```
 
-Figure 1 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from December to March. Temperatures in March continue to be increasingly higher than any of the other months in this plot. It is noticeable that the temperatures for all months are the highest in 2012. According to NASA, the average temperatures in 2012 was warmer than the mid-20th century baseline and is considered to be an outlying of seasonal extremes that are warmer. Even the lowest maximum temperature in January is higher than other years in 2012. The plot shows that the average maximum temperature from December to March has been between -19.2 degrees Celsius in February of 2015 and 24.3 degrees Celsius in March of 2012.
+Figure 1 shows an increasing pattern for the maximum temperature from year 2002 to 2012 from December to March. Temperatures in March continue to be increasingly higher than any of the other months in this plot. It is noticeable that the temperatures for all months are the highest in 2012. According to NASA, the average temperatures in 2012 was warmer than the mid-20th century baseline and is considered to be an outlying of seasonal extremes that are warmer [@citenasaclimatewarn]. The lowest maximum temperature in January is higher than other years in 2012. The plot shows that the average maximum temperature from December to March has been between -19.2 degrees Celsius in February of 2015 and 24.3 degrees Celsius in March of 2012.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2013 to 2022 for December to March", fig.width=9, fig.height=3.2}
 
@@ -172,6 +168,8 @@ temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name
 
 ```
 
+Figure 2 shows an increasing pattern for the maximum temperature from year 2013 to 2022 from December to March.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2012 for April to July", fig.width=9, fig.height=3.2}
 
 level_order <- c("Apr", "May", "Jun", "Jul")
@@ -180,7 +178,7 @@ temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_nam
 
 ```
 
-Figure 2 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from April to July. Temperatures in July are consistently higher throughout the years than any of the other months in the plot and temperatures in April are consistently lower throughout the years than any of the other months. There are some years where June has the highest temperature. The plot shows that the average maximum temperature from April to May has been between -2.4 degrees Celsius in April of 2003 and 38.2 degrees Celsius in July of 2011.
+Figure 3 shows an increasing pattern for the maximum temperature from year 2002 to 2012 from April to July. Temperatures in July are consistently higher throughout the years than any of the other months in the plot and temperatures in April are consistently lower throughout the years than any of the other months. There are some years where June has the highest temperature. The plot shows that the average maximum temperature from April to May has been between -2.4 degrees Celsius in April of 2003 and 38.2 degrees Celsius in July of 2011.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2013 to 2022 for April to July", fig.width=9, fig.height=3.2}
 
@@ -190,6 +188,8 @@ temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_nam
 
 ```
 
+Figure 4 shows an increasing pattern for the maximum temperature from year 2013 to 2022 from April to July.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2002 to 2012 for August to November", fig.width=9, fig.height=3.2}
 
 level_order <- c("Aug","Sep", "Oct","Nov")
@@ -198,7 +198,7 @@ temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_nam
 
 ```
 
-Figure 3 shows an increasing pattern for the maximum temperature from year 2002 to 2022 from August to November. Temperatures in both August and September are the highest throughout the years compared to November and October. Temperatures in November are consistently the lowest throughout the years compared to the other months. There are a few high temperatures in October throughout the years as well and this is typically seen when the August and September have some of the highest temperatures compared to other years. The plot shows that the average maximum temperature from April to May has been between -5.1 degrees Celsius in November of 2018 and 36.8 degrees Celsius in August of 2006.
+Figure 5 shows an increasing pattern for the maximum temperature from year 2002 to 2012 from August to November. Temperatures in both August and September are the highest throughout the years compared to November and October. Temperatures in November are consistently the lowest throughout the years compared to the other months. There are a few high temperatures in October throughout the years as well and this is typically seen when the August and September have some of the highest temperatures compared to other years. The plot shows that the average maximum temperature from April to May has been between -5.1 degrees Celsius in November of 2018 and 36.8 degrees Celsius in August of 2006.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2013 to 2022 for August to November", fig.width=9, fig.height=3.2}
 
@@ -209,22 +209,11 @@ temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_nam
 
 ```
 
+Figure 6 shows an increasing pattern for the maximum temperature from year 2013 to 2022 from August to November.
+
 ## Visualizing Pollution from 2002-202
 
-I'm interested in finding the trends of the mean pollution levels from 2002 to 2020 by year.
-
-Figure 4 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. We can notice that O3 and SO2 levels remain mostly the same throughout the years. The highest levels of pollution are as follows: 150.3 ppb for NO in 2002, 65 ppb for NO2 in 2005, 65.95833 ppb for O3 in 2003, and 22.79167 ppb for SO2 in 2002. There is also a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. The highest level of pollution for CO is 1762.5 ppb in 2002. We can notice that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November.
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3, SO2 and CO by Month", fig.width=9, fig.height=3.2}
-
-level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
-
-pollution %>% ggplot(
-  aes(x = factor(month_name, level = level_order), y = mean_pollution, color = pollutant)) + geom_point(alpha = 0.4) + 
-  labs(color="Pollutant") + xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
-```
-
-Figure 5 suggests that the highest levels of CO are during winter and the colder months. This might be due to the fact that heaters are used the most in this time and do emit carbon monoxide. This plot does not tell us much else about the other pollutants due so from here we will take a look at each pollutant and how it has behaved from 2002 to 2020 by year and month.
+This section is interested in finding the trends of the mean pollution levels from 2002 to 2020 by year.
 
 #### Visualizing NO (Nitric Oxide)
 
@@ -246,7 +235,7 @@ pollution %>% filter(pollutant == "NO") %>% ggplot(
   xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
 
-Figure 6 shows a decreasing trend from 2002 to 2020 of the level of nitric oxide in the air. The highest level of pollution was in 2002 where the level was 150.2917 ppb. Figure 7 shows that in the colder months the levels of NO in the air are much higher than in the warmer months. The highest level in 2020 was around 49 ppb, a drastic drop from 2002. The highest level that was mentioned previously was seen in the month of December. However, it looks like on average the level of pollution for winter months is around 80 ppb. There are only some points that show high levels for the winter months.
+Figure 7 shows a decreasing pattern for the mean pollution from year 2002 to 2020 for NO by year. The highest pollution level for NO was 150.3 ppb in 2002. Figure 8 shows a decreasing trend from 2002 to 2020 of the level of nitric oxide in the air. This figure shows that in the colder months the levels of NO in the air are much higher than in the warmer months. The highest level in 2020 was around 49 ppb, a drastic drop from 2002. The highest level that was mentioned previously was seen in the month of December. However, it looks like on average the level of pollution for winter months is around 80 ppb. There are only some points that show high levels for the winter months.
 
 #### Visualizing NO2 (Nitrogen Dioxide)
 
@@ -266,7 +255,7 @@ pollution %>% filter(pollutant == "NO2") %>% ggplot(
   ylab("Mean Pollution (ppb)") + theme_bw()
 ```
 
-Figure 8 shows the mean pollution for NO2 has been consistently decreasing from 2002 to 2020. The highest value was seen in 2005 where the level was 65 ppb.The highest level in 2020 was around 31 ppb. There are some years between 2002 and 2020 where the level increases again in 2011 and 2014. The mean levels of pollution by month in figure 9 appear to have higher levels in the winter months than in the summer months, but not by a lot. The average levels are around 40 ppb for most months.
+Figure 9 shows the mean pollution for NO2 has been consistently decreasing from 2002 to 2020. The highest value was seen in 2005 where the level was 65 ppb.The highest level in 2020 was around 31 ppb. There are some years between 2002 and 2020 where the level increases again in 2011 and 2014. The mean levels of pollution by month in figure 9 appear to have higher levels in the winter months than in the summer months, but not by a lot. The average levels are around 40 ppb for most months.
 
 #### Visualizing O3 (Ozone)
 
@@ -306,7 +295,7 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
   xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
 
-Carbon monoxide is a product of incomplete combustion of hydrocarbon-based fuels. In figure 12 and 13 we see a similar pattern as NO and NO2 where the level of pollution is decreasing throughout the years from 2002 to 2020 and the highest levels are in the winter months. The highest level of pollution for CO was seen in 2002 with 1762.5 ppb. This level is much higher than any of the other pollutants. This suggests that carbon monoxide levels are much more widespread than any of the other pollutants we have analyzed and due to this can have a affect on our health. Even with the decreasing levels, the affects will still be dangerous. The highest level in 2020 was around 550 ppb which is almost 5 times higher than the levels of NO, NO2, and O3 in 2020.
+Carbon monoxide is a product of incomplete combustion of hydrocarbon-based fuels. In figure 12 and 13 we see a similar pattern as NO and NO2 where the level of pollution is decreasing throughout the years from 2002 to 2020 and the highest levels are in the winter months. The highest level of pollution for CO was seen in 2002 with 1762.5 ppb. This level is much higher than any of the other pollutants. This suggests that carbon monoxide levels are much more widespread than any of the other pollutants we have analyzed and due to this can have a affect on our health. Even with the decreasing levels, the affects will still be dangerous. The highest level in 2020 was around 550 ppb which is almost 5 times higher than the levels of NO, NO2, and O3 in 2020. There is also a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. We can notice that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November. The highest levels of CO are during winter and the colder months. This might be due to the fact that heaters are used the most in this time and do emit carbon monoxide. This plot does not tell us much else about the other pollutants due so from here we will take a look at each pollutant and how it has behaved from 2002 to 2020 by year and month.
 
 #### Visualizing SO2 (Sulfur Dioxide)
 
@@ -341,19 +330,19 @@ pollu_temp <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_temperature_polluti
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 and SO2 by Maximum Temperature and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant != "CO" & pollutant != "SO2") & (year > 2012 & year <= 2020)) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
+pollu_temp %>% filter((pollutant != "CO" & pollutant != "SO2")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
 ```
 
 In figure 16,
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for CO by Maximum Temperature and Pollutant for December to March", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant == "CO")  & (year > 2012 & year <= 2020)) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
+pollu_temp %>% filter((pollutant == "CO")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Mean Pollution 2002 to 2020 for NO, NO2, O3 and SO2 by Maximum Temperature and Pollutant for April to July", fig.width=9, fig.height=3.2}
 
-pollu_temp %>% filter((pollutant == "SO2")  & (year > 2012 & year <= 2020)) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
+pollu_temp %>% filter((pollutant == "SO2")) %>% ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + theme_bw()
 
 ```
 
@@ -405,11 +394,7 @@ In this limitations section, I will focus on the data used and look into why it 
 
 ## Results and Discussion
 
-*Temperature*
-
 Toronto will continue to experience warmer climate in the long-term due to climate change [@citefutureclimate]. Toronto will have more extreme hot days where the temperature will be above 30 degrees celcius and less extreme cold days where the temperature will be below -20 degrees celcius [@citefutureclimate]. By 2100, Toronto is expected to have warmed by 5 degrees celcius [@citefutureclimate]. These warmer temperatures have significant impacts on the health and well-being of Toronto residents. If carbon emissions continue and no changes are put in place now, the maximum average annual temperatures are expected to be: 12-14 degrees celcius by 2040, 14-16 degrees celcius by 2070, and 16-18 degrees celcius by 2100 [@citefutureclimate]. With more extreme heat days, Toronto will experience a greater demand for cooling which will increase the use of air conditioning causing a strain on electrical supply. These increases can be seen in figures 1, 2 and 3. In these we saw an increase in average temperatures for the Fall, Winter and Summer months.
-
-*Pollution*
 
 Air pollution continues to affect Canadians. Smog in the air, which is a mixture of smoke and fog, contains O3, SO2, and NO. Air pollutants like these are influenced by many factors including air temperature. Canada's population and economy continues to grow thus increasing the demand for production and delivery. This means more energy will be used to meet these demands and most of this energy will come from fossil fuels which will impact the quality of the air.
 
@@ -465,6 +450,8 @@ df %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
 
 ```
+
+Table 3 shows
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=9, fig.height=3.2}
 
@@ -624,11 +611,7 @@ df %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
 ```
 
-*Temperature and Pollution*
-
-*Temperature and Health*
-
-*Pollution and Health*
+Table 4 shows ...
 
 Exposure to air pollution is known as a major cause to illnesses and death.
 
@@ -642,7 +625,7 @@ SO2 (Sulfur Dioxide) can harm human respiratory systems by triggering respirator
 
 NO2 (Nitrogen Dioxide) has consequences on human health including emergency hospitalizations for respiratory conditions for adults that live in lower income communities in Toronto \[\@citestatscan\]. Children are more vulnerable to these effects of respiratory damage \[\@citestatscan\]. Children that have been exposed to NO2 have an increased risk of asthma, wheezing, infections in the ear, nose and throat, influenza, serious colds, and reduced lung function \[\@citestatscan\].
 
-*Temperature, Pollution and Health*
+When looking at temperature, pollution and health together there are trends that have been analyzed in this paper that show that with temperature increases, there are higher levels of O3 (Ozone) and CO (Carbon Monoxide) levels have remained high. With the high presence of these pollutants in the air of Toronto, the population faces health risks that include reducing their exercise capacity, visual perception, manual dexterity, learning functions, ability to perform complex tasks, shortness of breath, aggravation of respiratory conditions and allergies, chronic obstructive pulmonary disease and asthma.
 
 ## Next Steps
 

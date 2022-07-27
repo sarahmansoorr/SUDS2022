@@ -217,4 +217,66 @@ pollu_temp %>%
     linesep = "", digits = 2, booktabs=TRUE) %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
 
+pollu_temp %>% filter((pollutant != "CO" & pollutant != "SO2") & (year > 2012 & year <= 2020)) %>% 
+  ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + 
+  facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + 
+  theme_bw()
 
+pollu_temp %>% filter((pollutant != "CO" & pollutant != "SO2") & (year > 2002 & year <= 2012)) %>% 
+  ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + 
+  facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + 
+  theme_bw()
+
+pollu_temp %>% filter((pollutant != "CO" & pollutant != "SO2")) %>% 
+  ggplot(aes(max_temp, mean_pollution)) + geom_point(color = "#6DD6CD", alpha = 0.4) + 
+  facet_grid(. ~ pollutant) + xlab("Maximum Temperature") +  ylab("Mean Pollution") + 
+  theme_bw()
+
+
+level_order <- c("Dec", "Jan", "Feb","Mar")
+
+temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
+                             month_name == "Mar") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, 
+                                                                                                  color=factor(month_name, level = level_order))) + 
+  geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + 
+  theme_bw() + facet_grid(. ~ month_name, level = level_order)
+
+
+
+
+# sample
+
+pollution %>% filter(pollutant == "CO")
+# 6940
+pollution %>% filter(pollutant == "O3")
+# 6940
+pollution %>% filter(pollutant == "NO")
+# 6940
+pollution %>% filter(pollutant == "NO2")
+# 6940
+pollution %>% filter(pollutant == "SO2")
+# 6940
+
+pollution %>% filter((pollutant == "CO") & (year >= 2002 & year <= 2012))
+# 4018
+pollution %>% filter((pollutant == "CO") & (year > 2012 & year <= 2020))
+# 2922
+pollution %>% filter((pollutant == "O3") & (year >= 2002 & year <= 2012))
+# 4018
+pollution %>% filter((pollutant == "O3") & (year > 2012 & year <= 2020))
+# 2922
+pollution %>% filter((pollutant == "NO") & (year >= 2002 & year <= 2012))
+# 4018
+pollution %>% filter((pollutant == "NO") & (year > 2012 & year <= 2020))
+# 2922
+pollution %>% filter((pollutant == "NO2") & (year >= 2002 & year <= 2012))
+# 4018
+pollution %>% filter((pollutant == "NO2") & (year > 2012 & year <= 2020))
+# 2922
+pollution %>% filter((pollutant == "SO2") & (year >= 2002 & year <= 2012))
+# 4018
+pollution %>% filter((pollutant == "SO2") & (year > 2012 & year <= 2020))
+# 2922
+
+pollution %>% filter((pollutant == "NO") & (year >= 2002 & year <= 2012) & (month == "Dec" | 
+                         month == "Jan" | month == "Feb" | month == "Mar"))
