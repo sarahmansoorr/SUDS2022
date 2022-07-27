@@ -104,7 +104,7 @@ temp_2002_2022 <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_temp_data/tempe
 
 temp_2002_2022 %>%
   select(year, month, day, max_temp, min_temp, mean_temp) %>%
-  slice(c(162, 393, 745, 1318, 1819, 2115, 3222, 4222, 5222, 6333)) %>%
+  slice(c(162, 393, 4222, 5222, 6333)) %>%
   kable(
     caption = "Extracting rows from the Temperature data from 2002 - 2022",
     col.names=c("Year", "Month", "Day", "Max Temp", "Min Temp", "Mean Temp"),
@@ -127,7 +127,7 @@ pollution <- read.csv("~/Desktop/SUDS2022/inputs/data/clean_pollution_data/pollu
 
 pollution %>%
   select(city, pollutant, mean_pollution, day, month, year) %>%
-  slice(c(100, 1000, 1200, 1500, 1800, 2000, 2500, 2800, 3600, 5000, 6000, 7000, 10000, 11000, 15000)) %>%
+  slice(c(100, 1000, 5000, 11000, 15000)) %>%
   kable(
     caption = "Extracting rows from the Pollution data from 2002 - 2020",
     col.names=c("City", "Pollutant", "Mean Pollution", "Day", "Month", "Year"),
@@ -295,7 +295,7 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
   xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
 
-Carbon monoxide is produced through burning of coal, gasoline, natural gas, oil, propane, and wood [@citeCOpoisoning]. In figure 12 and 13 we see a similar pattern as NO and NO2 where the level of pollution is decreasing throughout the years from 2002 to 2020 and the highest levels are in the winter months. The highest level of pollution for CO was seen in 2002 with 1762.5 ppb. This level is much higher than any of the other pollutants. This suggests that carbon monoxide levels are much more widespread than any of the other pollutants we have analyzed and due to this can have a affect on our health. Even with the decreasing levels, the affects will still be dangerous. The highest level in 2020 was around 550 ppb which is almost 5 times higher than the levels of NO, NO2, and O3 in 2020. There is also a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. We can notice that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November. The highest levels of CO are during winter and the colder months. This might be due to the fact that heaters are used the most in this time and do emit carbon monoxide. This plot does not tell us much else about the other pollutants due so from here we will take a look at each pollutant and how it has behaved from 2002 to 2020 by year and month.
+Carbon monoxide is produced through burning of coal, gasoline, natural gas, oil, propane, and wood [@citeCOpoisoning]. In figure 12 and 13 we see a similar pattern as NO and NO2 where the level of pollution is decreasing throughout the years from 2002 to 2020 and the highest levels are in the winter months. The highest level of pollution for CO was seen in 2002 with 1762.5 ppb. This level is much higher than any of the other pollutants. This suggests that carbon monoxide levels are much more widespread than any of the other pollutants we have analyzed and due to this can have a affect on our health. Even with the decreasing levels, the affects will still be dangerous. The highest level in 2020 was around 550 ppb which is almost 5 times higher than the levels of NO, NO2, and O3 in 2020. There is also a decreasing pattern for the mean pollution from year 2002 to 2020 for CO by year. It can be noticed that there is a drop in the pollution levels from 2003 to 2005 but it rises again in 2006. Looking back at figure 3, this was the same year some of the highest temperatures were recorded from August to November. The highest levels of CO are during winter and the colder months. This might be due to the fact that heaters are used the most in this time and do emit carbon monoxide. This plot does not tell us much else about the other pollutants due so from here we will take a look at each pollutant and how it has behaved from 2002 to 2020 by year and month.
 
 #### Visualizing SO2 (Sulfur Dioxide)
 
@@ -315,7 +315,7 @@ pollution %>% filter(pollutant == "SO2") %>% ggplot(
   xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
 
-In figure 14, there is a decreasing pattern for the level of SO2 in the air from 2002 to 2020. The highest level in 2002 was 22.79 ppb and the highest level in 2020 seems to be less than 3 ppb. This is a drastic drop and suggests that the level of SO2 in the air is not affected by the increasing temperatures. In figure 15 we also see this. The levels of SO2 in the air remain consistent throughout the months and there is no difference between the winter and summer months.
+In figure 14, there is a decreasing pattern for the level of SO2 in the air from 2002 to 2020. The highest level in 2002 was 22.79 ppb and the highest level in 2020 seems to be less than 3 ppb. This is a drastic drop and suggests that the level of SO2 in the air is not affected by the increasing temperatures. This is also seen in figure 15. The levels of SO2 in the air remain consistent throughout the months and there is no difference between the winter and summer months.
 
 ## Visualizing Pollution and Temperature from 2002-2020
 
@@ -388,7 +388,7 @@ df %>% select(formula_1, coefficients_1, estimate, error, t_value, p_value) %>%
 
 ## Limitations
 
-In this limitations section, I will focus on the data used and look into why it is not easy to take the implications mentioned above directly.
+This limitations section will focus on the data used and look into why it is not easy to take the implications mentioned above directly.
 
 ### Missing Pollution Data from 2021-2022
 
@@ -398,7 +398,7 @@ Toronto will continue to experience warmer climate in the long-term due to clima
 
 Air pollution continues to affect Canadians. Smog in the air, which is a mixture of smoke and fog, contains O3, SO2, and NO. Air pollutants like these are influenced by many factors including air temperature. Canada's population and economy continues to grow thus increasing the demand for production and delivery. This means more energy will be used to meet these demands and most of this energy will come from fossil fuels which will impact the quality of the air.
 
-From the analysis of NO, NO2, CO and SO2 we saw that there was a decline in the mean pollution levels of those pollutants. This is due to implementation of regulations and technological improvements for transportation vehicles and industrial processes. Canadians using more environmentally sustainable practices like public transport and carpooling have contributed to the decrease of lower pollution levels.
+From the analysis of NO, NO2, CO and SO2 it was seen that there was a decline in the mean pollution levels of those pollutants. This is due to implementation of regulations and technological improvements for transportation vehicles and industrial processes. Canadians using more environmentally sustainable practices like public transport and carpooling have contributed to the decrease of lower pollution levels.
 
 NO2 is usually formed through the burning of fossil fuels, transportation services, energy production and industrial processes [@citeairquality]. Nitrogen dioxide at higher concentration levels has a strong and harsh odor and can be seen over large cities as a brownish haze [@citeairquality]. NO2 can combine with H2O and form nitric acid and nitrous acid. This falls to earth through precipitation like rain, snow, and fog, and contributed to acidification and eutrophication of ecosystems [@citeairquality]. NO2 (Nitrogen Dioxide) has consequences on human health including emergency hospitalizations for respiratory conditions for adults that live in lower income communities in Toronto \[\@citestatscan\]. Children are more vulnerable to these effects of respiratory damage \[\@citestatscan\]. Children that have been exposed to NO2 have an increased risk of asthma, wheezing, infections in the ear, nose and throat, influenza, serious colds, and reduced lung function \[\@citestatscan\].
 
@@ -623,7 +623,7 @@ When looking at temperature, pollution and health together there are trends that
 
 ## Next Steps
 
-Following on from the previous section, we can make good suggestions on ways to improve the data so that the findings will be less ambiguous and more ethical to use with confidence. First off, we can start by collecting pollution data from 2021 to 2022. It is possible that this data is available but not published yet on the website. In doing this, the data scientist who gets a hold of the data will have the liberty to conduct their analysis with the full data sets for temperature and pollution for 20 years. This will not only ease the job of the data scientist but will also improve the reproducibility of their workflow and finding.
+Following on from the previous section, good suggestions can be made on ways to improve the data so that the findings will be less ambiguous and more ethical to use with confidence. First off, by collecting pollution data from 2021 to 2022. It is possible that this data is available but not published yet on the website. In doing this, the data scientist who gets a hold of the data will have the liberty to conduct their analysis with the full data sets for temperature and pollution for 20 years. This will not only ease the job of the data scientist but will also improve the reproducibility of their workflow and finding.
 
 \newpage
 

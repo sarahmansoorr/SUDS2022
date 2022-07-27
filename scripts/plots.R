@@ -280,3 +280,34 @@ pollution %>% filter((pollutant == "SO2") & (year > 2012 & year <= 2020))
 
 pollution %>% filter((pollutant == "NO") & (year >= 2002 & year <= 2012) & (month == "Dec" | 
                          month == "Jan" | month == "Feb" | month == "Mar"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+# pollution NA months
+
+df <- pollution
+df <- df %>% drop_na(month_name)
+
+level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
+
+df %>% filter(pollutant == "NO") %>% ggplot(
+  aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point(color = "gray") +
+  xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
+
+
+
+
+
+
+
+
