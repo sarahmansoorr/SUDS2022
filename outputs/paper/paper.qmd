@@ -46,33 +46,17 @@ library(ggplot2)
 library(dplyr)
 ```
 
-Temperature variables of interest:
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="", fig.width=9, fig.height=3.2}
 
 temp_var <- c("City", "Maximum Temperature", "Minimum Temperature", "Mean Temperature", "Day", "Month", "Year")
 
-df <- data.frame(temp_var)
+pollu_var <- c("City", "Pollutant", "Mean Pollution Level", "Day", "Month", "Year", "")
 
-df %>% select(temp_var) %>%
+df <- data.frame(temp_var, pollu_var)
+
+df %>% select(temp_var, pollu_var) %>%
   kable(
-    col.names=c("Variables"),
-    linesep = "", digits = 2, booktabs=TRUE) %>%
-  kable_styling(latex_options = "HOLD_position", font_size = 10)
-
-```
-
-Pollution variables of interest:
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="", fig.width=9, fig.height=3.2}
-
-pollu_var <- c("City", "Pollutant", "Mean Pollution Level", "Day", "Month", "Year")
-
-df <- data.frame(pollu_var)
-
-df %>% select(pollu_var) %>%
-  kable(
-    col.names=c("Variables"),
+    col.names=c("Temperature Variables of Interest", "Pollution Variables of Interest"),
     linesep = "", digits = 2, booktabs=TRUE) %>%
   kable_styling(latex_options = "HOLD_position", font_size = 10)
 
@@ -148,11 +132,7 @@ This section is interested in finding the trends of the maximum temperatures fro
 
 level_order <- c("Dec", "Jan", "Feb","Mar")
 
-temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
-                            month_name == "Mar") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, 
-                            color=factor(month_name, level = level_order))) + 
-  geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + 
-  theme_bw() + facet_grid(. ~ month_name)
+temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
 
 ```
 
@@ -164,7 +144,7 @@ temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name
                              month_name == "Mar") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, 
                                                                                                   color=factor(month_name, level = level_order))) + 
   geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + 
-  theme_bw() + facet_grid(. ~ month_name)
+  theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
 
 ```
 
@@ -174,7 +154,7 @@ Figure 2 shows an increasing pattern for the maximum temperature from year 2013 
 
 level_order <- c("Apr", "May", "Jun", "Jul")
 
-temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
+temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
 
 ```
 
@@ -184,7 +164,7 @@ Figure 3 shows an increasing pattern for the maximum temperature from year 2002 
 
 level_order <- c("Apr", "May", "Jun", "Jul")
 
-temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
+temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
 
 ```
 
@@ -194,7 +174,7 @@ Figure 4 shows an increasing pattern for the maximum temperature from year 2013 
 
 level_order <- c("Aug","Sep", "Oct","Nov")
 
-temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
+temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
 
 ```
 
@@ -204,7 +184,7 @@ Figure 5 shows an increasing pattern for the maximum temperature from year 2002 
 
 level_order <- c("Aug","Sep", "Oct","Nov")
 
-temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
+temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
 
 
 ```
