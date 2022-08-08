@@ -16,11 +16,11 @@ bibliography: references.bib
 
 ## Introduction
 
-As climate change worsens, the danger it presents to human health becomes more and more dangerous [@citenasaclimatewarn]. The health impacts due to climate change are already being demonstrated in parts of Canada. Canada is warming at almost twice the global rate and if this continues, emissions will exceed 2 degrees Celsius worldwide [@citehealthcanada].
+As climate change worsens, the danger it presents to human health becomes more dangerous [@citenasaclimatewarn]. The health impacts due to climate change are already being demonstrated in parts of Canada. Canada is warming at almost twice the global rate and if this continues, emissions will exceed 2 degrees Celsius worldwide [@citehealthcanada].
 
 The Paris Agreement within the United Nations Framework Convention on Climate Change includes 175 countries that have agreed to limit the average global temperature rise to below 2 degress Celcius [@citehealthcanada]. Canada had signed to the Paris Agreement as well and committed to cutting emissions 30% below the 2005 levels by 2030 [@citehealthcanada]. However, Canada's emissions increased in 2016 compared to 1990. In response to this increase, the Government of Canada developed a national climate change plan called *The Pan-Canadian Framework on Clean Growth and Climate Change* [@citehealthcanada]. This framework notes that human activities are driving severe changes to the Earth's climate which poses substantial risks to human health.
 
-Urgent action is needed and the science shows that it will make a tangible difference \[\@\]. The health impacts from climate change can be mitigated by improving efforts both in societies and health systems in Canada \[\@\]. Changes in measures can prevent health impacts and build health systems and facilities that are more resilient to climate change \[\@\].
+Urgent action is needed and the science shows that it will make a tangible difference \[\@citeipcc\]. The health impacts from climate change can be mitigated by improving efforts both in societies and health systems in Canada \[\@citeipcc\]. Changes in measures can prevent health impacts and build health systems and facilities that are more resilient to climate change \[\@citeipcc\].
 
 Data was collected from the Government of Canada's website for both temperature and pollution. Once the data was collected for the available years between 2002 and 2022, it was cleaned using multiple packages in R which will be described in the next section.
 
@@ -66,7 +66,7 @@ df %>% select(temp_var, pollu_var) %>%
 
 *Temperature data*
 
-The data for temperature was processed using R studio and R [@citeR]. The 2002 to 2022 temperature data was combined together. The data set initially contained 31 variables. From these the city, date, year, month, day, maximum temperature, minimum temperature, and mean temperature were selected using the dplyr package [@citedplyr]. Then any NA values from the maximum, minimum, and mean temperature columns were dropped.
+The data for temperature was processed using R studio and R [@citeR]. The 2002 to 2022 temperature data was combined together. The data set initially contained 31 variables. From these the city, date, year, month, day, maximum temperature, minimum temperature, and mean temperature were selected using the dplyr package [@citedplyr].
 
 *Pollution Data*
 
@@ -97,8 +97,6 @@ temp_2002_2022 %>%
 
 ```
 
-Table 1 shows some of the rows of the Temperature data from 2002 to 2022.
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 # Load pollution data
@@ -120,7 +118,7 @@ pollution %>%
 
 ```
 
-Table 2 shows some of the rows of the Pollution data from 2002 to 2020. Variable "Mean Pollution" represents the mean pollution levels of the following pollutant on the following day of the month and year.
+Table 1 shows some rows of the Temperature data from 2002 to 2022. Table 2 shows some of the rows of the Pollution data from 2002 to 2020. Variable "Mean Pollution" represents the mean pollution levels of the following pollutant on the following day of the month and year.
 
 ## Visualizing Temperature from 2002-2022
 
@@ -132,19 +130,14 @@ This section is interested in finding the trends of the maximum temperatures fro
 
 level_order <- c("Dec", "Jan", "Feb","Mar")
 
-temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
-
+temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar") & (year >= 2002 & year < 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) 
 ```
 
 Figure 1 shows an increasing pattern for the maximum temperature from year 2002 to 2012 from December to March. Temperatures in March continue to be increasingly higher than any of the other months in this plot. It is noticeable that the temperatures for all months are the highest in 2012. According to NASA, the average temperatures in 2012 was warmer than the mid-20th century baseline and is considered to be an outlying of seasonal extremes that are warmer [@citenasaclimatewarn]. The lowest maximum temperature in January is higher than other years in 2012. The plot shows that the average maximum temperature from December to March has been between -19.2 degrees Celsius in February of 2015 and 24.3 degrees Celsius in March of 2012.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Temperature 2013 to 2022 for December to March", fig.width=9, fig.height=3.2}
 
-temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | 
-                             month_name == "Mar") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, 
-                                                                                                  color=factor(month_name, level = level_order))) + 
-  geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + 
-  theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
+temp_2002_2022 %>% filter((month_name == "Dec" | month_name == "Jan"| month_name == "Feb" | month_name == "Mar") & (year >= 2012 & year < 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
 
 ```
 
@@ -154,8 +147,7 @@ Figure 2 shows an increasing pattern for the maximum temperature from year 2013 
 
 level_order <- c("Apr", "May", "Jun", "Jul")
 
-temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
-
+temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year >= 2002 & year < 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) 
 ```
 
 Figure 3 shows an increasing pattern for the maximum temperature from year 2002 to 2012 from April to July. Temperatures in July are consistently higher throughout the years than any of the other months in the plot and temperatures in April are consistently lower throughout the years than any of the other months. There are some years where June has the highest temperature. The plot shows that the average maximum temperature from April to May has been between -2.4 degrees Celsius in April of 2003 and 38.2 degrees Celsius in July of 2011.
@@ -164,8 +156,7 @@ Figure 3 shows an increasing pattern for the maximum temperature from year 2002 
 
 level_order <- c("Apr", "May", "Jun", "Jul")
 
-temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
-
+temp_2002_2022 %>% filter((month_name == "Apr" | month_name == "May" | month_name == "Jun" | month_name == "Jul") & (year >= 2012 & year < 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) 
 ```
 
 Figure 4 shows an increasing pattern for the maximum temperature from year 2013 to 2022 from April to July.
@@ -174,8 +165,7 @@ Figure 4 shows an increasing pattern for the maximum temperature from year 2013 
 
 level_order <- c("Aug","Sep", "Oct","Nov")
 
-temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year >= 2002 & year <= 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
-
+temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year >= 2002 & year < 2012)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
 ```
 
 Figure 5 shows an increasing pattern for the maximum temperature from year 2002 to 2012 from August to November. Temperatures in both August and September are the highest throughout the years compared to November and October. Temperatures in November are consistently the lowest throughout the years compared to the other months. There are a few high temperatures in October throughout the years as well and this is typically seen when the August and September have some of the highest temperatures compared to other years. The plot shows that the average maximum temperature from April to May has been between -5.1 degrees Celsius in November of 2018 and 36.8 degrees Celsius in August of 2006.
@@ -184,9 +174,7 @@ Figure 5 shows an increasing pattern for the maximum temperature from year 2002 
 
 level_order <- c("Aug","Sep", "Oct","Nov")
 
-temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year > 2012 & year <= 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name) + scale_x_discrete(breaks = 0:2100)
-
-
+temp_2002_2022 %>% filter((month_name == "Aug" | month_name == "Sep" | month_name == "Oct" | month_name == "Nov") & (year >= 2012 & year < 2022)) %>% ggplot(aes(x=year, y=max_temp, color=factor(month_name, level = level_order))) + geom_point(alpha = 0.4) + labs(color="Month") + xlab("Year") + ylab("Maximum Temperature") + theme_bw() + facet_grid(. ~ month_name)
 ```
 
 Figure 6 shows an increasing pattern for the maximum temperature from year 2013 to 2022 from August to November.
@@ -210,7 +198,7 @@ pollution %>% filter(pollutant == "NO") %>% ggplot(
 
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
-pollution %>% filter(pollutant == "NO") %>% ggplot(
+pollution %>% filter(pollutant == "NO" & is.na(month_name) == "FALSE") %>% ggplot(
   aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point(color = "gray") +
   xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
@@ -230,7 +218,7 @@ pollution %>% filter(pollutant == "NO2" ) %>% ggplot(
 
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
-pollution %>% filter(pollutant == "NO2") %>% ggplot(
+pollution %>% filter(pollutant == "NO2" & is.na(month_name) == "FALSE") %>% ggplot(
   aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point(color = "light blue") +
   ylab("Mean Pollution (ppb)") + theme_bw()
 ```
@@ -250,7 +238,7 @@ pollution %>% filter(pollutant == "O3") %>% ggplot(
 
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
-pollution %>% filter(pollutant == "O3") %>% ggplot(
+pollution %>% filter(pollutant == "O3" & is.na(month_name) == "FALSE") %>% ggplot(
   aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point(color = "light pink") +
   xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
@@ -270,7 +258,7 @@ pollution %>% filter(pollutant == "CO") %>% ggplot(
 
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
-pollution %>% filter(pollutant == "CO") %>% ggplot(
+pollution %>% filter(pollutant == "CO" & is.na(month_name) == "FALSE") %>% ggplot(
   aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point(color = "#9AD67F") +
   xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
@@ -290,7 +278,7 @@ pollution %>% filter(pollutant == "SO2") %>% ggplot(
 
 level_order <- c("Jan", "Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep", "Oct","Nov", "Dec")
 
-pollution %>% filter(pollutant == "SO2") %>% ggplot(
+pollution %>% filter(pollutant == "SO2" & is.na(month_name) == "FALSE") %>% ggplot(
   aes(x = factor(month_name, level = level_order), y = mean_pollution)) + geom_point(color = "#847FD6") +
   xlab("Month") + ylab("Mean Pollution (ppb)") + theme_bw()
 ```
